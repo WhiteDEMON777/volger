@@ -1,0 +1,34 @@
+---
+type Tab = {
+  tab: string;
+  content?: object | number;
+  count?: number;
+  showCount?: boolean;
+};
+interface Props {
+  items: Tab[];
+  open: number;
+  class?: string;
+}
+
+const { items, open, class: className } = Astro.props;
+---
+
+<div class:list={['tab', className]} data-open={open}>
+  <div class="tab__list">
+    {
+      items.map(({ tab, count, showCount }) => (
+        <div class="tab__item">
+          {tab}
+          {showCount && count && count > 1 && <sup class="tab__count">{count}</sup>}
+        </div>
+      ))
+    }
+  </div>
+  <select class="tab__select">
+    {items.map(({ tab }, index) => <option value={index + 1}>{tab}</option>)}
+  </select>
+  <div class="tab__container">
+    <slot />
+  </div>
+</div>

@@ -1,0 +1,35 @@
+stages:
+  - deploy
+
+deploy_build_and_rsync:
+  stage: deploy
+  image: node:20-alpine3.18
+  tags:
+    - DockerRunner2
+  variables:
+    SSH_USER: "root"
+    SSH_PASSWORD: "sFb4Y?A2HhM9WH"
+    SSH_HOST: "80.90.184.134"
+    PROJECT_PATH: "/var/www/proxima_dev/data/www/markup.prox-dev.ru/$CI_PROJECT_NAME"
+  before_script:
+    - apk add --no-cache openssh sshpass rsync
+    - npm install -g pnpm
+    - pnpm install
+  script:
+    - echo "Start build"
+    - pnpm build
+    - echo "Start deploy to dev server"
+    - echo "Cleaning project directory on dev server..."
+    - sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "rm -rf '$PROJECT_PATH'/*; mkdir -p '$PROJECT_PATH'"
+    - echo "Executing rsync from Runner to server..."
+    - rsync -avz --delete -e "sshpass -p '$SSH_PASSWORD' ssh -o StrictHostKeyChecking=no" "./build/" "$SSH_USER@$SSH_HOST:$PROJECT_PATH"
+    - echo "Setting file permissions..."
+    - sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "
+        find '$PROJECT_PATH' -type f -exec chmod 644 {} ';';
+        find '$PROJECT_PATH' -type d -exec chmod 755 {} ';';
+      "
+    - echo "Setting ownership..."
+    - sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "chown -R proxima_dev:proxima_dev '$PROJECT_PATH'"
+    - echo "Deploy to dev server finished"
+  only:
+    - dev

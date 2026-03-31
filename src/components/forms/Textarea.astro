@@ -1,0 +1,66 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props extends HTMLAttributes<'textarea'> {
+  id: string;
+  label?: string;
+  name: string;
+  className?: string;
+  valid?: boolean;
+  invalid?: boolean;
+  errorMessage?: string;
+  error?: boolean;
+}
+
+const { id, label, valid, invalid, errorMessage, name, className, error, ...restProps } = Astro.props;
+
+const classList = ['textarea__element'];
+
+const textareaWrapperClass = ['textarea', `${className || ''}`, `${valid ? 'textarea--valid' : ''}`, `${invalid ? 'textarea--invalid' : ''}`, `${errorMessage ? 'textarea--error' : ''}`];
+---
+
+<div class:list={textareaWrapperClass}>
+  {
+    label && (
+      <label for={id} class="textarea__label">
+        {label}
+      </label>
+    )
+  }
+
+  <textarea id={id} name={name} class:list={classList} placeholder={restProps.placeholder || ''} data-textarea-field {...restProps}></textarea>
+
+  {(errorMessage || error) && <div class="textarea__error">{errorMessage || 'Текст ошибки'}</div>}
+</div>
+
+<script>
+  function handleTextareaState() {
+    const textareas = document.querySelectorAll('[data-textarea-field]');
+
+    textareas.forEach((textarea) => {
+      const updateState = () => {
+        const textareaElement = textarea as HTMLTextAreaElement;
+        const hasValue = textareaElement.value.trim() !== '';
+        const isFocused = textarea === document.activeElement;
+
+        if (hasValue || isFocused) {
+          textarea.classList.add('has-value');
+        } else {
+          textarea.classList.remove('has-value');
+        }
+      };
+
+      textarea.addEventListener('input', updateState);
+      textarea.addEventListener('focus', updateState);
+      textarea.addEventListener('blur', updateState);
+
+      updateState();
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', handleTextareaState);
+  } else {
+    handleTextareaState();
+  }
+</script>
