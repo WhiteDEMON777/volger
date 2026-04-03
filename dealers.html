@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VOLGER | Дилеры</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="page page--dealers">
+<header class="site-header">
+  <div class="site-header__inner">
+    <button class="site-header__menu" type="button" aria-label="Открыть меню">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <a class="site-header__logo" href="index.html" aria-label="VOLGER">
+      <img src="img/figma/assets/hero-word.svg" alt="VOLGER">
+    </a>
+  </div>
+</header>
+
+<main>
+  <section class="dealer-hero section" aria-labelledby="dealer-hero-title">
+    <div class="container">
+      <h1 id="dealer-hero-title" class="section__title">Официальные дилеры VOLGER в России</h1>
+      <div class="dealer-hero__layout">
+        <article class="dealer-card">
+          <figure class="dealer-card__brand" aria-hidden="true">
+            <img src="img/figma/assets/dealer-card-brand-system.png" alt="">
+          </figure>
+          <div class="dealer-card__info">
+            <h2>SYSTEM</h2>
+            <p class="dealer-card__label">Контакты:</p>
+            <p>8 (800) 222-39-09</p>
+            <p>ecom@systema-sar.ru</p>
+            <p>systemarf.ru</p>
+          </div>
+          <p class="dealer-card__cities">Саратов • Пенза • Самара • Казань • Чебоксары</p>
+        </article>
+        <article class="dealer-card dealer-card--placeholder">
+          <figure class="dealer-card__brand" aria-hidden="true">
+            <img src="img/figma/assets/dealer-card-brand-placeholder.png" alt="">
+          </figure>
+          <div class="dealer-card__info">
+            <h2>хххххх</h2>
+            <p class="dealer-card__label">Контакты:</p>
+            <p>8 (ххх) ххх-хх-хх</p>
+            <p>хххх@sхххххх-ххх.ru</p>
+            <p>хххххххх.ru</p>
+          </div>
+          <p class="dealer-card__cities">Ххххх • Хххххххх • Хххххх</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="dealer-benefits section" aria-labelledby="dealer-benefits-title">
+    <div class="container">
+      <h2 id="dealer-benefits-title" class="section__title">Преимущества для дилера:</h2>
+      <div class="dealer-benefits__layout">
+        <div class="dealer-benefits__items">
+          <details class="dealer-benefits__item">
+            <summary>
+              <h3>Поддержка продаж</h3>
+              <span class="dealer-benefits__arrow" aria-hidden="true"></span>
+            </summary>
+            <p>Предоставляем маркетинговые материалы, рекомендации по продажам и помощь в продвижении продукции</p>
+          </details>
+          <details class="dealer-benefits__item">
+            <summary>
+              <h3>Востребованный продукт</h3>
+              <span class="dealer-benefits__arrow" aria-hidden="true"></span>
+            </summary>
+            <p>Продукция закрывает реальные задачи: очистка, защита, восстановление — то, что нужно ежедневно.</p>
+          </details>
+          <details class="dealer-benefits__item">
+            <summary>
+              <h3>Потенциал роста вместе с брендом</h3>
+              <span class="dealer-benefits__arrow" aria-hidden="true"></span>
+            </summary>
+            <p>Вы становитесь партнёром бренда на этапе роста и можете занять сильную позицию в своём регионе</p>
+          </details>
+          <details class="dealer-benefits__item">
+            <summary>
+              <h3>Прозрачная ценовая политика</h3>
+              <span class="dealer-benefits__arrow" aria-hidden="true"></span>
+            </summary>
+            <p>Единая ценовая стратегия позволяет избежать демпинга и защищает вашу прибыль.</p>
+          </details>
+        </div>
+        <aside class="dealer-benefits__visual" aria-hidden="true">
+          <figure class="dealer-benefits__visual-inner">
+            <img src="img/figma/assets/dealer-benefits-right.png" alt="">
+          </figure>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-block section" id="cooperation" aria-labelledby="cooperation-title">
+    <div class="contact-block__container">
+      <h2 id="cooperation-title" class="section__title">Сотрудничество и контакты</h2>
+      <p class="contact-block__subtitle">Ищем партнёров для развития продаж и поставок продукции VOLGER в регионах России.</p>
+      <div class="contact-block__layout">
+        <article class="contact-block__form-card">
+          <h3>Получить условия сотрудничества</h3>
+          <form class="form" action="#" method="post">
+            <label class="form__field">
+              <span class="form__visually-hidden">Имя</span>
+              <input type="text" name="name" placeholder="Имя*" required>
+            </label>
+            <label class="form__field">
+              <span class="form__visually-hidden">Название компания</span>
+              <input type="text" name="company" placeholder="Название компания*" required>
+            </label>
+            <label class="form__field">
+              <span class="form__visually-hidden">Телефон</span>
+              <input type="tel" name="phone" placeholder="Телефон*" required>
+            </label>
+            <label class="form__field">
+              <span class="form__visually-hidden">Email</span>
+              <input type="email" name="email" placeholder="Email*" required>
+            </label>
+            <label class="form__field form__field--textarea">
+              <span class="form__visually-hidden">Комментарий</span>
+              <textarea name="comment" placeholder="Комментарий*"></textarea>
+            </label>
+            <div class="form__footer">
+              <button class="button button--primary form__submit" type="submit">Отправить заявку</button>
+              <p>Отправляя заявку, вы соглашаетесь на обработку персональных данных.</p>
+            </div>
+          </form>
+        </article>
+        <aside class="contact-block__aside">
+          <h3>Телефон</h3>
+          <a href="tel:+7XXXXXXXXXX">+7 (XXX) XXX-XX-XX</a>
+          <h3>Email</h3>
+          <a href="mailto:info@volger.ru">info@volger.ru</a>
+        </aside>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer__container">
+    <div class="site-footer__top">
+      <section class="site-footer__contacts" aria-labelledby="footer-contacts-title">
+        <h2 id="footer-contacts-title" class="site-footer__contacts-title">Контакты:</h2>
+        <a href="tel:+7XXXXXXXXXX">
+          <img src="img/icon/phone.svg" alt="">
+          +7 (XXX) XXX-XX-XX
+        </a>
+        <a href="mailto:info@volger.ru">
+          <img src="img/icon/mail.svg" alt="">
+          info@volger.ru
+
+        </a>
+      </section>
+      <nav class="site-footer__nav" aria-label="Навигация по сайту">
+        <a class="site-footer__nav-link" href="index.html">О бренде</a>
+        <a class="site-footer__nav-link" href="product.html">Продукция</a>
+        <a class="site-footer__nav-link site-footer__nav-link--active" href="dealers.html" aria-current="page">Где купить?</a>
+        <a class="site-footer__nav-link" href="requisites.html">Реквизиты и контакты</a>
+      </nav>
+      <div class="site-footer__brand">
+        <img class="site-footer__brand-main" src="img/figma/assets/brand-mark.svg" alt="VOLGER">
+        <img class="site-footer__brand-system" src="img/icon/system.svg" alt="SYSTEM">
+      </div>
+    </div>
+    <div class="site-footer__bottom">
+      <p>© 2026 ООО "Волгер" Вы принимаете условия пользовательского соглашения каждый раз, когда посещаете наш сайт и оставляете свои данные в любой форме на сайте. Если вы не хотите, чтобы ваши данные обрабатывались, покиньте сайт.</p>
+      <a href="#">Пользовательское соглашение</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
