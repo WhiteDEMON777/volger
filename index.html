@@ -4,44 +4,112 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VOLGER | О бренде</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./fonts/icomoon/style.css">
+  <link rel="stylesheet" href="./plugins/swiper/swiper-bundle.min.css">
+  <link rel="stylesheet" href="scss/style.css">
 </head>
 <body class="page page--home">
 <header class="site-header">
   <div class="site-header__inner">
-    <button class="site-header__menu" type="button" aria-label="Открыть меню">
+    <button class="site-header__menu" type="button">
       <span></span>
       <span></span>
       <span></span>
     </button>
-    <a class="site-header__logo" href="index.html" aria-label="VOLGER">
+    <a class="site-header__logo" href="index.html">
       <img src="img/figma/assets/hero-word.svg" alt="VOLGER">
     </a>
   </div>
 </header>
 
 <main>
-  <section class="hero section" aria-labelledby="home-hero-title">
-    <div class="hero__shell">
-      <figure class="hero__media">
-        <img src="img/figma/assets/hero-media-3d31ad.png" alt="Продукция VOLGER">
-      </figure>
-      <div class="hero__content">
-        <h1 id="home-hero-title" class="hero__title">Продукция обеспечивает стабильный результат в рабочих условиях</h1>
-        <a class="button button--primary" href="#cooperation">Оставить заявку</a>
+  <section class="hero">
+    <div class="hero__slider swiper">
+      <div class="swiper-wrapper">
+        <div class="hero__shell swiper-slide">
+          <figure class="hero__media">
+            <img src="img/figma/assets/hero1.png" alt="Продукция VOLGER">
+          </figure>
+            <div class="hero__glass icon-volger"></div>
+          <svg class="clip-defs" aria-hidden="true" focusable="false">
+            <defs>
+              <clipPath id="heroClip" clipPathUnits="objectBoundingBox">
+                <path
+                        transform="scale(0.0005455537 0.0012360939)"
+                        d="M28 0
+           H1805
+           A28 28 0 0 1 1833 28
+           V781
+           A28 28 0 0 1 1805 809
+           H1200
+           A30 30 0 0 1 1170 779
+           V688
+           A30 30 0 0 0 1140 658
+           H693
+           A30 30 0 0 0 663 688
+           V779
+           A30 30 0 0 1 633 809
+           H28
+           A28 28 0 0 1 0 781
+           V28
+           A28 28 0 0 1 28 0
+           Z" />
+              </clipPath>
+            </defs>
+          </svg>
+          <div class="hero__content">
+            <h2 class="hero__title">Продукция обеспечивает стабильный результат в рабочих условиях</h2>
+            <a class="button button--primary" href="#cooperation">
+              Оставить заявку
+            </a>
+          </div>
+        </div>
+        <div class="hero__shell swiper-slide">
+          <figure class="hero__media">
+            <img src="img/figma/assets/hero2.png" alt="Продукция VOLGER">
+          </figure>
+          <div class="hero__content">
+            <h2 class="hero__title">Оптимизированная линейка для комплексных задач</h2>
+            <a class="button button--primary" href="#cooperation">Продукция</a>
+          </div>
+        </div>
+        <div class="hero__shell swiper-slide">
+          <figure class="hero__media">
+            <img src="img/figma/assets/hero3.png" alt="Продукция VOLGER">
+          </figure>
+          <div class="hero__content">
+            <h2 class="hero__title">Создано для работы, проверено производством</h2>
+            <a class="button button--primary" href="#cooperation">Стать дилером</a>
+          </div>
+        </div>
+      </div>
+      <div class="hero__slider-nav">
+        <div class="hero__slider-prev sliderNavigateBtn sliderNavigateBtn--left">
+          <div class="arrowBtn arrowBtn--left icon-arrow"></div>
+        </div>
+        <div class="hero__slider-next sliderNavigateBtn sliderNavigateBtn--right">
+          <div class="arrowBtn arrowBtn--right icon-arrow"></div>
+        </div>
       </div>
     </div>
+
   </section>
 
-  <section class="about section" id="about" aria-labelledby="about-title">
+  <section class="about section">
     <div class="container">
-      <h2 id="about-title" class="section__title section__title--center">О бренде</h2>
-      <div class="about__tabs" role="tablist" aria-label="Разделы о бренде">
-        <button class="about__tab about__tab--active" type="button" role="tab" aria-selected="true">История</button>
-        <button class="about__tab" type="button" role="tab" aria-selected="false">Миссия</button>
-        <button class="about__tab" type="button" role="tab" aria-selected="false">Ценности</button>
+      <h2 class="section__title section__title--center">О бренде</h2>
+      <div class="about__tabs" role="tablist" aria-label="О бренде">
+        <div class="about__cap">
+          <button class="about__tab about__tab--active" type="button" role="tab" data-about-tab="history" aria-selected="true" aria-controls="about-panel-history" id="about-tab-history">История</button>
+        </div>
+        <div class="about__cap">
+          <button class="about__tab" type="button" role="tab" data-about-tab="mission" aria-selected="false" aria-controls="about-panel-mission" id="about-tab-mission">Миссия</button>
+        </div>
+        <div class="about__cap">
+          <button class="about__tab" type="button" role="tab" data-about-tab="values" aria-selected="false" aria-controls="about-panel-values" id="about-tab-values">Ценности</button>
+        </div>
       </div>
-      <article class="about__card">
+      <article class="about__card about__card--active" data-about-panel="history" id="about-panel-history" role="tabpanel" aria-labelledby="about-tab-history" aria-hidden="false">
         <div class="about__text">
           <p>VOLGER разработан в Поволжье — регионе, исторически связанном с развитием промышленности.</p>
           <p>Эта среда стала основой для формирования подхода к созданию продукции, ориентированной на реальные задачи предприятий.</p>
@@ -52,14 +120,41 @@
           <img class="about__brand-word" src="img/figma/assets/brand-word.svg" alt="VOLGER">
         </div>
       </article>
+      <article class="about__card about__card--hidden" data-about-panel="mission" id="about-panel-mission" role="tabpanel" aria-labelledby="about-tab-mission" aria-hidden="true">
+        <div class="about__mission-quote">
+          <div class="about__text">
+            <p>Разработка и поставка профессиональной продукции, которая помогает производству работать стабильно, точно и уверенно выдерживать непрерывную нагрузку производственных процессов</p>
+          </div>
+        </div>
+      </article>
+      <article class="about__card about__card--hidden" data-about-panel="values" id="about-panel-values" role="tabpanel" aria-labelledby="about-tab-values" aria-hidden="true">
+        <div class="about__values">
+          <article class="about__value">
+            <h3 class="about__value-title">Надежность</h3>
+            <p class="about__value-text">Обеспечение стабильного результата и сохранение работоспособности при высоких нагрузках на производстве</p>
+          </article>
+          <article class="about__value">
+            <h3 class="about__value-title">Практичность</h3>
+            <p class="about__value-text">Просто, эффективно без сложностей. Создано для удобства и минимизации лишних действий в реальной работе</p>
+          </article>
+          <article class="about__value">
+            <h3 class="about__value-title">Партнерство</h3>
+            <p class="about__value-text">В основе всего - долгосрочные отношения с клиентами, учет обратной связи, которая используется при доработках нашей продукции</p>
+          </article>
+          <article class="about__value">
+            <h3 class="about__value-title">Профессионализм</h3>
+            <p class="about__value-text">Ориентир на потребности предприятий, производств и технических специалистов</p>
+          </article>
+        </div>
+      </article>
     </div>
   </section>
 
-  <section class="products section" id="products" aria-labelledby="products-title">
+  <section class="products section">
     <div class="container">
-      <h2 id="products-title" class="section__title">Продукция</h2>
+      <h2 class="section__title">Продукция</h2>
       <article class="products__card">
-        <div class="products__tabs" role="list">
+        <div class="products__tabs">
           <button class="products__tab" type="button">Смазка многофункциональная</button>
           <button class="products__tab" type="button">Жидкий ключ</button>
           <button class="products__tab" type="button">Очиститель дроссельной заслонки</button>
@@ -81,7 +176,7 @@
               <li>Обеспечивает чистоту контактных поверхностей перед монтажом</li>
               <li>Очистка тормозных дисков, барабанов, суппортов и колодок</li>
             </ul>
-            <a class="button button--primary" href="product.html">Подробнее</a>
+            <a class="button  button--primary" href="product.html">Подробнее</a>
           </div>
           <figure class="products__visual">
             <img src="img/figma/assets/home-product-main.png" alt="Очиститель тормозов и деталей сцепления VOLGER">
@@ -91,16 +186,16 @@
     </div>
   </section>
 
-  <section class="quality section" aria-labelledby="quality-title">
+  <section class="quality section">
     <div class="container">
-      <h2 id="quality-title" class="section__title">Доказательство качества</h2>
+      <h2 class="section__title">Доказательство качества</h2>
       <div class="quality__grid">
         <article class="quality__card">
           <div>
             <h3 class="quality__card-title">Сертификат качества</h3>
             <p class="quality__card-text">Подтверждаем качество продукции всеми разрешительными документами для вашего производства.</p>
           </div>
-          <a class="button button--small" href="#">Скачать</a>
+          <a class="button button--small button--outline" href="#">Скачать</a>
         </article>
         <figure class="quality__image">
           <img src="img/figma/assets/home-quality-right.png" alt="Применение продукции VOLGER">
@@ -110,13 +205,13 @@
             <h3 class="quality__card-title">Технические документы</h3>
             <p class="quality__card-text">Вы можете скачать полную информацию о каждом продукте.</p>
           </div>
-          <a class="button button--small" href="#">Смотреть</a>
+          <a class="button button--small button--outline" href="#">Смотреть</a>
         </article>
       </div>
     </div>
   </section>
 
-  <section class="production section" aria-labelledby="production-title">
+  <section class="production section">
     <div class="container">
       <div class="production__layout">
         <figure class="production__photo">
@@ -124,7 +219,7 @@
         </figure>
         <div class="production__cards">
           <article class="production__card">
-            <h2 id="production-title" class="section__title">Производство</h2>
+            <h2 class="section__title">Производство</h2>
             <p>Продукция VOLGER производится на современном промышленном оборудовании с применением специализированных технологических линий.</p>
           </article>
           <article class="production__card">
@@ -140,11 +235,11 @@
     </div>
   </section>
 
-  <section class="dealers section" id="dealers" aria-labelledby="dealers-title">
+  <section class="dealers section">
     <div class="container">
       <article class="dealers__layout">
         <div class="dealers__info">
-          <h2 id="dealers-title" class="section__title dealers__title">Где купить?</h2>
+          <h2 class="section__title dealers__title">Где купить?</h2>
           <p class="dealers__text">Выберите дилера в вашем городе или перейдите к онлайн-покупке.</p>
           <a class="button button--primary" href="dealers.html">Дилеры</a>
         </div>
@@ -155,9 +250,10 @@
     </div>
   </section>
 
-  <section class="contact-block section" id="cooperation" aria-labelledby="cooperation-title">
+  <section class="contact-block section">
+    <div class="container">
     <div class="contact-block__container">
-      <h2 id="cooperation-title" class="section__title">Сотрудничество и контакты</h2>
+      <h2 class="section__title">Сотрудничество и контакты</h2>
       <p class="contact-block__subtitle">Ищем партнёров для развития продаж и поставок продукции VOLGER в регионах России.</p>
       <div class="contact-block__layout">
         <article class="contact-block__form-card">
@@ -168,8 +264,8 @@
               <input type="text" name="name" placeholder="Имя*" required>
             </label>
             <label class="form__field">
-              <span class="form__visually-hidden">Название компания</span>
-              <input type="text" name="company" placeholder="Название компания*" required>
+              <span class="form__visually-hidden">Название компании</span>
+              <input type="text" name="company" placeholder="Название компании*" required>
             </label>
             <label class="form__field">
               <span class="form__visually-hidden">Телефон</span>
@@ -185,7 +281,7 @@
             </label>
             <div class="form__footer">
               <button class="button button--primary form__submit" type="submit">Отправить заявку</button>
-              <p>Отправляя заявку, вы соглашаетесь на обработку персональных данных.</p>
+              <a href="#">Отправляя заявку, вы соглашаетесь на обработку персональных данных.</a>
             </div>
           </form>
         </article>
@@ -197,14 +293,15 @@
         </aside>
       </div>
     </div>
+    </div>
   </section>
 </main>
 
 <footer class="site-footer">
   <div class="site-footer__container">
     <div class="site-footer__top">
-      <section class="site-footer__contacts" aria-labelledby="footer-contacts-title">
-        <h2 id="footer-contacts-title" class="site-footer__contacts-title">Контакты:</h2>
+      <section class="site-footer__contacts">
+        <h2 class="site-footer__contacts-title">Контакты:</h2>
         <a href="tel:+7XXXXXXXXXX">
           <img src="img/icon/phone.svg" alt="">
           +7 (XXX) XXX-XX-XX
@@ -214,22 +311,26 @@
           info@volger.ru
         </a>
       </section>
-      <nav class="site-footer__nav" aria-label="Навигация по сайту">
-        <a class="site-footer__nav-link site-footer__nav-link--active" href="index.html" aria-current="page">О бренде</a>
+      <nav class="site-footer__nav">
+        <a class="site-footer__nav-link" href="index.html" aria-current="page">О бренде</a>
         <a class="site-footer__nav-link" href="product.html">Продукция</a>
         <a class="site-footer__nav-link" href="dealers.html">Где купить?</a>
         <a class="site-footer__nav-link" href="requisites.html">Реквизиты и контакты</a>
       </nav>
       <div class="site-footer__brand">
-        <img class="site-footer__brand-main" src="img/figma/assets/brand-mark.svg" alt="VOLGER">
-        <img class="site-footer__brand-system" src="img/icon/system.svg" alt="SYSTEM">
+        <a href="#" class="site-footer__brand-main icon-volger"></a>
+        <img src="./img/icon/by.svg" alt="" class="site-footer__brand-by">
+        <a href="#" class="site-footer__brand-system icon-system"></a>
       </div>
     </div>
     <div class="site-footer__bottom">
-      <p>© 2026 ООО "Волгер" Вы принимаете условия пользовательского соглашения каждый раз, когда посещаете наш сайт и оставляете свои данные в любой форме на сайте. Если вы не хотите, чтобы ваши данные обрабатывались, покиньте сайт.</p>
+      <p>© 2026 ООО "Волгер"</p>
+      <p>Вы принимаете условия пользовательского соглашения каждый раз, когда посещаете наш сайт и оставляете свои данные в любой форме на сайте. Если вы не хотите, чтобы ваши данные обрабатывались, покиньте сайт.</p>
       <a href="#">Пользовательское соглашение</a>
     </div>
   </div>
 </footer>
+<script src="./plugins/swiper/swiper-bundle.min.js" defer></script>
+<script type="module" src="./script.js?v=0.20302319" defer></script>
 </body>
 </html>

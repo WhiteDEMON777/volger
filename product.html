@@ -4,31 +4,31 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VOLGER | Карточка товара</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="scss/style.css">
 </head>
 <body class="page page--product">
 <header class="site-header">
   <div class="site-header__inner">
-    <button class="site-header__menu" type="button" aria-label="Открыть меню">
+    <button class="site-header__menu" type="button">
       <span></span>
       <span></span>
       <span></span>
     </button>
-    <a class="site-header__logo" href="index.html" aria-label="VOLGER">
+    <a class="site-header__logo" href="index.html">
       <img src="img/figma/assets/hero-word.svg" alt="VOLGER">
     </a>
   </div>
 </header>
 
 <main>
-  <section class="product-hero section" aria-labelledby="product-title">
+  <section class="product-hero section">
     <div class="container">
       <article class="product-hero__card">
         <figure class="product-hero__media">
           <img src="img/figma/assets/product-hero-can.png" alt="Очиститель тормозов и деталей сцепления VOLGER">
         </figure>
         <div class="product-hero__content">
-          <h1 id="product-title">ОЧИСТИТЕЛЬ ТОРМОЗОВ И&nbsp;ДЕТАЛЕЙ СЦЕПЛЕНИЯ</h1>
+          <h1>ОЧИСТИТЕЛЬ ТОРМОЗОВ И&nbsp;ДЕТАЛЕЙ СЦЕПЛЕНИЯ</h1>
           <p class="product-hero__subtitle">Brake &amp; Clutch Cleaner</p>
           <p class="product-hero__code">VL5810</p>
           <ul class="product-hero__list">
@@ -44,12 +44,12 @@
     </div>
   </section>
 
-  <section class="product-docs section" aria-labelledby="product-docs-title">
+  <section class="product-docs section">
     <div class="container">
       <article class="product-docs__card">
-        <h2 id="product-docs-title" class="form__visually-hidden">Технические характеристики</h2>
+        <h2 class="form__visually-hidden">Технические характеристики</h2>
         <p class="product-docs__lead">Очиститель тормозов и деталей сцепления мгновенно растворяет тормозную пыль, масла, смазки и технические жидкости. Быстро испаряется, не оставляя следов и налёта. Обеспечивает чистоту рабочих поверхностей и стабильную работу тормозной системы.</p>
-        <div class="product-docs__tabs" role="tablist" aria-label="Информация о продукте">
+        <div class="product-docs__tabs">
           <button class="product-docs__tab product-docs__tab--active" type="button">Технические характеристики</button>
           <button class="product-docs__tab" type="button">Способ применения</button>
           <button class="product-docs__tab" type="button">Безопасность</button>
@@ -85,12 +85,12 @@
     </div>
   </section>
 
-  <section class="product-app section" aria-labelledby="product-app-title">
+  <section class="product-app section">
     <div class="container">
       <article class="product-app__card">
-        <h2 id="product-app-title" class="section__title">Области применения</h2>
+        <h2 class="section__title">Области применения</h2>
         <ul class="product-app__list">
-          <li>СЕрвисное обслуживание автомобильной,мотоциклетной и промышленной техники</li>
+          <li>Сервисное обслуживание автомобильной, мотоциклетной и промышленной техники</li>
           <li>Ремонт тормозных и сцепных узлов</li>
           <li>Обезжиривание деталей</li>
           <li>в производственных и ремонтных участках для очистки узлов станков, инструмента и промышленного оборудования</li>
@@ -99,18 +99,18 @@
     </div>
   </section>
 
-  <section class="product-coop section" aria-labelledby="coop-title">
+  <section class="product-coop section">
     <div class="container">
       <article class="product-coop__card">
-        <h2 id="coop-title">Интересует оптовое сотрудничество?</h2>
+        <h2>Интересует оптовое сотрудничество?</h2>
         <a class="button button--primary" href="#">Получить условия</a>
       </article>
     </div>
   </section>
 
-  <section class="product-related section" aria-labelledby="related-title">
+  <section class="product-related section">
     <div class="container">
-      <h2 id="related-title" class="section__title">Другие товары бренда</h2>
+      <h2 class="section__title">Другие товары бренда</h2>
       <div class="product-related__grid">
         <article class="product-related__item product-related__item--industrial">
           <figure class="product-related__thumb" aria-hidden="true">
@@ -160,8 +160,8 @@
 <footer class="site-footer">
   <div class="site-footer__container">
     <div class="site-footer__top">
-      <section class="site-footer__contacts" aria-labelledby="footer-contacts-title">
-        <h2 id="footer-contacts-title" class="site-footer__contacts-title">Контакты:</h2>
+      <section class="site-footer__contacts">
+        <h2 class="site-footer__contacts-title">Контакты:</h2>
         <a href="tel:+7XXXXXXXXXX">
           <img src="img/icon/phone.svg" alt="">
           +7 (XXX) XXX-XX-XX
@@ -171,7 +171,7 @@
           info@volger.ru
         </a>
       </section>
-      <nav class="site-footer__nav" aria-label="Навигация по сайту">
+      <nav class="site-footer__nav">
         <a class="site-footer__nav-link" href="index.html">О бренде</a>
         <a class="site-footer__nav-link site-footer__nav-link--active" href="product.html" aria-current="page">Продукция</a>
         <a class="site-footer__nav-link" href="dealers.html">Где купить?</a>

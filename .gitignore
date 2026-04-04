@@ -6,3 +6,4 @@ AGENTS.md
 .tmp_fig_decoder/
 .tmp_fig_inspect/
 .tmp_fig_parsed/
+*.fig
