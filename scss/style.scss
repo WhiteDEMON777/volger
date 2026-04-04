@@ -474,8 +474,8 @@ button:focus-visible {
   &__cap {
     position: relative;
     top: 1px;
-    width: 350px;
-    height: 100px;
+    width: 242px;
+    height: 75px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -492,11 +492,11 @@ button:focus-visible {
       border-left: 1px solid $panel-border;
       border-right: 1px solid $panel-border;
       &:before {
-        box-shadow: 14px 14px 0 14px rgb(35 35 35);
+        box-shadow: 10px 14px 0 10px rgb(35 35 35);
         border-right: 1px solid $panel-border;
       }
       &:after {
-        box-shadow: -14px 14px 0 14px  rgb(35 35 35);
+        box-shadow: -10px 14px 0 10px  rgb(35 35 35);
         border-left: 1px solid $panel-border;
       }
     }
@@ -537,6 +537,8 @@ button:focus-visible {
     position: relative;
     display: flex;
     justify-content: center;
+    padding-top: 51px;
+    padding-bottom: 55px;
     &::before,
     &::after {
       position: absolute;

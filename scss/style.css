@@ -433,8 +433,8 @@ button:focus-visible {
 .about__cap {
   position: relative;
   top: 1px;
-  width: 350px;
-  height: 100px;
+  width: 242px;
+  height: 75px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -453,11 +453,11 @@ button:focus-visible {
   border-right: 1px solid rgba(255, 255, 255, 0.2);
 }
 .about__cap:has(.about__tab--active):before {
-  box-shadow: 14px 14px 0 14px rgb(35, 35, 35);
+  box-shadow: 10px 14px 0 10px rgb(35, 35, 35);
   border-right: 1px solid rgba(255, 255, 255, 0.2);
 }
 .about__cap:has(.about__tab--active):after {
-  box-shadow: -14px 14px 0 14px rgb(35, 35, 35);
+  box-shadow: -10px 14px 0 10px rgb(35, 35, 35);
   border-left: 1px solid rgba(255, 255, 255, 0.2);
 }
 .about__cap::before, .about__cap::after {
@@ -490,6 +490,8 @@ button:focus-visible {
   position: relative;
   display: flex;
   justify-content: center;
+  padding-top: 51px;
+  padding-bottom: 55px;
 }
 .about__mission-quote::before, .about__mission-quote::after {
   position: absolute;
