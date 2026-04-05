@@ -58,7 +58,7 @@ $radius-media: 24px;
 $radius-pill: 9999px;
 $radius-field: 30px;
 
-$section-space: 150px;
+$section-space: fluid(50px, 150px);
 $container-desktop-gutter: 270px;
 $container-max: 1650px;
 
@@ -70,8 +70,8 @@ $z-header: 30;
 
 $breakpoint-xxl: 1500px;
 $breakpoint-xl: 1024px;
-$breakpoint-md: 900px;
-$breakpoint-sm: 640px;
+$breakpoint-md: 800px;
+$breakpoint-sm: 540px;
 *,
 *::before,
 *::after {
@@ -124,35 +124,13 @@ a {
   background: $color-bg;
   color: $color-white;
   font-family: $font-main;
-  font-size: 20px;
+  font-size: fluid(16px, 20px);
   line-height: 1.24;
   overflow-x: hidden;
   position: relative;
 }
 
-.page::before,
-.page::after {
-  content: "";
-  position: fixed;
-  width: 560px;
-  height: 560px;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: -1;
-  filter: blur(60px);
-}
 
-.page::before {
-  top: -160px;
-  left: -110px;
-  background: radial-gradient(circle, rgba(124, 190, 255, 0.54) 0%, rgba(124, 190, 255, 0) 72%);
-}
-
-.page::after {
-  right: -220px;
-  top: 48%;
-  background: radial-gradient(circle, rgba(56, 150, 255, 0.56) 0%, rgba(56, 150, 255, 0) 72%);
-}
 
 .page--home,
 .page--product,
@@ -183,8 +161,10 @@ a {
 
 .button {
   display: inline-flex;
+  position: relative;
+  z-index: 1;
   align-items: center;
-  padding: fluid(5px,20px) fluid(25px,50px);
+  padding: fluid(10px,20px) fluid(25px,50px);
   width: fit-content;
   justify-content: center;
   overflow: hidden;
@@ -195,15 +175,10 @@ a {
 }
 
 
-.button:focus-visible,
-.site-header__menu:focus-visible,
-a:focus-visible,
-summary:focus-visible,
 input:focus-visible,
-textarea:focus-visible,
-button:focus-visible {
-  outline: 2px solid $color-focus;
-  outline-offset: 3px;
+textarea:focus-visible{
+  outline: none;
+  background: #FFFFFF38;
 }
 @keyframes gradient-move {
   0% {
@@ -220,7 +195,7 @@ button:focus-visible {
 .button--primary {
   color: $color-white;
   background-image: linear-gradient(103.43deg, #006BD6 0.11%, #FFFFFF 208.33%);
-  font-size: 20px;
+  font-size: fluid(16px,20px);
   font-weight: 500;
   position: relative;
   @include hover {
@@ -246,7 +221,7 @@ button:focus-visible {
   border: 1.38px solid $color-white;
   background: transparent;
   color: $color-white;
-  font-size: 20px;
+  font-size: fluid(16px, 20px);
   font-weight: 500;
   @include tr(background);
   @include hover {
@@ -255,8 +230,11 @@ button:focus-visible {
 }
 
 .site-header {
-
+  background: linear-gradient(180deg, rgba(160, 160, 160, 0.32) 0%, rgba(38, 38, 38, 0) 100%);
   height: 50px;
+  z-index: 2;
+  position: sticky;
+  top: 0;
   &__inner {
     width: min(100% - 270px, 1650px);
     margin: 0 auto;
@@ -285,11 +263,16 @@ button:focus-visible {
   }
   &__logo {
     position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 138px;
+    font-size: 23px;
+    transform: scale(0);
+    text-align: center;
+    top: 13px;
+    width: 100%;
     opacity: 0.92;
+    @include tr(transform);
+    &--active {
+      transform: scale(1);
+    }
   }
   &--minimal &__logo {
     opacity: 0;
@@ -297,7 +280,53 @@ button:focus-visible {
   }
 }
 
+.main {
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("../img/picture/Ellipse4.png") no-repeat bottom;
+    background-size: contain;
+  }
+  &:before {
+    content: "";
+    position: absolute;
+    bottom: 5%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("../img/picture/Ellipse3.png") no-repeat center;
+    background-size: contain;
+
+  }
+}
+
 .page--home {
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("../img/picture/Ellipse1.png") no-repeat;
+    background-size: contain;
+  }
+  &:before {
+    content: "";
+    position: absolute;
+    top: 100px;
+    right: 0;
+    width: 70%;
+    height: stretch;
+    background: url("../img/picture/Ellipse2.png") no-repeat;
+    background-size: contain;
+    z-index: 1;
+
+  }
   .site-header {
     &__inner {
       width: 100%;
@@ -360,8 +389,13 @@ button:focus-visible {
     font-size: fluid(40px, 81px);
     position: absolute;
     bottom: fluid(18px, 22px);
-    left: 50%;
-    transform: translateX(-50%);
+    width: 100%;
+    transform:  scale(1);
+    text-align: center;
+    @include tr(transform);
+    &--active {
+      transform: scale(0);
+    }
   }
   &__media {
     border-radius: 30px;
@@ -381,7 +415,7 @@ button:focus-visible {
   &__content {
     position: absolute;
     left: 80px;
-    top: 218px;
+    top: fluid(90px, 218px);
     width: 697px;
     display: grid;
     gap: 72px;
@@ -392,22 +426,21 @@ button:focus-visible {
     font-weight: 500;
   }
   .button--primary {
-    min-width: 376px;
-    padding: 10px 50px;
+    min-width: fluid(200px, 376px);
     font-size: fluid(12px,24px);
   }
 }
 
 .about {
   &.section {
-    margin-top: fluid(38px, 200px);
+    margin-top: fluid(50px, 200px);
   }
   &__tabs {
     position: relative;
-    margin-top: 45px;
+    margin-top: fluid(25px, 45px);
     display: flex;
     justify-content: center;
-    gap: 48px;
+    gap: 20px;
     flex-wrap: wrap;
   }
   &__tab {
@@ -421,7 +454,7 @@ button:focus-visible {
     border: 2px solid rgba(255, 255, 255, 0.45);
     background: transparent;
     color: #ffffff;
-    font-size: 20px;
+    font-size: fluid(16px, 20px);
     font-weight: 600;
     cursor: pointer;
     @include tr(background);
@@ -445,6 +478,7 @@ button:focus-visible {
     display: grid;
     gap: 40px;
     grid-template-columns: 1fr auto;
+    overflow: hidden;
   }
   &__card--hidden {
     display: none;
@@ -455,15 +489,15 @@ button:focus-visible {
     max-width: 1120px;
     font-weight: 500;
     p {
-      font-size: 20px;
+      font-size: fluid(16px, 20px);
       color: #ffffff;
     }
   }
   &__brand {
-    align-self: end;
     display: grid;
     justify-items: center;
     gap: 20px;
+    height: fit-content;
     &-mark {
       width: 188px;
     }
@@ -532,32 +566,41 @@ button:focus-visible {
       border-left: 1px solid transparent;
     }
   }
+  &__icon {
+    position: absolute;
+    font-size: 230px;
+    font-weight: 700;
+    line-height: 0.4;
+    color: rgba(255, 255, 255, 0.08);
 
+    &--left {
+      top: 0;
+      left: -100%;
+      @include tr(left);
+    }
+    &--right {
+      right: -100%;
+      bottom: 0;
+      @include tr(right);
+    }
+  }
   &__mission-quote {
     position: relative;
     display: flex;
     justify-content: center;
     padding-top: 51px;
     padding-bottom: 55px;
-    &::before,
-    &::after {
-      position: absolute;
-      font-size: 230px;
-      font-weight: 700;
-      line-height: 0.4;
-      color: rgba(255, 255, 255, 0.08);
-      pointer-events: none;
-      user-select: none;
-    }
-    &::before {
-      content: "«";
-      bottom: 0;
-      left: 0;
-    }
-    &::after {
-      content: "»";
-      right: 0;
-      top: 0;
+
+
+    &--open {
+        .about__icon {
+          &--left {
+            left: 0;
+          }
+          &--right {
+            right: 0;
+          }
+        }
     }
   }
   &__values {
@@ -577,12 +620,7 @@ button:focus-visible {
     line-height: 1;
     font-weight: 300;
   }
-  &__mission-quote::before {
-    content: "\00AB";
-  }
-  &__mission-quote::after {
-    content: "\00BB";
-  }
+
   &__mission-text {
     text-align: center;
     font-size: 33px;
@@ -600,13 +638,16 @@ button:focus-visible {
 .products {
   padding-left: 50px;
   padding-right: 50px;
+  position: relative;
+  z-index: 1;
   &__card {
-    margin-top: 45px;
+    margin-top: fluid(25px, 45px);
     border-radius: $radius-card;
     background: $panel-bg;
     border: 1px solid $panel-border;
     box-shadow: $shadow-soft;
-    padding: 50px;
+    padding: 40px;
+    padding-top: 35px;
   }
   &__tabs {
     display: flex;
@@ -617,7 +658,7 @@ button:focus-visible {
     min-height: 42px;
     padding: 10px 22px;
     border-radius: 9999px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1.5px solid rgba(255, 255, 255, 1);
     background: transparent;
     color: #ffffff;
     font-size: 16px;
@@ -644,14 +685,14 @@ button:focus-visible {
     gap: 30px;
   }
   &__name {
-    font-size: 35px;
+    font-size: fluid(28px,35px);
     line-height: 1.24;
     font-weight: 700;
   }
   &__subtitle {
     margin-top: 8px;
     font-family: $font-main;
-    font-size: 30px;
+    font-size: fluid(24px, 30px);
     line-height: 1.56;
     font-weight: 300;
     text-transform: uppercase;
@@ -660,7 +701,7 @@ button:focus-visible {
   }
   &__code {
     margin-top: 16px;
-    font-size: 30px;
+    font-size: fluid(20px, 25px);
     color: $color-white;
     font-family: $font-alt;
     font-weight: 800;
@@ -673,7 +714,7 @@ button:focus-visible {
     li {
       position: relative;
       font-family: $font-alt;
-      font-size: 20px;
+      font-size: fluid(16px, 20px);
       font-weight: 800;
       line-height: 1;
       color: $color-white;
@@ -682,8 +723,8 @@ button:focus-visible {
       &::before {
         content: "";
         padding-left: 45px;
-        width: 20px;
-        height: 20px;
+        width: 15px;
+        height: 15px;
         background: url("../img/icon/arrow-down.svg") no-repeat;
         background-size: contain;
       }
@@ -708,41 +749,42 @@ button:focus-visible {
 
 .quality {
   &__grid {
-    margin-top: 50px;
+    margin-top: fluid(25px,50px);
     display: grid;
-    grid-template-columns: 1fr minmax(360px, 1.06fr) 1fr;
-    gap: 30px;
+    grid-template-columns: 1fr 1.06fr 1fr;
+    gap: fluid(20px, 50px);
   }
   &__card {
     border-radius: $radius-card;
-    background: $panel-bg;
+    background: rgba(255, 255, 255, 0.09);
     border: 1px solid $panel-border;
-    padding: 50px;
+    padding: fluid(25px, 50px);
     display: grid;
     gap: 30px;
     align-content: space-between;
     &-title {
-      font-size: 30px;
+      font-size: fluid(25px, 30px);
       line-height: 1.24;
       font-weight: 700;
     }
     &-text {
       margin-top: 30px;
       color: $color-white;
-      font-size: 20px;
+      font-size: fluid(16px, 20px);
       font-weight: 700;
     }
     .button--small {
       padding: 10px 46px;
       font-weight: 700;
-      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
     }
   }
   &__image {
     border-radius: $radius-card;
     overflow: hidden;
     border: 1px solid $panel-border;
-    min-height: 580px;
+    min-height: fluid(360px, 487px);
     img {
       width: 100%;
       height: 100%;
@@ -754,7 +796,7 @@ button:focus-visible {
 .production {
   &__layout {
     display: grid;
-    grid-template-columns: 1.06fr 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 30px;
     align-items: stretch;
   }
@@ -762,7 +804,8 @@ button:focus-visible {
     border-radius: $radius-card;
     overflow: hidden;
     border: 1px solid $panel-border;
-    min-height: 783px;
+    min-height: fluid(540px,783px);
+    position: relative;
     img {
       width: 100%;
       height: 100%;
@@ -771,13 +814,13 @@ button:focus-visible {
   }
   &__cards {
     display: grid;
-    gap: 20px;
+    gap: fluid(25px,50px);
   }
   &__card {
     border-radius: $radius-card;
-    background: $panel-bg;
+    background: rgba(204, 204, 204, 0.05);
     border: 1px solid $panel-border;
-    padding: 40px;
+    padding: fluid(15px,48px) fluid(22px,71px);
     h3 {
       font-size: 20px;
       font-weight: 700;
@@ -785,7 +828,7 @@ button:focus-visible {
     }
     p {
       margin-top: 15px;
-      font-size: 20px;
+      font-size: fluid(15px, 20px);
       color: $color-white;
     }
   }
@@ -815,7 +858,7 @@ button:focus-visible {
   }
   &__map {
     overflow: hidden;
-    min-height: 480px;
+    min-height: fluid(230px,480px);
     img {
       width: 100%;
       height: 100%;
@@ -835,21 +878,24 @@ button:focus-visible {
     color: $color-white;
   }
   &__layout {
-    margin-top: 66px;
+    margin-top: fluid(25px,66px);
     display: grid;
-    grid-template-columns: 983px 300px;
-    gap: 44px;
+    grid-template-columns: fluid(630px, 983px) fluid(255px, 300px);
+    gap: fluid(20px,44px);
     align-items: start;
   }
   &__form-card {
     border-radius: 30px;
-    background: rgba(217, 217, 217, 0.06);
+    background: rgba(217, 217, 217, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 54px 58px 44px;
+    padding: fluid(24px,54px) fluid(24px, 58px) 44px;
     h3 {
       font-size: 25px;
       font-weight: 500;
       line-height: 1.24;
+    }
+    .form {
+      width: fluid(580px, 714px);
     }
   }
   &__aside {
@@ -857,7 +903,6 @@ button:focus-visible {
     background: #D9D9D90D;
     border: 1px solid rgba(255, 255, 255, 0.2);
     padding: 34px 50px;
-    min-height: 175px;
     display: grid;
     gap: 20px;
     align-content: start;
@@ -867,7 +912,7 @@ button:focus-visible {
       line-height: 1.24;
     }
     a {
-      margin-top: 10px;
+      margin-top: -10px;
       display: block;
       font-size: 14px;
       color: $color-white;
@@ -893,6 +938,9 @@ button:focus-visible {
   font-size: 14px;
   font-weight: 500;
   line-height: 1.24;
+  &:focus-visible{
+    background: #FFFFFF38;
+  }
 }
 
 .form__field input {
@@ -926,7 +974,7 @@ button:focus-visible {
 }
 
 .form__footer {
-  margin-top: -60px;
+  @include fluidNegative(margin-top, -35px, -60px);
   display: block;
 }
 
@@ -937,6 +985,7 @@ button:focus-visible {
   color: #a9a9a9;
   text-decoration: underline;
   line-height: 1;
+  display: block;
 }
 
 .form__submit {
@@ -945,9 +994,11 @@ button:focus-visible {
 }
 
 .site-footer {
-  margin-top: 150px;
+  margin-top: fluid(50px, 150px);
   border-top: 1px solid rgba(255, 255, 255, 0.14);
   background: #2b2b2b;
+  position: relative;
+  z-index: 1;
   &__container {
     width: min(100% - 198px, 1722px);
     margin: 0 auto;
@@ -958,7 +1009,6 @@ button:focus-visible {
     display: grid;
     grid-template-columns: 173px 240px 824px 98px 315px;
     gap: 0;
-    align-items: start;
   }
   &__contacts {
     grid-column: 1;
@@ -969,7 +1019,7 @@ button:focus-visible {
       color: #cacaca;
     }
     a {
-      margin-top: 10px;
+      margin-top: 5px;
       display: inline-flex;
       align-items: center;
       gap: 8px;
@@ -986,8 +1036,8 @@ button:focus-visible {
     grid-column: 3;
     display: flex;
     flex-wrap: nowrap;
-    gap: 24px 45px;
-    align-self: start;
+    gap: 25px fluid(25px, 45px);
+    align-self: center;
     &-link {
       font-size: 20px;
       font-weight: 500;
@@ -1728,16 +1778,13 @@ button:focus-visible {
   }
   .hero__content {
     left: 50px;
-    top: 160px;
     width: 560px;
     gap: 50px;
   }
   .hero__title {
     font-size: 34px;
   }
-  .section {
-    margin-top: 120px;
-  }
+
 
   .site-footer__top {
     width: auto;
@@ -1774,16 +1821,46 @@ button:focus-visible {
   .page--home .site-header__menu {
     left: 28px;
   }
-
-  .hero__content {
-    top: 120px;
-    width: 520px;
-    gap: 24px;
+  .about {
+    &__tabs {
+      gap: 0;
+    }
+    &__card {
+      gap: 10px;
+      padding: 30px;
+    }
+    &__cap {
+      width: 220px;
+    }
+    &__value {
+      gap: 20px;
+      &-text {
+        font-size: 16px;
+      }
+    }
+  }
+  .hero {
+    &__content {
+      top: 75px;
+      width: 520px;
+      gap: 24px;
+    }
+    &__glass {
+      font-size: 30px;
+    }
   }
   .hero__title {
     font-size: 30px;
   }
-  .about__card,
+  .quality {
+    &__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    &__image {
+      grid-column: 1 / -1;
+      order: -1;
+    }
+  }
   .products__card,
   .quality__card,
   .production__card,
@@ -1796,10 +1873,24 @@ button:focus-visible {
   .dealer-benefits__item {
     padding: 30px;
   }
-  .products__layout,
-  .quality__grid,
-  .production__layout,
   .dealers__layout,
+  .products__layout{
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .dealers {
+    &__text {
+      margin-top: 14px;
+    }
+    &__info {
+      .button--primary {
+        margin-top: 20px;
+      }
+    }
+  }
+
+  .production__layout,
   .contact-block__layout,
   .product-hero__card,
   .dealer-hero__layout,
@@ -1807,17 +1898,13 @@ button:focus-visible {
   .requisites__layout {
     grid-template-columns: 1fr;
   }
-  .products__name {
-    font-size: 32px;
-  }
-  .products__subtitle,
-  .products__code {
-    font-size: 24px;
-  }
+
+
   .products__visual,
   .quality__image,
   .production__photo {
-    min-height: 420px;
+    min-height: 350px;
+    height: 350px;
   }
   .product-hero__media {
     min-height: 420px;
@@ -1835,6 +1922,14 @@ button:focus-visible {
   }
   .product-hero__content h1 {
     font-size: 32px;
+  }
+  .contact-block {
+    &__subtitle {
+      font-size: 14px;
+    }
+    &__aside {
+      display: none;
+    }
   }
   .product-hero__card {
     padding: 0;
@@ -1999,17 +2094,54 @@ button:focus-visible {
     width: 24px;
     height: 15px;
   }
-  .hero__content {
-    position: static;
-    width: 100%;
-    margin-top: 20px;
-    gap: 24px;
+
+  .page--home {
+    &:after {
+      left: -130px;
+    }
+    &:before {
+      top: 210px;
+    }
   }
-  .hero__title {
-    font-size: 28px;
+
+  .contact-block__form-card .form {
+    width: 100%;
+  }
+  .container, .contact-block__container {
+    width: 100%;
+  }
+  .hero {
+    padding-left: 0;
+    padding-right: 0;
+    &__title {
+      font-size: 18px;
+      position: absolute;
+      width: 68%;
+      top: 25%;
+      left: 22px;
+    }
+    &__content {
+      position: static;
+      width: 100%;
+      gap: 24px;
+      display: flex;
+      justify-content: center;
+    }
+    &__glass, .clip-defs {
+      display: none;
+    }
+    &__slider {
+      border-radius: 0;
+    }
+    .button--primary {
+      margin-top: 18px;
+    }
   }
   .hero__media {
-    border-radius: 24px;
+    border-radius: 0;
+    img {
+      aspect-ratio: 1833 / 628;
+    }
   }
   .section__title {
     font-size: 30px;
@@ -2017,25 +2149,65 @@ button:focus-visible {
   .section__title--center {
     font-size: 36px;
   }
-  .about__tabs {
-    gap: 14px;
+  .about.section {
+    margin-top: 30px;
   }
-  .about__tab {
-    padding: 8px 24px;
-    min-height: 40px;
-    font-size: 16px;
+  .container {
+    padding-left: 15px;
+    padding-right: 15px;
   }
-  .about__card {
-    grid-template-columns: 1fr;
+  .main {
+    &:before {
+      top: 15%;
+      height: 80%;
+      background-position: top;
+    }
+    &:after {
+      content: none;
+    }
   }
-  .about__brand {
-    justify-items: start;
+  .about {
+    &__tab {
+      padding: 8px 20px;
+      min-height: 40px;
+      font-size: 12px;
+    }
+    &__cap {
+      width: 130px;
+      border-radius: 15px 15px 12px 12px;
+      height: 60px;
+      &:has(.about__tab--active) {
+        &:before {
+          box-shadow: 10px 14px 0 7px rgb(35, 35, 35);
+        }
+        &:after {
+          box-shadow: -10px 14px 0 7px rgb(35, 35, 35);
+        }
+      }
+    }
+    &__brand {
+      order: -1;
+      &-mark {
+        width: 90px;
+      }
+      &-word {
+        width: 118px;
+      }
+    }
+    &__card {
+      grid-template-columns: 1fr;
+      align-items: center;
+      gap: 30px;
+      padding: 20px;
+    }
   }
+
+
   .about__panel--mission {
     min-height: auto;
   }
   .about__mission-quote {
-    padding: 0 56px;
+    padding: 0;
   }
   .about__mission-quote::before,
   .about__mission-quote::after {
@@ -2049,24 +2221,100 @@ button:focus-visible {
     padding-bottom: 24px;
   }
   .about__values {
-    column-gap: 34px;
-    row-gap: 22px;
-  }
-  .about__value-title {
-    font-size: 30px;
+    gap: 20px;
+    grid-template-columns: 1fr;
   }
   .about__value-text {
-    font-size: 24px;
+    font-size: 14px;
   }
   .about__values-note {
     font-size: 18px;
   }
-  .products__name {
-    font-size: 30px;
+  .products {
+    padding-left: 0;
+    padding-right: 0;
+    &__name {
+      font-size: 20px;
+    }
+    &__card {
+      padding: 20px;
+    }
+    &__tabs {
+      gap: 5px;
+      justify-content: space-between;
+    }
+    &__tab {
+      padding: 10px 15px;
+      font-size: 12px;
+    }
+    &__name {
+      font-size: 18px;
+    }
+    &__subtitle {
+      font-size: 18px;
+    }
+    &__list li {
+      font-weight: 400;
+    }
   }
-  .quality__card-title {
-    font-size: 30px;
+  .products__visual, .quality__image, .production__photo {
+    min-height: 275px;
+    height: 275px;
   }
+  .site-header__logo {
+    transform: scale(1);
+  }
+  .quality {
+    &__card {
+      padding: 20px;
+      &-title {
+        font-size: 18px;
+      }
+      &-text {
+        font-size: 12px;
+      }
+    }
+  }
+  .dealers {
+    &__map {
+      min-height: 184px;
+    }
+    &__layout {
+      background: rgba(217, 217, 217, 0.1);
+      border-radius: 10px;
+      gap: 20px;
+    }
+    &__info  {
+      display: flex;
+      flex-direction: column;
+      .button--primary {
+        align-self: center;
+        min-width: fit-content;
+      }
+    }
+  }
+  .form__footer {
+    a {
+      margin-top: 27px;
+      text-align: end;
+    }
+  }
+   .site-footer {
+     &__top {
+       gap: 45px;
+       grid-template-columns: 1fr;
+     }
+     &__bottom {
+       margin-top: 45px;
+     }
+     &__nav {
+       order: -1;
+       flex-direction: column;
+       gap: 10px;
+     }
+     &__contacts {
+     }
+   }
   .dealer-benefits__item {
     min-height: 110px;
   }
@@ -2083,60 +2331,69 @@ button:focus-visible {
     left: 24px;
     top: 80px;
   }
-  .site-footer__top {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
+
   .site-footer__brand {
     grid-column: auto;
   }
 }
 @media (max-width: $breakpoint-sm) {
-  .container,
-  .contact-block__container {
-    width: min(100% - 24px, 1650px);
+
+
+  .hero {
+    &__media img {
+      aspect-ratio: 1833 / 910;
+    }
+    &__title {
+      width: 80%;
+      top: 20%;
+    }
   }
-  .site-footer__container {
-    width: min(100% - 24px, 1722px);
-  }
-  .section {
-    margin-top: 58px;
-  }
-  .about.section {
-    margin-top: 58px;
-  }
-  .hero__shell {
-    width: min(100% - 10px, 1833px);
-  }
-  .hero__title {
-    font-size: 24px;
-  }
-  .button--primary {
-    min-height: 54px;
-    font-size: 16px;
-    width: 100%;
-  }
+
   .button--outline {
     min-height: 44px;
     min-width: 0;
     width: 100%;
     font-size: 16px;
   }
-  .about__panel--mission {
-    min-height: auto;
-    padding-top: 40px;
-    padding-bottom: 40px;
+  .contact-block__form-card {
+    padding: 15px;
   }
-  .about__mission-quote {
-    padding: 0 34px;
+  .about {
+    &__panel--mission {
+      min-height: auto;
+      padding-top: 40px;
+      padding-bottom: 40px;
+    }
+    &__tab {
+      padding: 8px 15px;
+      font-size: 10px;
+    }
+    &__text p {
+      font-size: 14px;
+      font-weight: 400;
+    }
+    &__cap {
+      width: 100px;
+      height: 58px;
+      &:has(.about__tab--active) {
+        &:before {
+          box-shadow: 6px 11px 0 4px rgb(35, 35, 35);
+        }
+        &:after {
+          box-shadow: -6px 11px 0 4px rgb(35, 35, 35);
+        }
+      }
+    }
+    &__card {
+      border-radius: 15px;
+    }
   }
+
   .about__mission-quote::before,
   .about__mission-quote::after {
     font-size: 88px;
   }
-  .about__mission-text {
-    font-size: 16px;
-  }
+
   .about__panel--values {
     gap: 16px;
     padding-bottom: 24px;
@@ -2155,40 +2412,24 @@ button:focus-visible {
     justify-self: start;
     font-size: 14px;
   }
+  .quality {
+    &__grid {
+      grid-template-columns: 1fr;
+    }
+
+    &__card-text {
+      margin-top: 15px;
+    }
+  }
   .products__tab,
   .product-docs__tab {
     font-size: 12px;
     min-height: 34px;
     padding: 8px 12px;
   }
-  .products__name {
-    font-size: 24px;
-  }
-  .products__subtitle,
-  .products__code {
-    font-size: 18px;
-  }
-  .products__list li,
-  .quality__card-text,
-  .production__card p,
-  .dealers__text,
-  .contact-block__subtitle,
-  .form__field input,
-  .form__field textarea,
-  .product-hero__list li,
-  .product-docs__lead,
-  .product-app__list li,
-  .dealer-card__info p,
-  .dealer-card__cities,
-  .dealer-benefits__item p,
-  .requisites__block dt,
-  .requisites__block dd {
-    font-size: 16px;
-  }
-  .quality__card-title,
-  .dealer-benefits__item h3 {
-    font-size: 24px;
-  }
+
+
+
   .product-hero__content h1 {
     font-size: 30px;
   }
@@ -2211,12 +2452,7 @@ button:focus-visible {
   .product-coop__card h2 {
     font-size: 30px;
   }
-  .form__submit {
-    width: 100%;
-  }
-  .site-footer {
-    margin-top: 58px;
-  }
+
   .page--product .site-footer,
   .page--requisites .site-footer {
     margin-top: 58px;

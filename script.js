@@ -4,6 +4,9 @@ window.addEventListener('DOMContentLoaded', () => {
     spaceBetween: 10,
     effect: 'fade',
     loop: true,
+    autoplay: {
+      delay: 7000,
+    },
     navigation: {
       nextEl: '.hero__slider-next',
       prevEl: '.hero__slider-prev',
@@ -11,6 +14,19 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 
   initAboutTabs();
+});
+
+const logoHeader = document.querySelector('.site-header__logo');
+const logo = document.querySelector('.hero__glass');
+const hero = document.querySelector('.hero');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > (hero.scrollHeight-50)) {
+    logo.classList.add('hero__glass--active');
+    logoHeader.classList.add('site-header__logo--active');
+  } else {
+    logo.classList.remove('hero__glass--active');
+    logoHeader.classList.remove('site-header__logo--active');
+  }
 });
 
 const initAboutTabs = () => {
@@ -65,6 +81,17 @@ const initAboutTabs = () => {
       };
 
       const switchTab = async (nextKey, useFade = true) => {
+        console.log('nextKey', nextKey);
+        const arrowAnimate = document.querySelector('.about__mission-quote');
+        if (nextKey !== 'mission') {
+          arrowAnimate.classList.remove('about__mission-quote--open');
+        }
+        setTimeout(() => {
+          if (nextKey === 'mission') {
+            arrowAnimate.classList.add('about__mission-quote--open');
+          }
+        }, 170)
+
         if (!panelByKey.has(nextKey) || nextKey === activeKey) return;
 
         setActiveTabState(nextKey);

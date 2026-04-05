@@ -16,27 +16,22 @@
       <span></span>
       <span></span>
     </button>
-    <a class="site-header__logo" href="index.html">
-      <img src="img/figma/assets/hero-word.svg" alt="VOLGER">
+    <a class="site-header__logo icon-volger" href="index.html">
     </a>
   </div>
 </header>
 
-<main>
+<main class="main">
   <section class="hero">
     <div class="hero__slider swiper">
       <div class="swiper-wrapper">
-        <div class="hero__shell swiper-slide">
-          <figure class="hero__media">
-            <img src="img/figma/assets/hero1.png" alt="Продукция VOLGER">
-          </figure>
-            <div class="hero__glass icon-volger"></div>
-          <svg class="clip-defs" aria-hidden="true" focusable="false">
-            <defs>
-              <clipPath id="heroClip" clipPathUnits="objectBoundingBox">
-                <path
-                        transform="scale(0.0005455537 0.0012360939)"
-                        d="M28 0
+        <div class="hero__glass icon-volger"></div>
+        <svg class="clip-defs" aria-hidden="true" focusable="false">
+          <defs>
+            <clipPath id="heroClip" clipPathUnits="objectBoundingBox">
+              <path
+                      transform="scale(0.0005455537 0.0012360939)"
+                      d="M28 0
            H1805
            A28 28 0 0 1 1833 28
            V781
@@ -54,9 +49,14 @@
            V28
            A28 28 0 0 1 28 0
            Z" />
-              </clipPath>
-            </defs>
-          </svg>
+            </clipPath>
+          </defs>
+        </svg>
+        <div class="hero__shell swiper-slide">
+          <figure class="hero__media">
+            <img src="img/figma/assets/hero1.png" alt="Продукция VOLGER">
+          </figure>
+
           <div class="hero__content">
             <h2 class="hero__title">Продукция обеспечивает стабильный результат в рабочих условиях</h2>
             <a class="button button--primary" href="#cooperation">
@@ -122,9 +122,11 @@
       </article>
       <article class="about__card about__card--hidden" data-about-panel="mission" id="about-panel-mission" role="tabpanel" aria-labelledby="about-tab-mission" aria-hidden="true">
         <div class="about__mission-quote">
+          <span class="about__icon about__icon--left">«</span>
           <div class="about__text">
             <p>Разработка и поставка профессиональной продукции, которая помогает производству работать стабильно, точно и уверенно выдерживать непрерывную нагрузку производственных процессов</p>
           </div>
+          <span class="about__icon about__icon--right">»</span>
         </div>
       </article>
       <article class="about__card about__card--hidden" data-about-panel="values" id="about-panel-values" role="tabpanel" aria-labelledby="about-tab-values" aria-hidden="true">
@@ -219,7 +221,7 @@
         </figure>
         <div class="production__cards">
           <article class="production__card">
-            <h2 class="section__title">Производство</h2>
+            <h3 >Производство</h3>
             <p>Продукция VOLGER производится на современном промышленном оборудовании с применением специализированных технологических линий.</p>
           </article>
           <article class="production__card">

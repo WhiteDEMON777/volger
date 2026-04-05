@@ -86,34 +86,10 @@ a {
   background: #171717;
   color: #ffffff;
   font-family: "Unbounded", "Segoe UI", sans-serif;
-  font-size: 20px;
+  font-size: clamp(1rem, 0.49vw + 0.677rem, 1.25rem);
   line-height: 1.24;
   overflow-x: hidden;
   position: relative;
-}
-
-.page::before,
-.page::after {
-  content: "";
-  position: fixed;
-  width: 560px;
-  height: 560px;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: -1;
-  filter: blur(60px);
-}
-
-.page::before {
-  top: -160px;
-  left: -110px;
-  background: radial-gradient(circle, rgba(124, 190, 255, 0.54) 0%, rgba(124, 190, 255, 0) 72%);
-}
-
-.page::after {
-  right: -220px;
-  top: 48%;
-  background: radial-gradient(circle, rgba(56, 150, 255, 0.56) 0%, rgba(56, 150, 255, 0) 72%);
 }
 
 .page--home,
@@ -129,7 +105,7 @@ a {
 }
 
 .section {
-  margin-top: 150px;
+  margin-top: clamp(3.125rem, 12.24vw + -4.946rem, 9.375rem);
 }
 
 .section__title {
@@ -145,8 +121,10 @@ a {
 
 .button {
   display: inline-flex;
+  position: relative;
+  z-index: 1;
   align-items: center;
-  padding: clamp(0.313rem, 1.836vw + -0.898rem, 1.25rem) clamp(1.563rem, 3.06vw + -0.455rem, 3.125rem);
+  padding: clamp(0.625rem, 1.224vw + -0.182rem, 1.25rem) clamp(1.563rem, 3.06vw + -0.455rem, 3.125rem);
   width: fit-content;
   justify-content: center;
   overflow: hidden;
@@ -156,15 +134,10 @@ a {
   transition: background-size 0.22s ease, box-shadow 0.22s ease, opacity 0.22s ease;
 }
 
-.button:focus-visible,
-.site-header__menu:focus-visible,
-a:focus-visible,
-summary:focus-visible,
 input:focus-visible,
-textarea:focus-visible,
-button:focus-visible {
-  outline: 2px solid #88c3ff;
-  outline-offset: 3px;
+textarea:focus-visible {
+  outline: none;
+  background: rgba(255, 255, 255, 0.2196078431);
 }
 
 @keyframes gradient-move {
@@ -181,7 +154,7 @@ button:focus-visible {
 .button--primary {
   color: #ffffff;
   background-image: linear-gradient(103.43deg, #006BD6 0.11%, #FFFFFF 208.33%);
-  font-size: 20px;
+  font-size: clamp(1rem, 0.49vw + 0.677rem, 1.25rem);
   font-weight: 500;
   position: relative;
 }
@@ -207,7 +180,7 @@ button:focus-visible {
   border: 1.38px solid #ffffff;
   background: transparent;
   color: #ffffff;
-  font-size: 20px;
+  font-size: clamp(1rem, 0.49vw + 0.677rem, 1.25rem);
   font-weight: 500;
   transition: background 0.38s ease-in-out;
 }
@@ -218,7 +191,11 @@ button:focus-visible {
 }
 
 .site-header {
+  background: linear-gradient(180deg, rgba(160, 160, 160, 0.32) 0%, rgba(38, 38, 38, 0) 100%);
   height: 50px;
+  z-index: 2;
+  position: sticky;
+  top: 0;
 }
 .site-header__inner {
   width: min(100% - 270px, 1650px);
@@ -248,17 +225,64 @@ button:focus-visible {
 }
 .site-header__logo {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 138px;
+  font-size: 23px;
+  transform: scale(0);
+  text-align: center;
+  top: 13px;
+  width: 100%;
   opacity: 0.92;
+  transition: transform 0.38s ease-in-out;
+}
+.site-header__logo--active {
+  transform: scale(1);
 }
 .site-header--minimal .site-header__logo {
   opacity: 0;
   pointer-events: none;
 }
 
+.main:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../img/picture/Ellipse4.png") no-repeat bottom;
+  background-size: contain;
+}
+.main:before {
+  content: "";
+  position: absolute;
+  bottom: 5%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../img/picture/Ellipse3.png") no-repeat center;
+  background-size: contain;
+}
+
+.page--home:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../img/picture/Ellipse1.png") no-repeat;
+  background-size: contain;
+}
+.page--home:before {
+  content: "";
+  position: absolute;
+  top: 100px;
+  right: 0;
+  width: 70%;
+  height: stretch;
+  background: url("../img/picture/Ellipse2.png") no-repeat;
+  background-size: contain;
+  z-index: 1;
+}
 .page--home .site-header__inner {
   width: 100%;
 }
@@ -320,8 +344,13 @@ button:focus-visible {
   font-size: clamp(2.5rem, 5.018vw + -0.809rem, 5.063rem);
   position: absolute;
   bottom: clamp(1.125rem, 0.49vw + 0.802rem, 1.375rem);
-  left: 50%;
-  transform: translateX(-50%);
+  width: 100%;
+  transform: scale(1);
+  text-align: center;
+  transition: transform 0.38s ease-in-out;
+}
+.hero__glass--active {
+  transform: scale(0);
 }
 .hero__media {
   border-radius: 30px;
@@ -338,7 +367,7 @@ button:focus-visible {
 .hero__content {
   position: absolute;
   left: 80px;
-  top: 218px;
+  top: clamp(5.625rem, 15.667vw + -4.705rem, 13.625rem);
   width: 697px;
   display: grid;
   gap: 72px;
@@ -349,20 +378,19 @@ button:focus-visible {
   font-weight: 500;
 }
 .hero .button--primary {
-  min-width: 376px;
-  padding: 10px 50px;
+  min-width: clamp(12.5rem, 21.542vw + -1.704rem, 23.5rem);
   font-size: clamp(0.75rem, 1.469vw + -0.218rem, 1.5rem);
 }
 
 .about.section {
-  margin-top: clamp(2.375rem, 19.829vw + -10.7rem, 12.5rem);
+  margin-top: clamp(3.125rem, 18.36vw + -8.981rem, 12.5rem);
 }
 .about__tabs {
   position: relative;
-  margin-top: 45px;
+  margin-top: clamp(1.563rem, 2.448vw + -0.052rem, 2.813rem);
   display: flex;
   justify-content: center;
-  gap: 48px;
+  gap: 20px;
   flex-wrap: wrap;
 }
 .about__tab {
@@ -376,7 +404,7 @@ button:focus-visible {
   border: 2px solid rgba(255, 255, 255, 0.45);
   background: transparent;
   color: #ffffff;
-  font-size: 20px;
+  font-size: clamp(1rem, 0.49vw + 0.677rem, 1.25rem);
   font-weight: 600;
   cursor: pointer;
   transition: background 0.38s ease-in-out;
@@ -404,6 +432,7 @@ button:focus-visible {
   display: grid;
   gap: 40px;
   grid-template-columns: 1fr auto;
+  overflow: hidden;
 }
 .about__card--hidden {
   display: none;
@@ -415,14 +444,14 @@ button:focus-visible {
   font-weight: 500;
 }
 .about__text p {
-  font-size: 20px;
+  font-size: clamp(1rem, 0.49vw + 0.677rem, 1.25rem);
   color: #ffffff;
 }
 .about__brand {
-  align-self: end;
   display: grid;
   justify-items: center;
   gap: 20px;
+  height: fit-content;
 }
 .about__brand-mark {
   width: 188px;
@@ -486,6 +515,23 @@ button:focus-visible {
   border-bottom-left-radius: 42px;
   border-left: 1px solid transparent;
 }
+.about__icon {
+  position: absolute;
+  font-size: 230px;
+  font-weight: 700;
+  line-height: 0.4;
+  color: rgba(255, 255, 255, 0.08);
+}
+.about__icon--left {
+  top: 0;
+  left: -100%;
+  transition: left 0.38s ease-in-out;
+}
+.about__icon--right {
+  right: -100%;
+  bottom: 0;
+  transition: right 0.38s ease-in-out;
+}
 .about__mission-quote {
   position: relative;
   display: flex;
@@ -493,24 +539,11 @@ button:focus-visible {
   padding-top: 51px;
   padding-bottom: 55px;
 }
-.about__mission-quote::before, .about__mission-quote::after {
-  position: absolute;
-  font-size: 230px;
-  font-weight: 700;
-  line-height: 0.4;
-  color: rgba(255, 255, 255, 0.08);
-  pointer-events: none;
-  user-select: none;
-}
-.about__mission-quote::before {
-  content: "«";
-  bottom: 0;
+.about__mission-quote--open .about__icon--left {
   left: 0;
 }
-.about__mission-quote::after {
-  content: "»";
+.about__mission-quote--open .about__icon--right {
   right: 0;
-  top: 0;
 }
 .about__values {
   display: grid;
@@ -529,12 +562,6 @@ button:focus-visible {
   line-height: 1;
   font-weight: 300;
 }
-.about__mission-quote::before {
-  content: "«";
-}
-.about__mission-quote::after {
-  content: "»";
-}
 .about__mission-text {
   text-align: center;
   font-size: 33px;
@@ -551,14 +578,17 @@ button:focus-visible {
 .products {
   padding-left: 50px;
   padding-right: 50px;
+  position: relative;
+  z-index: 1;
 }
 .products__card {
-  margin-top: 45px;
+  margin-top: clamp(1.563rem, 2.448vw + -0.052rem, 2.813rem);
   border-radius: 30px;
   background: rgba(217, 217, 217, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
-  padding: 50px;
+  padding: 40px;
+  padding-top: 35px;
 }
 .products__tabs {
   display: flex;
@@ -569,7 +599,7 @@ button:focus-visible {
   min-height: 42px;
   padding: 10px 22px;
   border-radius: 9999px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1.5px solid rgb(255, 255, 255);
   background: transparent;
   color: #ffffff;
   font-size: 16px;
@@ -599,14 +629,14 @@ button:focus-visible {
   gap: 30px;
 }
 .products__name {
-  font-size: 35px;
+  font-size: clamp(1.75rem, 0.857vw + 1.185rem, 2.188rem);
   line-height: 1.24;
   font-weight: 700;
 }
 .products__subtitle {
   margin-top: 8px;
   font-family: "Unbounded", "Segoe UI", sans-serif;
-  font-size: 30px;
+  font-size: clamp(1.5rem, 0.734vw + 1.016rem, 1.875rem);
   line-height: 1.56;
   font-weight: 300;
   text-transform: uppercase;
@@ -614,7 +644,7 @@ button:focus-visible {
 }
 .products__code {
   margin-top: 16px;
-  font-size: 30px;
+  font-size: clamp(1.25rem, 0.612vw + 0.846rem, 1.563rem);
   color: #ffffff;
   font-family: "Wix Madefor Display", "Unbounded", "Segoe UI", sans-serif;
   font-weight: 800;
@@ -628,7 +658,7 @@ button:focus-visible {
 .products__list li {
   position: relative;
   font-family: "Wix Madefor Display", "Unbounded", "Segoe UI", sans-serif;
-  font-size: 20px;
+  font-size: clamp(1rem, 0.49vw + 0.677rem, 1.25rem);
   font-weight: 800;
   line-height: 1;
   color: #ffffff;
@@ -638,8 +668,8 @@ button:focus-visible {
 .products__list li::before {
   content: "";
   padding-left: 45px;
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   background: url("../img/icon/arrow-down.svg") no-repeat;
   background-size: contain;
 }
@@ -660,41 +690,42 @@ button:focus-visible {
 }
 
 .quality__grid {
-  margin-top: 50px;
+  margin-top: clamp(1.563rem, 3.06vw + -0.455rem, 3.125rem);
   display: grid;
-  grid-template-columns: 1fr minmax(360px, 1.06fr) 1fr;
-  gap: 30px;
+  grid-template-columns: 1fr 1.06fr 1fr;
+  gap: clamp(1.25rem, 3.672vw + -1.171rem, 3.125rem);
 }
 .quality__card {
   border-radius: 30px;
-  background: rgba(217, 217, 217, 0.06);
+  background: rgba(255, 255, 255, 0.09);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 50px;
+  padding: clamp(1.563rem, 3.06vw + -0.455rem, 3.125rem);
   display: grid;
   gap: 30px;
   align-content: space-between;
 }
 .quality__card-title {
-  font-size: 30px;
+  font-size: clamp(1.563rem, 0.612vw + 1.159rem, 1.875rem);
   line-height: 1.24;
   font-weight: 700;
 }
 .quality__card-text {
   margin-top: 30px;
   color: #ffffff;
-  font-size: 20px;
+  font-size: clamp(1rem, 0.49vw + 0.677rem, 1.25rem);
   font-weight: 700;
 }
 .quality__card .button--small {
   padding: 10px 46px;
   font-weight: 700;
-  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 .quality__image {
   border-radius: 30px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  min-height: 580px;
+  min-height: clamp(22.5rem, 15.545vw + 12.25rem, 30.438rem);
 }
 .quality__image img {
   width: 100%;
@@ -704,7 +735,7 @@ button:focus-visible {
 
 .production__layout {
   display: grid;
-  grid-template-columns: 1.06fr 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 30px;
   align-items: stretch;
 }
@@ -712,7 +743,8 @@ button:focus-visible {
   border-radius: 30px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  min-height: 783px;
+  min-height: clamp(33.75rem, 29.743vw + 14.138rem, 48.938rem);
+  position: relative;
 }
 .production__photo img {
   width: 100%;
@@ -721,13 +753,13 @@ button:focus-visible {
 }
 .production__cards {
   display: grid;
-  gap: 20px;
+  gap: clamp(1.563rem, 3.06vw + -0.455rem, 3.125rem);
 }
 .production__card {
   border-radius: 30px;
-  background: rgba(217, 217, 217, 0.06);
+  background: rgba(204, 204, 204, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 40px;
+  padding: clamp(0.938rem, 4.039vw + -1.726rem, 3rem) clamp(1.375rem, 5.998vw + -2.58rem, 4.438rem);
 }
 .production__card h3 {
   font-size: 20px;
@@ -736,7 +768,7 @@ button:focus-visible {
 }
 .production__card p {
   margin-top: 15px;
-  font-size: 20px;
+  font-size: clamp(0.938rem, 0.612vw + 0.534rem, 1.25rem);
   color: #ffffff;
 }
 
@@ -760,7 +792,7 @@ button:focus-visible {
 }
 .dealers__map {
   overflow: hidden;
-  min-height: 480px;
+  min-height: clamp(14.375rem, 30.6vw + -5.802rem, 30rem);
 }
 .dealers__map img {
   width: 100%;
@@ -778,29 +810,31 @@ button:focus-visible {
   color: #ffffff;
 }
 .contact-block__layout {
-  margin-top: 66px;
+  margin-top: clamp(1.563rem, 5.018vw + -1.746rem, 4.125rem);
   display: grid;
-  grid-template-columns: 983px 300px;
-  gap: 44px;
+  grid-template-columns: clamp(39.375rem, 43.207vw + 10.885rem, 61.438rem) clamp(15.938rem, 5.508vw + 12.306rem, 18.75rem);
+  gap: clamp(1.25rem, 2.938vw + -0.687rem, 2.75rem);
   align-items: start;
 }
 .contact-block__form-card {
   border-radius: 30px;
-  background: rgba(217, 217, 217, 0.06);
+  background: rgba(217, 217, 217, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 54px 58px 44px;
+  padding: clamp(1.5rem, 3.672vw + -0.921rem, 3.375rem) clamp(1.5rem, 4.162vw + -1.244rem, 3.625rem) 44px;
 }
 .contact-block__form-card h3 {
   font-size: 25px;
   font-weight: 500;
   line-height: 1.24;
 }
+.contact-block__form-card .form {
+  width: clamp(36.25rem, 16.401vw + 25.435rem, 44.625rem);
+}
 .contact-block__aside {
   border-radius: 30px;
   background: rgba(217, 217, 217, 0.0509803922);
   border: 1px solid rgba(255, 255, 255, 0.2);
   padding: 34px 50px;
-  min-height: 175px;
   display: grid;
   gap: 20px;
   align-content: start;
@@ -811,7 +845,7 @@ button:focus-visible {
   line-height: 1.24;
 }
 .contact-block__aside a {
-  margin-top: 10px;
+  margin-top: -10px;
   display: block;
   font-size: 14px;
   color: #ffffff;
@@ -835,6 +869,10 @@ button:focus-visible {
   font-size: 14px;
   font-weight: 500;
   line-height: 1.24;
+}
+.form__field input:focus-visible,
+.form__field textarea:focus-visible {
+  background: rgba(255, 255, 255, 0.2196078431);
 }
 
 .form__field input {
@@ -868,7 +906,19 @@ button:focus-visible {
 }
 
 .form__footer {
-  margin-top: -60px;
+  margin-top: -35px;
+}
+@media (min-width: 1023px) {
+  .form__footer {
+    margin-top: calc(-0.02787068 * 100vw + -6.4882943144px);
+  }
+}
+@media (min-width: 1920px) {
+  .form__footer {
+    margin-top: -60px;
+  }
+}
+.form__footer {
   display: block;
 }
 
@@ -879,6 +929,7 @@ button:focus-visible {
   color: #a9a9a9;
   text-decoration: underline;
   line-height: 1;
+  display: block;
 }
 
 .form__submit {
@@ -887,9 +938,11 @@ button:focus-visible {
 }
 
 .site-footer {
-  margin-top: 150px;
+  margin-top: clamp(3.125rem, 12.24vw + -4.946rem, 9.375rem);
   border-top: 1px solid rgba(255, 255, 255, 0.14);
   background: #2b2b2b;
+  position: relative;
+  z-index: 1;
 }
 .site-footer__container {
   width: min(100% - 198px, 1722px);
@@ -901,7 +954,6 @@ button:focus-visible {
   display: grid;
   grid-template-columns: 173px 240px 824px 98px 315px;
   gap: 0;
-  align-items: start;
 }
 .site-footer__contacts {
   grid-column: 1;
@@ -913,7 +965,7 @@ button:focus-visible {
   color: #cacaca;
 }
 .site-footer__contacts a {
-  margin-top: 10px;
+  margin-top: 5px;
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -929,8 +981,8 @@ button:focus-visible {
   grid-column: 3;
   display: flex;
   flex-wrap: nowrap;
-  gap: 24px 45px;
-  align-self: start;
+  gap: 25px clamp(1.563rem, 2.448vw + -0.052rem, 2.813rem);
+  align-self: center;
 }
 .site-footer__nav-link {
   font-size: 20px;
@@ -1646,15 +1698,11 @@ button:focus-visible {
   }
   .hero__content {
     left: 50px;
-    top: 160px;
     width: 560px;
     gap: 50px;
   }
   .hero__title {
     font-size: 34px;
-  }
-  .section {
-    margin-top: 120px;
   }
   .site-footer__top {
     width: auto;
@@ -1691,15 +1739,40 @@ button:focus-visible {
   .page--home .site-header__menu {
     left: 28px;
   }
+  .about__tabs {
+    gap: 0;
+  }
+  .about__card {
+    gap: 10px;
+    padding: 30px;
+  }
+  .about__cap {
+    width: 220px;
+  }
+  .about__value {
+    gap: 20px;
+  }
+  .about__value-text {
+    font-size: 16px;
+  }
   .hero__content {
-    top: 120px;
+    top: 75px;
     width: 520px;
     gap: 24px;
+  }
+  .hero__glass {
+    font-size: 30px;
   }
   .hero__title {
     font-size: 30px;
   }
-  .about__card,
+  .quality__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .quality__image {
+    grid-column: 1/-1;
+    order: -1;
+  }
   .products__card,
   .quality__card,
   .production__card,
@@ -1712,10 +1785,18 @@ button:focus-visible {
   .dealer-benefits__item {
     padding: 30px;
   }
-  .products__layout,
-  .quality__grid,
-  .production__layout,
   .dealers__layout,
+  .products__layout {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .dealers__text {
+    margin-top: 14px;
+  }
+  .dealers__info .button--primary {
+    margin-top: 20px;
+  }
+  .production__layout,
   .contact-block__layout,
   .product-hero__card,
   .dealer-hero__layout,
@@ -1723,17 +1804,11 @@ button:focus-visible {
   .requisites__layout {
     grid-template-columns: 1fr;
   }
-  .products__name {
-    font-size: 32px;
-  }
-  .products__subtitle,
-  .products__code {
-    font-size: 24px;
-  }
   .products__visual,
   .quality__image,
   .production__photo {
-    min-height: 420px;
+    min-height: 350px;
+    height: 350px;
   }
   .product-hero__media {
     min-height: 420px;
@@ -1751,6 +1826,12 @@ button:focus-visible {
   }
   .product-hero__content h1 {
     font-size: 32px;
+  }
+  .contact-block__subtitle {
+    font-size: 14px;
+  }
+  .contact-block__aside {
+    display: none;
   }
   .product-hero__card {
     padding: 0;
@@ -1899,7 +1980,7 @@ button:focus-visible {
     margin-top: 150px;
   }
 }
-@media (max-width: 900px) {
+@media (max-width: 800px) {
   .section {
     margin-top: 80px;
   }
@@ -1915,17 +1996,50 @@ button:focus-visible {
     width: 24px;
     height: 15px;
   }
+  .page--home:after {
+    left: -130px;
+  }
+  .page--home:before {
+    top: 210px;
+  }
+  .contact-block__form-card .form {
+    width: 100%;
+  }
+  .container, .contact-block__container {
+    width: 100%;
+  }
+  .hero {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .hero__title {
+    font-size: 18px;
+    position: absolute;
+    width: 68%;
+    top: 25%;
+    left: 22px;
+  }
   .hero__content {
     position: static;
     width: 100%;
-    margin-top: 20px;
     gap: 24px;
+    display: flex;
+    justify-content: center;
   }
-  .hero__title {
-    font-size: 28px;
+  .hero__glass, .hero .clip-defs {
+    display: none;
+  }
+  .hero__slider {
+    border-radius: 0;
+  }
+  .hero .button--primary {
+    margin-top: 18px;
   }
   .hero__media {
-    border-radius: 24px;
+    border-radius: 0;
+  }
+  .hero__media img {
+    aspect-ratio: 1833/628;
   }
   .section__title {
     font-size: 30px;
@@ -1933,25 +2047,57 @@ button:focus-visible {
   .section__title--center {
     font-size: 36px;
   }
-  .about__tabs {
-    gap: 14px;
+  .about.section {
+    margin-top: 30px;
+  }
+  .container {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .main:before {
+    top: 15%;
+    height: 80%;
+    background-position: top;
+  }
+  .main:after {
+    content: none;
   }
   .about__tab {
-    padding: 8px 24px;
+    padding: 8px 20px;
     min-height: 40px;
-    font-size: 16px;
+    font-size: 12px;
+  }
+  .about__cap {
+    width: 130px;
+    border-radius: 15px 15px 12px 12px;
+    height: 60px;
+  }
+  .about__cap:has(.about__tab--active):before {
+    box-shadow: 10px 14px 0 7px rgb(35, 35, 35);
+  }
+  .about__cap:has(.about__tab--active):after {
+    box-shadow: -10px 14px 0 7px rgb(35, 35, 35);
+  }
+  .about__brand {
+    order: -1;
+  }
+  .about__brand-mark {
+    width: 90px;
+  }
+  .about__brand-word {
+    width: 118px;
   }
   .about__card {
     grid-template-columns: 1fr;
-  }
-  .about__brand {
-    justify-items: start;
+    align-items: center;
+    gap: 30px;
+    padding: 20px;
   }
   .about__panel--mission {
     min-height: auto;
   }
   .about__mission-quote {
-    padding: 0 56px;
+    padding: 0;
   }
   .about__mission-quote::before,
   .about__mission-quote::after {
@@ -1965,23 +2111,89 @@ button:focus-visible {
     padding-bottom: 24px;
   }
   .about__values {
-    column-gap: 34px;
-    row-gap: 22px;
-  }
-  .about__value-title {
-    font-size: 30px;
+    gap: 20px;
+    grid-template-columns: 1fr;
   }
   .about__value-text {
-    font-size: 24px;
+    font-size: 14px;
   }
   .about__values-note {
     font-size: 18px;
   }
+  .products {
+    padding-left: 0;
+    padding-right: 0;
+  }
   .products__name {
-    font-size: 30px;
+    font-size: 20px;
+  }
+  .products__card {
+    padding: 20px;
+  }
+  .products__tabs {
+    gap: 5px;
+    justify-content: space-between;
+  }
+  .products__tab {
+    padding: 10px 15px;
+    font-size: 12px;
+  }
+  .products__name {
+    font-size: 18px;
+  }
+  .products__subtitle {
+    font-size: 18px;
+  }
+  .products__list li {
+    font-weight: 400;
+  }
+  .products__visual, .quality__image, .production__photo {
+    min-height: 275px;
+    height: 275px;
+  }
+  .site-header__logo {
+    transform: scale(1);
+  }
+  .quality__card {
+    padding: 20px;
   }
   .quality__card-title {
-    font-size: 30px;
+    font-size: 18px;
+  }
+  .quality__card-text {
+    font-size: 12px;
+  }
+  .dealers__map {
+    min-height: 184px;
+  }
+  .dealers__layout {
+    background: rgba(217, 217, 217, 0.1);
+    border-radius: 10px;
+    gap: 20px;
+  }
+  .dealers__info {
+    display: flex;
+    flex-direction: column;
+  }
+  .dealers__info .button--primary {
+    align-self: center;
+    min-width: fit-content;
+  }
+  .form__footer a {
+    margin-top: 27px;
+    text-align: end;
+  }
+  .site-footer__top {
+    gap: 45px;
+    grid-template-columns: 1fr;
+  }
+  .site-footer__bottom {
+    margin-top: 45px;
+  }
+  .site-footer__nav {
+    order: -1;
+    flex-direction: column;
+    gap: 10px;
   }
   .dealer-benefits__item {
     min-height: 110px;
@@ -1999,38 +2211,17 @@ button:focus-visible {
     left: 24px;
     top: 80px;
   }
-  .site-footer__top {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
   .site-footer__brand {
     grid-column: auto;
   }
 }
-@media (max-width: 640px) {
-  .container,
-  .contact-block__container {
-    width: min(100% - 24px, 1650px);
-  }
-  .site-footer__container {
-    width: min(100% - 24px, 1722px);
-  }
-  .section {
-    margin-top: 58px;
-  }
-  .about.section {
-    margin-top: 58px;
-  }
-  .hero__shell {
-    width: min(100% - 10px, 1833px);
+@media (max-width: 540px) {
+  .hero__media img {
+    aspect-ratio: 1833/910;
   }
   .hero__title {
-    font-size: 24px;
-  }
-  .button--primary {
-    min-height: 54px;
-    font-size: 16px;
-    width: 100%;
+    width: 80%;
+    top: 20%;
   }
   .button--outline {
     min-height: 44px;
@@ -2038,20 +2229,38 @@ button:focus-visible {
     width: 100%;
     font-size: 16px;
   }
+  .contact-block__form-card {
+    padding: 15px;
+  }
   .about__panel--mission {
     min-height: auto;
     padding-top: 40px;
     padding-bottom: 40px;
   }
-  .about__mission-quote {
-    padding: 0 34px;
+  .about__tab {
+    padding: 8px 15px;
+    font-size: 10px;
+  }
+  .about__text p {
+    font-size: 14px;
+    font-weight: 400;
+  }
+  .about__cap {
+    width: 100px;
+    height: 58px;
+  }
+  .about__cap:has(.about__tab--active):before {
+    box-shadow: 6px 11px 0 4px rgb(35, 35, 35);
+  }
+  .about__cap:has(.about__tab--active):after {
+    box-shadow: -6px 11px 0 4px rgb(35, 35, 35);
+  }
+  .about__card {
+    border-radius: 15px;
   }
   .about__mission-quote::before,
   .about__mission-quote::after {
     font-size: 88px;
-  }
-  .about__mission-text {
-    font-size: 16px;
   }
   .about__panel--values {
     gap: 16px;
@@ -2071,39 +2280,17 @@ button:focus-visible {
     justify-self: start;
     font-size: 14px;
   }
+  .quality__grid {
+    grid-template-columns: 1fr;
+  }
+  .quality__card-text {
+    margin-top: 15px;
+  }
   .products__tab,
   .product-docs__tab {
     font-size: 12px;
     min-height: 34px;
     padding: 8px 12px;
-  }
-  .products__name {
-    font-size: 24px;
-  }
-  .products__subtitle,
-  .products__code {
-    font-size: 18px;
-  }
-  .products__list li,
-  .quality__card-text,
-  .production__card p,
-  .dealers__text,
-  .contact-block__subtitle,
-  .form__field input,
-  .form__field textarea,
-  .product-hero__list li,
-  .product-docs__lead,
-  .product-app__list li,
-  .dealer-card__info p,
-  .dealer-card__cities,
-  .dealer-benefits__item p,
-  .requisites__block dt,
-  .requisites__block dd {
-    font-size: 16px;
-  }
-  .quality__card-title,
-  .dealer-benefits__item h3 {
-    font-size: 24px;
   }
   .product-hero__content h1 {
     font-size: 30px;
@@ -2126,12 +2313,6 @@ button:focus-visible {
   }
   .product-coop__card h2 {
     font-size: 30px;
-  }
-  .form__submit {
-    width: 100%;
-  }
-  .site-footer {
-    margin-top: 58px;
   }
   .page--product .site-footer,
   .page--requisites .site-footer {
