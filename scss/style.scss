@@ -479,6 +479,8 @@ textarea:focus-visible{
     gap: 40px;
     grid-template-columns: 1fr auto;
     overflow: hidden;
+    position: relative;
+    z-index: 1;
   }
   &__card--hidden {
     display: none;
