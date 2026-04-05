@@ -1031,6 +1031,48 @@ textarea:focus-visible{
   margin-top: 36px;
   display: grid;
   gap: 10px;
+  &__response {
+    margin-top: 15px;
+    font-size: fluid(14px,16px);
+    text-align: right;
+    font-weight: 500;
+    &--sucsess {
+      color: #4BB42B;
+    }
+    &--error {
+      color: #a70404;
+    }
+  }
+}
+.fancybox__content>.f-button.is-close-btn {
+  top: 25px;
+  right: 20px;
+}
+.is-compact .fancybox__content>.f-button.is-close-btn {
+  top: 20px;
+  right: 20px;
+}
+.modal {
+  display: none;
+  padding: 0;
+  background: linear-gradient(114.05deg, #000000 -19.87%, #414141 169.67%);
+  border-radius: 50px;
+  border: 3px solid #6969699C;
+  &__container {
+    padding: fluid(30px,107px) fluid(30px,118px);
+  }
+  &__title {
+    font-size: fluid(20px,30px);
+    font-weight: 500;
+    margin-bottom: fluid(20px,25px);
+    color: $color-white;
+  }
+  &__text {
+    margin-bottom: fluid(25px,54px);
+    font-weight: 500;
+    font-size: fluid(16px,20px);
+    color: $color-white;
+  }
 }
 
 .form__field input,

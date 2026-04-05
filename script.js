@@ -301,5 +301,21 @@ window.addEventListener('DOMContentLoaded', () => {
     },
   });
 
+  Fancybox.bind('[data-fancybox]', {
+    animated: true,
+    dragToClose: false,
+  });
+
+  const inputMasks = document.querySelectorAll('.phoneInput-js');
+
+  if (inputMasks) {
+    inputMasks.forEach((inputMask) => {
+      const maskOptions = {
+        mask: '+{7} (000) 000-00-00',
+      };
+      IMask(inputMask, maskOptions);
+    });
+  }
+
   initAboutTabs();
 });

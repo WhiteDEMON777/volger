@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VOLGER | О бренде</title>
   <link rel="stylesheet" href="./fonts/icomoon/style.css">
+  <link rel="stylesheet" href="/plugins/fancybox/fancybox.css" />
   <link rel="stylesheet" href="./plugins/swiper/swiper-bundle.min.css">
   <link rel="stylesheet" href="scss/style.css">
 </head>
@@ -65,9 +66,9 @@
 
           <div class="hero__content">
             <h2 class="hero__title">Продукция обеспечивает стабильный результат в рабочих условиях</h2>
-            <a class="button button--primary" href="#cooperation">
+            <div class="button button--primary" data-src="#approveModal" data-fancybox>
               Оставить заявку
-            </a>
+            </div>
           </div>
         </div>
         <div class="hero__shell swiper-slide">
@@ -305,7 +306,7 @@
             </label>
             <label class="form__field">
               <span class="form__visually-hidden">Телефон</span>
-              <input type="tel" name="phone" placeholder="Телефон*" required>
+              <input type="tel" name="phone" placeholder="Телефон*" class="phoneInput-js" required>
             </label>
             <label class="form__field">
               <span class="form__visually-hidden">Email</span>
@@ -319,6 +320,8 @@
               <button class="button button--primary form__submit" type="submit">Отправить заявку</button>
               <a href="#">Отправляя заявку, вы соглашаетесь на обработку персональных данных.</a>
             </div>
+            <div class="form__response form__response--sucsess">Заявка отправлена! В ближайшее время с Вами свяжется менеджер</div>
+
           </form>
         </article>
         <aside class="contact-block__aside">
@@ -366,7 +369,43 @@
     </div>
   </div>
 </footer>
+
+<div class="modal" id="approveModal">
+  <div class="modal__container">
+    <div class="modal__title">Отправить данные</div>
+    <div class="modal__text">Закажите обратный звонок для консультации или оформления заказа </div>
+    <form class="form" action="#" method="post">
+      <label class="form__field">
+        <span class="form__visually-hidden">Имя</span>
+        <input type="text" name="name" placeholder="Имя*" required>
+      </label>
+      <label class="form__field">
+        <span class="form__visually-hidden">Название компании</span>
+        <input type="text" name="company" placeholder="Название компании*" required>
+      </label>
+      <label class="form__field">
+        <span class="form__visually-hidden">Телефон</span>
+        <input type="tel" name="phone" placeholder="Телефон*" class="phoneInput-js" required>
+      </label>
+      <label class="form__field">
+        <span class="form__visually-hidden">Email</span>
+        <input type="email" name="email" placeholder="Email*" required>
+      </label>
+      <label class="form__field form__field--textarea">
+        <span class="form__visually-hidden">Комментарий</span>
+        <textarea name="comment" placeholder="Комментарий*"></textarea>
+      </label>
+      <div class="form__footer">
+        <button class="button button--primary form__submit" type="submit">Отправить заявку</button>
+        <a href="#">Отправляя заявку, вы соглашаетесь на обработку персональных данных.</a>
+      </div>
+      <div class="form__response form__response--sucsess">Заявка отправлена! В ближайшее время с Вами свяжется менеджер</div>
+    </form>
+  </div>
+</div>
 <script src="./plugins/swiper/swiper-bundle.min.js" defer></script>
+<script src="/plugins/imask/imask.js" defer ></script>
+<script src="/plugins/fancybox/fancybox.umd.js" defer></script>
 <script type="module" src="./script.js?v=0.20302321" defer></script>
 </body>
 </html>
