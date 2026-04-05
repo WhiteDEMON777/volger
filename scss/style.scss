@@ -1000,6 +1000,8 @@ textarea:focus-visible{
     }
     .form {
       width: fluid(580px, 714px);
+      position: relative;
+      z-index: 1;
     }
   }
   &__aside {

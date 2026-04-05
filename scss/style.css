@@ -919,6 +919,8 @@ textarea:focus-visible {
 }
 .contact-block__form-card .form {
   width: clamp(36.25rem, 16.401vw + 25.435rem, 44.625rem);
+  position: relative;
+  z-index: 1;
 }
 .contact-block__aside {
   border-radius: 30px;
