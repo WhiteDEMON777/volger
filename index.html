@@ -11,11 +11,17 @@
 <body class="page page--home">
 <header class="site-header">
   <div class="site-header__inner">
-    <button class="site-header__menu" type="button">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
+    <div class="site-header__menu">
+        <div class="site-header__burger" >
+          <div class="site-header__burger-line"></div>
+        </div>
+        <ul class="site-header__list">
+          <li><a href="#about" class="site-header__link">О бренде</a></li>
+          <li><a href="#products" class="site-header__link">Продукция</a></li>
+          <li><a href="#" class="site-header__link">Где купить?</a></li>
+          <li><a href="#" class="site-header__link">Реквизиты и контакты</a></li>
+        </ul>
+    </div>
     <a class="site-header__logo icon-volger" href="index.html">
     </a>
   </div>
@@ -95,7 +101,7 @@
 
   </section>
 
-  <section class="about section">
+  <section class="about section" id="about">
     <div class="container">
       <h2 class="section__title section__title--center">О бренде</h2>
       <div class="about__tabs" role="tablist" aria-label="О бренде">
@@ -152,22 +158,50 @@
     </div>
   </section>
 
-  <section class="products section">
+  <section class="products section" id="products">
     <div class="container">
       <h2 class="section__title">Продукция</h2>
       <article class="products__card">
         <div class="products__tabs">
-          <button class="products__tab" type="button">Смазка многофункциональная</button>
+          <button class="products__tab products__tab--active" type="button">Смазка многофункциональная</button>
           <button class="products__tab" type="button">Жидкий ключ</button>
           <button class="products__tab" type="button">Очиститель дроссельной заслонки</button>
-          <button class="products__tab" type="button">Очиститель электроконтактов</button>
-          <button class="products__tab" type="button">Чернитель шин</button>
-          <button class="products__tab" type="button">Очиститель индустриальный</button>
-          <button class="products__tab products__tab--active" type="button">Очиститель тормозов</button>
-          <button class="products__tab" type="button">Медная смазка</button>
-          <button class="products__tab" type="button">Смазка силиконовая бесцветная</button>
         </div>
-        <div class="products__layout">
+        <div class="products__layout products__layout--active">
+          <div class="products__info">
+            <h3 class="products__name">ОЧИСТИТЕЛЬ ТОРМОЗОВ И&nbsp;ДЕТАЛЕЙ СЦЕПЛЕНИЯ</h3>
+            <p class="products__subtitle">Brake &amp; Clutch Cleaner</p>
+            <p class="products__code">VL5810</p>
+            <ul class="products__list">
+              <li>Очистка и обезжиривание металлических поверхностей</li>
+              <li>Удаляет масло, смазки, технические и жировые загрязнения</li>
+              <li>Обеспечивает чистоту контактных поверхностей перед монтажом</li>
+              <li>Очистка тормозных дисков, барабанов, суппортов и колодок</li>
+            </ul>
+            <a class="button  button--primary" href="product.html">Подробнее</a>
+          </div>
+          <figure class="products__visual">
+            <img src="img/figma/assets/home-product-main.png" alt="Очиститель тормозов и деталей сцепления VOLGER">
+          </figure>
+        </div>
+        <div class="products__layout products__layout--hidden">
+          <div class="products__info">
+            <h3 class="products__name">ОЧИСТИТЕЛЬ ТОРМОЗОВ И&nbsp;ДЕТАЛЕЙ СЦЕПЛЕНИЯ</h3>
+            <p class="products__subtitle">Brake &amp; Clutch Cleaner</p>
+            <p class="products__code">VL5810</p>
+            <ul class="products__list">
+              <li>Очистка и обезжиривание металлических поверхностей</li>
+              <li>Удаляет масло, смазки, технические и жировые загрязнения</li>
+              <li>Обеспечивает чистоту контактных поверхностей перед монтажом</li>
+              <li>Очистка тормозных дисков, барабанов, суппортов и колодок</li>
+            </ul>
+            <a class="button  button--primary" href="product.html">Подробнее</a>
+          </div>
+          <figure class="products__visual">
+            <img src="img/figma/assets/home-product-main.png" alt="Очиститель тормозов и деталей сцепления VOLGER">
+          </figure>
+        </div>
+        <div class="products__layout products__layout--hidden">
           <div class="products__info">
             <h3 class="products__name">ОЧИСТИТЕЛЬ ТОРМОЗОВ И&nbsp;ДЕТАЛЕЙ СЦЕПЛЕНИЯ</h3>
             <p class="products__subtitle">Brake &amp; Clutch Cleaner</p>

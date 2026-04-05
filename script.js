@@ -16,6 +16,46 @@ window.addEventListener('DOMContentLoaded', () => {
   initAboutTabs();
 });
 
+const burger = document.querySelector('.site-header__burger');
+const menu = document.querySelector('.site-header');
+const links = document.querySelectorAll('.site-header__link');
+
+burger.addEventListener('click', () => {
+  if (menu.classList.contains('site-header--active')) {
+      menu.classList.remove('site-header--open');
+      setTimeout(()=>{
+        menu.classList.remove('site-header--active');
+      }, 380)
+  } else {
+    menu.classList.add('site-header--active');
+    setTimeout(()=>{
+      menu.classList.add('site-header--open');
+    }, 0)
+  }
+})
+links.forEach(link => {
+  link.addEventListener('click', () => {
+    if (menu.classList.contains('site-header--active')) {
+      menu.classList.remove('site-header--open');
+      setTimeout(()=>{
+        menu.classList.remove('site-header--active');
+      }, 380)
+    }
+  })
+})
+
+document.addEventListener('click', (e) => {
+  if (
+      !menu.contains(e.target) &&
+      !burger.contains(e.target)
+  ) {
+    menu.classList.remove('site-header--open');
+    setTimeout(()=>{
+      menu.classList.remove('site-header--active');
+    }, 380)
+  }
+});
+
 const logoHeader = document.querySelector('.site-header__logo');
 const logo = document.querySelector('.hero__glass');
 const hero = document.querySelector('.hero');
@@ -90,7 +130,7 @@ const initAboutTabs = () => {
           if (nextKey === 'mission') {
             arrowAnimate.classList.add('about__mission-quote--open');
           }
-        }, 170)
+        }, 180)
 
         if (!panelByKey.has(nextKey) || nextKey === activeKey) return;
 
@@ -149,72 +189,114 @@ const initAboutTabs = () => {
   if (!productsSection) return;
 
   const productTabs = Array.from(productsSection.querySelectorAll('.products__tab'));
-  const productsLayout = productsSection.querySelector('.products__layout');
-  const productName = productsLayout?.querySelector('.products__name');
-  if (!productTabs.length) return;
+  const productPanels = Array.from(productsSection.querySelectorAll('.products__layout'));
+  if (!productTabs.length || !productPanels.length) return;
 
+  const tabPanelPairs = productTabs
+    .map((tab, index) => ({ tab, panel: productPanels[index], index }))
+    .filter((pair) => Boolean(pair.panel));
+  if (!tabPanelPairs.length) return;
+
+  tabPanelPairs.forEach(({ tab, panel, index }) => {
+    if (!tab.dataset.productsTab) {
+      tab.dataset.productsTab = `product-${index}`;
+    }
+    if (!panel.dataset.productsPanel) {
+      panel.dataset.productsPanel = tab.dataset.productsTab;
+    }
+  });
+
+  const tabs = tabPanelPairs.map((pair) => pair.tab);
+  const panels = tabPanelPairs.map((pair) => pair.panel);
+  const panelByKey = new Map(panels.map((panel) => [panel.dataset.productsPanel, panel]));
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const canAnimateLayout = Boolean(
-    productsLayout &&
-    typeof productsLayout.animate === 'function' &&
-    !prefersReducedMotion,
-  );
+  const canAnimate = panels.every((panel) => typeof panel.animate === 'function');
+  const fadeDuration = 120;
+  let transitionToken = 0;
 
-  let productsTransitionToken = 0;
-  const activeProductTab = productTabs.find((tab) => tab.classList.contains('products__tab--active')) ?? productTabs[0];
-  const titleByTab = new Map(
-    productTabs.map((tab) => [tab, tab.textContent.trim().toUpperCase()]),
-  );
+  let activeKey =
+    tabs.find((tab) => tab.classList.contains('products__tab--active'))?.dataset.productsTab ??
+    panels[0].dataset.productsPanel;
 
-  if (productName && activeProductTab) {
-    titleByTab.set(activeProductTab, productName.innerHTML);
+  if (!panelByKey.has(activeKey)) {
+    activeKey = panels[0].dataset.productsPanel;
   }
 
-  const setActiveProductTab = (nextTab) => {
+  const setActiveTabState = (tabKey) => {
     productTabs.forEach((tab) => {
-      const isActive = tab === nextTab;
+      const isActive = tab.dataset.productsTab === tabKey;
       tab.classList.toggle('products__tab--active', isActive);
       tab.setAttribute('aria-selected', String(isActive));
     });
   };
 
-  const applyProductLayout = (tab) => {
-    if (!productName) return;
-    productName.innerHTML = titleByTab.get(tab) ?? tab.textContent.trim().toUpperCase();
+  const setPanelState = (panel, isActive) => {
+    panel.classList.toggle('products__layout--active', isActive);
+    panel.classList.toggle('products__layout--hidden', !isActive);
+    panel.setAttribute('aria-hidden', String(!isActive));
   };
 
-  setActiveProductTab(activeProductTab);
-  applyProductLayout(activeProductTab);
+  const showOnlyPanel = (tabKey) => {
+    panels.forEach((panel) => {
+      setPanelState(panel, panel.dataset.productsPanel === tabKey);
+    });
+  };
 
-  productTabs.forEach((tab) => {
-    tab.addEventListener('click', async () => {
-      if (tab.classList.contains('products__tab--active')) return;
-
-      setActiveProductTab(tab);
-
-      if (!canAnimateLayout) {
-        applyProductLayout(tab);
-        return;
+  const cancelRunningAnimations = () => {
+    panels.forEach((panel) => {
+      if (typeof panel.getAnimations === 'function') {
+        panel.getAnimations().forEach((animation) => animation.cancel());
       }
+    });
+  };
 
-      const token = ++productsTransitionToken;
-      const fadeOut = productsLayout.animate(
-        [{ opacity: 1 }, { opacity: 0 }],
-        { duration: 120, easing: 'ease', fill: 'forwards' },
-      );
-      await fadeOut.finished.catch(() => {});
-      if (token !== productsTransitionToken) return;
+  const switchTab = async (nextKey, useFade = true) => {
+    if (!panelByKey.has(nextKey) || nextKey === activeKey) return;
 
-      applyProductLayout(tab);
+    setActiveTabState(nextKey);
 
-      const fadeIn = productsLayout.animate(
-        [{ opacity: 0 }, { opacity: 1 }],
-        { duration: 120, easing: 'ease', fill: 'forwards' },
-      );
-      await fadeIn.finished.catch(() => {});
-      if (token !== productsTransitionToken) return;
+    const currentPanel = panelByKey.get(activeKey);
+    const nextPanel = panelByKey.get(nextKey);
 
-      productsLayout.style.opacity = '';
+    if (!useFade || prefersReducedMotion || !canAnimate || !currentPanel || currentPanel === nextPanel) {
+      cancelRunningAnimations();
+      activeKey = nextKey;
+      showOnlyPanel(activeKey);
+      return;
+    }
+
+    const token = ++transitionToken;
+    cancelRunningAnimations();
+
+    setPanelState(currentPanel, true);
+    setPanelState(nextPanel, true);
+
+    const fadeOut = currentPanel.animate(
+      [{ opacity: 1 }, { opacity: 0 }],
+      { duration: fadeDuration, easing: 'ease', fill: 'forwards' },
+    );
+    await fadeOut.finished.catch(() => {});
+    if (token !== transitionToken) return;
+
+    setPanelState(currentPanel, false);
+
+    const fadeIn = nextPanel.animate(
+      [{ opacity: 0 }, { opacity: 1 }],
+      { duration: fadeDuration, easing: 'ease', fill: 'forwards' },
+    );
+    await fadeIn.finished.catch(() => {});
+    if (token !== transitionToken) return;
+
+    activeKey = nextKey;
+    showOnlyPanel(activeKey);
+  };
+
+  setActiveTabState(activeKey);
+  showOnlyPanel(activeKey);
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      void switchTab(tab.dataset.productsTab, true);
     });
   });
 };
