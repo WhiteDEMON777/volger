@@ -1919,8 +1919,15 @@ textarea:focus-visible{
   .site-footer__container {
     width: min(100% - 56px, 1722px);
   }
-  .site-header__menu {
-    left: 0;
+  .site-header {
+    &__menu {
+      left: 0;
+    }
+    &__list {
+      padding: 25px;
+      width: 300px;
+      gap: 15px;
+    }
   }
   .page--home .site-header__menu {
     left: 28px;
@@ -1981,6 +1988,10 @@ textarea:focus-visible{
   .products__layout{
     display: flex;
     flex-direction: column-reverse;
+  }
+
+  .products__layout--hidden {
+    display: none;
   }
 
   .dealers {

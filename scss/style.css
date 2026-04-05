@@ -1826,6 +1826,11 @@ textarea:focus-visible {
   .site-header__menu {
     left: 0;
   }
+  .site-header__list {
+    padding: 25px;
+    width: 300px;
+    gap: 15px;
+  }
   .page--home .site-header__menu {
     left: 28px;
   }
@@ -1879,6 +1884,9 @@ textarea:focus-visible {
   .products__layout {
     display: flex;
     flex-direction: column-reverse;
+  }
+  .products__layout--hidden {
+    display: none;
   }
   .dealers__text {
     margin-top: 14px;
