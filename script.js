@@ -1,20 +1,4 @@
-window.addEventListener('DOMContentLoaded', () => {
-  new Swiper('.hero__slider', {
-    slidesPerView: 1,
-    spaceBetween: 10,
-    effect: 'fade',
-    loop: true,
-    autoplay: {
-      delay: 7000,
-    },
-    navigation: {
-      nextEl: '.hero__slider-next',
-      prevEl: '.hero__slider-prev',
-    },
-  });
 
-  initAboutTabs();
-});
 
 const burger = document.querySelector('.site-header__burger');
 const menu = document.querySelector('.site-header');
@@ -300,3 +284,22 @@ const initAboutTabs = () => {
     });
   });
 };
+
+
+window.addEventListener('DOMContentLoaded', () => {
+  new Swiper('.hero__slider', {
+    slidesPerView: 1,
+    spaceBetween: 10,
+    effect: 'fade',
+    loop: true,
+    autoplay: {
+      delay: 7000,
+    },
+    navigation: {
+      nextEl: '.hero__slider-next',
+      prevEl: '.hero__slider-prev',
+    },
+  });
+
+  initAboutTabs();
+});
