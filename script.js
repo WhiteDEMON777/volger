@@ -53,237 +53,6 @@ window.addEventListener('scroll', () => {
   }
 });
 
-const initAboutTabs = () => {
-  const aboutSection = document.querySelector('.about');
-  if (aboutSection) {
-    const tabs = Array.from(aboutSection.querySelectorAll('[data-about-tab]'));
-    const panels = Array.from(aboutSection.querySelectorAll('[data-about-panel]'));
-
-    if (tabs.length && panels.length) {
-      const panelByKey = new Map(panels.map((panel) => [panel.dataset.aboutPanel, panel]));
-      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const canAnimate = panels.every((panel) => typeof panel.animate === 'function');
-      const fadeDuration = 150;
-      let transitionToken = 0;
-
-      let activeKey =
-        tabs.find((tab) => tab.classList.contains('about__tab--active'))?.dataset.aboutTab ??
-        panels[0].dataset.aboutPanel;
-
-      if (!panelByKey.has(activeKey)) {
-        activeKey = panels[0].dataset.aboutPanel;
-      }
-
-      const setActiveTabState = (tabKey) => {
-        tabs.forEach((tab) => {
-          const isActive = tab.dataset.aboutTab === tabKey;
-          tab.classList.toggle('about__tab--active', isActive);
-          tab.setAttribute('aria-selected', String(isActive));
-        });
-      };
-
-      const setPanelState = (panel, isActive) => {
-        panel.classList.toggle('about__card--hidden', !isActive);
-        panel.classList.toggle('about__card--active', isActive);
-        panel.setAttribute('aria-hidden', String(!isActive));
-      };
-
-      const showOnlyPanel = (tabKey) => {
-        panels.forEach((panel) => {
-          setPanelState(panel, panel.dataset.aboutPanel === tabKey);
-          panel.style.opacity = '';
-        });
-      };
-
-      const cancelRunningAnimations = () => {
-        panels.forEach((panel) => {
-          if (typeof panel.getAnimations === 'function') {
-            panel.getAnimations().forEach((animation) => animation.cancel());
-          }
-          panel.style.opacity = '';
-        });
-      };
-
-      const switchTab = async (nextKey, useFade = true) => {
-        console.log('nextKey', nextKey);
-        const arrowAnimate = document.querySelector('.about__mission-quote');
-        if (nextKey !== 'mission') {
-          arrowAnimate.classList.remove('about__mission-quote--open');
-        }
-        setTimeout(() => {
-          if (nextKey === 'mission') {
-            arrowAnimate.classList.add('about__mission-quote--open');
-          }
-        }, 180)
-
-        if (!panelByKey.has(nextKey) || nextKey === activeKey) return;
-
-        setActiveTabState(nextKey);
-
-        const currentPanel = panelByKey.get(activeKey);
-        const nextPanel = panelByKey.get(nextKey);
-
-        if (!useFade || prefersReducedMotion || !canAnimate || !currentPanel || currentPanel === nextPanel) {
-          cancelRunningAnimations();
-          activeKey = nextKey;
-          showOnlyPanel(activeKey);
-          return;
-        }
-
-        const token = ++transitionToken;
-        cancelRunningAnimations();
-
-        setPanelState(currentPanel, true);
-        const fadeOut = currentPanel.animate(
-          [{ opacity: 1 }, { opacity: 0 }],
-          { duration: fadeDuration, easing: 'ease', fill: 'forwards' },
-        );
-        await fadeOut.finished.catch(() => {});
-        if (token !== transitionToken) return;
-
-        setPanelState(currentPanel, false);
-        panels.forEach((panel) => {
-          if (panel !== nextPanel) setPanelState(panel, false);
-        });
-        setPanelState(nextPanel, true);
-
-        const fadeIn = nextPanel.animate(
-          [{ opacity: 0 }, { opacity: 1 }],
-          { duration: fadeDuration, easing: 'ease', fill: 'forwards' },
-        );
-        await fadeIn.finished.catch(() => {});
-        if (token !== transitionToken) return;
-
-        nextPanel.style.opacity = '';
-        activeKey = nextKey;
-      };
-
-      setActiveTabState(activeKey);
-      showOnlyPanel(activeKey);
-
-      tabs.forEach((tab) => {
-        tab.addEventListener('click', () => {
-          void switchTab(tab.dataset.aboutTab, true);
-        });
-      });
-    }
-  }
-
-  const productsSection = document.querySelector('.products');
-  if (!productsSection) return;
-
-  const productTabs = Array.from(productsSection.querySelectorAll('.products__tab'));
-  const productPanels = Array.from(productsSection.querySelectorAll('.products__layout'));
-  if (!productTabs.length || !productPanels.length) return;
-
-  const tabPanelPairs = productTabs
-    .map((tab, index) => ({ tab, panel: productPanels[index], index }))
-    .filter((pair) => Boolean(pair.panel));
-  if (!tabPanelPairs.length) return;
-
-  tabPanelPairs.forEach(({ tab, panel, index }) => {
-    if (!tab.dataset.productsTab) {
-      tab.dataset.productsTab = `product-${index}`;
-    }
-    if (!panel.dataset.productsPanel) {
-      panel.dataset.productsPanel = tab.dataset.productsTab;
-    }
-  });
-
-  const tabs = tabPanelPairs.map((pair) => pair.tab);
-  const panels = tabPanelPairs.map((pair) => pair.panel);
-  const panelByKey = new Map(panels.map((panel) => [panel.dataset.productsPanel, panel]));
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const canAnimate = panels.every((panel) => typeof panel.animate === 'function');
-  const fadeDuration = 120;
-  let transitionToken = 0;
-
-  let activeKey =
-    tabs.find((tab) => tab.classList.contains('products__tab--active'))?.dataset.productsTab ??
-    panels[0].dataset.productsPanel;
-
-  if (!panelByKey.has(activeKey)) {
-    activeKey = panels[0].dataset.productsPanel;
-  }
-
-  const setActiveTabState = (tabKey) => {
-    productTabs.forEach((tab) => {
-      const isActive = tab.dataset.productsTab === tabKey;
-      tab.classList.toggle('products__tab--active', isActive);
-      tab.setAttribute('aria-selected', String(isActive));
-    });
-  };
-
-  const setPanelState = (panel, isActive) => {
-    panel.classList.toggle('products__layout--active', isActive);
-    panel.classList.toggle('products__layout--hidden', !isActive);
-    panel.setAttribute('aria-hidden', String(!isActive));
-  };
-
-  const showOnlyPanel = (tabKey) => {
-    panels.forEach((panel) => {
-      setPanelState(panel, panel.dataset.productsPanel === tabKey);
-    });
-  };
-
-  const cancelRunningAnimations = () => {
-    panels.forEach((panel) => {
-      if (typeof panel.getAnimations === 'function') {
-        panel.getAnimations().forEach((animation) => animation.cancel());
-      }
-    });
-  };
-
-  const switchTab = async (nextKey, useFade = true) => {
-    if (!panelByKey.has(nextKey) || nextKey === activeKey) return;
-
-    setActiveTabState(nextKey);
-
-    const currentPanel = panelByKey.get(activeKey);
-    const nextPanel = panelByKey.get(nextKey);
-
-    if (!useFade || prefersReducedMotion || !canAnimate || !currentPanel || currentPanel === nextPanel) {
-      cancelRunningAnimations();
-      activeKey = nextKey;
-      showOnlyPanel(activeKey);
-      return;
-    }
-
-    const token = ++transitionToken;
-    cancelRunningAnimations();
-
-    setPanelState(currentPanel, true);
-    setPanelState(nextPanel, true);
-
-    const fadeOut = currentPanel.animate(
-      [{ opacity: 1 }, { opacity: 0 }],
-      { duration: fadeDuration, easing: 'ease', fill: 'forwards' },
-    );
-    await fadeOut.finished.catch(() => {});
-    if (token !== transitionToken) return;
-
-    setPanelState(currentPanel, false);
-
-    const fadeIn = nextPanel.animate(
-      [{ opacity: 0 }, { opacity: 1 }],
-      { duration: fadeDuration, easing: 'ease', fill: 'forwards' },
-    );
-    await fadeIn.finished.catch(() => {});
-    if (token !== transitionToken) return;
-
-    activeKey = nextKey;
-    showOnlyPanel(activeKey);
-  };
-
-  setActiveTabState(activeKey);
-  showOnlyPanel(activeKey);
-
-  tabs.forEach((tab) => {
-    tab.addEventListener('click', () => {
-      void switchTab(tab.dataset.productsTab, true);
-    });
-  });
-};
 
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -306,7 +75,7 @@ window.addEventListener('DOMContentLoaded', () => {
     dragToClose: false,
   });
 
-  const inputMasks = document.querySelectorAll('.phoneInput-js');
+  const inputMasks = document.querySelectorAll('[name="phone"]');
 
   if (inputMasks) {
     inputMasks.forEach((inputMask) => {
@@ -317,5 +86,78 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  initAboutTabs();
+  const tabs = document.querySelectorAll('.tab');
+
+  if (tabs.length) tabs.forEach((tab) => tabLogic(tab));
+
+  function tabLogic(tab) {
+    const triggers = tab.querySelectorAll('.tab__item');
+    const contents = tab.querySelectorAll('.tab__content');
+    const tabList = tab.querySelector('.tab__list');
+    const tabContainer = tab.querySelector('.tab__container');
+
+    const open = tab.getAttribute('data-open') || 1;
+
+      triggers.forEach((trigger, index) => {
+        trigger.setAttribute('data-tab', index + 1);
+        if (+open === index + 1) {
+          trigger.classList.add('tab__item--active');
+        }
+      });
+      contents.forEach((content, index) => {
+        if (+open === index + 1) {
+          content.classList.add('tab__content--active');
+          content.classList.add('tab__content--opacity');
+        }
+      });
+
+    contents.forEach((content, index) => {
+      content.setAttribute('data-tab', index + 1);
+    });
+
+
+    const clickHandler = (event) => {
+      triggers.forEach((t) => {
+        t.classList.remove('tab__item--active');
+      });
+
+      contents.forEach((c) => {
+        c.classList.remove('tab__content--active');
+        c.classList.remove('tab__content--opacity');
+      });
+
+      const index = event.currentTarget.getAttribute('data-tab');
+      const arrowAnimate = document.querySelector('.about__mission-quote');
+
+
+      if (index !== '2') {
+        arrowAnimate.classList.remove('about__mission-quote--open');
+      }
+        if(index === '2') {
+          setTimeout(() => {
+              arrowAnimate.classList.add('about__mission-quote--open');
+          }, 380)
+        }
+      const selectedTrigger = tabList.querySelector(`[data-tab="${index}"]`);
+      selectedTrigger?.classList.add('tab__item--active');
+
+      const selectedContent = tabContainer.querySelector(`[data-tab="${index}"]`);
+      selectedContent.classList.add('tab__content--active');
+
+      setTimeout(() => {
+        selectedContent.classList.add('tab__content--opacity');
+      }, 200);
+    };
+
+
+    triggers.forEach((trigger) => {
+      trigger.addEventListener('click', clickHandler);
+    });
+  }
+
+  const cookie = document.querySelector('.cookie');
+  const cookieBtn = document.querySelector('.cookie__button');
+  cookieBtn.addEventListener('click', (e) => {
+    cookie.classList.add('cookie--none');
+  })
 });

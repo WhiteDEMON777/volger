@@ -37,8 +37,44 @@
   font-display: swap;
 }
 
-$font-main: "Unbounded", "Segoe UI", sans-serif;
-$font-alt: "Wix Madefor Display", "Unbounded", "Segoe UI", sans-serif;
+@font-face {
+  font-family: "Wix Madefor Display";
+  src: url("../fonts/WixMadeforDisplay/WixMadeforDisplay-Bold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Wix Madefor Display";
+  src: url("../fonts/WixMadeforDisplay/WixMadeforDisplay-ExtraBold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Wix Madefor Display";
+  src: url("../fonts/WixMadeforDisplay/WixMadeforDisplay-Medium.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Wix Madefor Display";
+  src: url("../fonts/WixMadeforDisplay/WixMadeforDisplay-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Wix Madefor Display";
+  src: url("../fonts/WixMadeforDisplay/WixMadeforDisplay-SemiBold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+}
+
+$font-main:"Wix Madefor Display", sans-serif ;
+$font-alt: "Unbounded", sans-serif;
 
 $color-bg: #171717;
 $color-white: #ffffff;
@@ -60,7 +96,7 @@ $radius-field: 30px;
 
 $section-space: fluid(50px, 150px);
 $container-desktop-gutter: 270px;
-$container-max: 1650px;
+$container-max: 1320px;
 
 $shadow-soft: 0 12px 28px rgba(0, 0, 0, 0.3);
 $shadow-button: 0 3px 7.3px rgba(0, 0, 0, 0.25);
@@ -72,6 +108,9 @@ $breakpoint-xxl: 1500px;
 $breakpoint-xl: 1024px;
 $breakpoint-md: 800px;
 $breakpoint-sm: 540px;
+
+
+
 *,
 *::before,
 *::after {
@@ -125,7 +164,7 @@ a {
   color: $color-white;
   font-family: $font-main;
   font-size: fluid(16px, 20px);
-  line-height: 1.24;
+  line-height: 1.2;
   overflow-x: hidden;
   position: relative;
 }
@@ -149,21 +188,23 @@ a {
 }
 
 .section__title {
-  font-size: fluid(20px,40px);
+  font-size: fluid(20px,28px);
   font-weight: 700;
   line-height: 1.24;
+  font-family: $font-alt;
 }
 
 .section__title--center {
   text-align: center;
-  font-size: fluid(20px,50px);
 }
 
 .button {
   display: inline-flex;
   position: relative;
   z-index: 1;
+  font-family: $font-alt;
   align-items: center;
+  font-weight: 700;
   padding: fluid(10px,20px) fluid(25px,50px);
   width: fit-content;
   justify-content: center;
@@ -172,6 +213,15 @@ a {
   border-radius: $radius-pill;
   cursor: pointer;
   transition: background-size $transition-base, box-shadow $transition-base, opacity $transition-base;
+  &--white {
+    background-color: #484747;
+    @include tr2(background-color, color);
+    color: #FFFFFF;
+    @include hover {
+      background-color: #FFFFFF;
+      color:#000000;
+    }
+  }
 }
 
 
@@ -194,8 +244,10 @@ textarea:focus-visible{
 }
 .button--primary {
   color: $color-white;
+  font-family: $font-alt;
+
   background-image: linear-gradient(103.43deg, #006BD6 0.11%, #FFFFFF 208.33%);
-  font-size: fluid(16px,20px);
+  font-size: 16px;
   font-weight: 500;
   position: relative;
   @include hover {
@@ -206,22 +258,21 @@ textarea:focus-visible{
 }
 
 .button--small {
-  min-height: 50px;
   padding: 10px 24px;
   background: linear-gradient(151deg, $color-gradient-start 0%, $color-gradient-end 100%);
   box-shadow: $shadow-button;
   color: $color-white;
+  font-family: $font-alt;
+
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .button--outline {
-  min-height: 48px;
-  min-width: 203px;
   border: 1.38px solid $color-white;
   background: transparent;
   color: $color-white;
-  font-size: fluid(16px, 20px);
+  font-size: 16px;
   font-weight: 500;
   @include tr(background);
   @include hover {
@@ -356,6 +407,9 @@ textarea:focus-visible{
     display: block;
     text-align: center;
     color: $color-white;
+    font-family: $font-alt;
+    font-size: 16px;
+    font-weight: 600;
     position: relative;
   }
   &__logo {
@@ -389,7 +443,9 @@ textarea:focus-visible{
     height: 100%;
     background: url("../img/picture/Ellipse4.png") no-repeat bottom;
     background-size: contain;
+    pointer-events: none;
   }
+
   &:before {
     content: "";
     position: absolute;
@@ -399,9 +455,11 @@ textarea:focus-visible{
     height: 100%;
     background: url("../img/picture/Ellipse3.png") no-repeat center;
     background-size: contain;
+    pointer-events: none;
 
   }
 }
+
 
 .page--home {
   &:after {
@@ -413,6 +471,7 @@ textarea:focus-visible{
     height: 100%;
     background: url("../img/picture/Ellipse1.png") no-repeat;
     background-size: contain;
+    pointer-events: none;
   }
   &:before {
     content: "";
@@ -424,7 +483,7 @@ textarea:focus-visible{
     background: url("../img/picture/Ellipse2.png") no-repeat;
     background-size: contain;
     z-index: 1;
-
+    pointer-events: none;
   }
   .site-header {
     &__inner {
@@ -463,7 +522,13 @@ textarea:focus-visible{
   margin-top: fluid(6px, 15px);
   padding-left: 44px;
   padding-right: 44px;
-
+  &__shell {
+    display: flex;
+    height: auto;
+  }
+  &__btn {
+    display: none;
+  }
   &__slider {
     filter: drop-shadow(0 0 109.63px rgba(255, 255, 255, 0.44));
     border-radius: 30px;
@@ -472,6 +537,7 @@ textarea:focus-visible{
         opacity: 1;
       }
     }
+
 
 
     &-nav {
@@ -497,6 +563,9 @@ textarea:focus-visible{
     }
   }
   &__media {
+    position: absolute;
+    width: 100%;
+    height: 100%;
     border-radius: 30px;
     clip-path: url(#heroClip);
     -webkit-clip-path: url(#heroClip);
@@ -507,22 +576,26 @@ textarea:focus-visible{
     img {
 
       width: 100%;
-      aspect-ratio: 1833/809;
+      height: 100%;
       object-fit: cover;
     }
   }
   &__content {
-    position: absolute;
-    left: 80px;
-    top: fluid(90px, 218px);
-    width: 697px;
-    display: grid;
-    gap: 72px;
+    width: fluid(780px, 875px);
+    height: fluid(500px,809px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-top: fluid(125px, 218px);
+    padding-left: 80px;
+    padding-bottom: fluid(170px, 302px);
+    position: relative;
   }
   &__title {
-    font-size: 39px;
+    font-family: $font-alt;
+    font-size: 38px;
     line-height: 1.24;
-    font-weight: 500;
+    font-weight: 700;
   }
   .button--primary {
     min-width: fluid(200px, 376px);
@@ -531,12 +604,13 @@ textarea:focus-visible{
 }
 
 .about {
+
   &.section {
     margin-top: fluid(50px, 200px);
   }
   &__tabs {
     position: relative;
-    margin-top: fluid(25px, 45px);
+    margin-top: fluid(20px, 30px);
     display: flex;
     justify-content: center;
     gap: 20px;
@@ -553,14 +627,69 @@ textarea:focus-visible{
     border: 2px solid rgba(255, 255, 255, 0.45);
     background: transparent;
     color: #ffffff;
-    font-size: fluid(16px, 20px);
+    font-family: $font-alt;
+
+    font-size: 16px;
     font-weight: 600;
     cursor: pointer;
+    position: relative;
+    z-index: 1;
     @include tr(background);
     @include hover {
       background: #FFFFFF26;
     }
-    &--active {
+  }
+  &__card {
+    display: grid;
+    gap: 40px;
+    grid-template-columns: 1fr auto;
+    position: relative;
+  }
+  &__container {
+    border-radius: $radius-card;
+    background: rgb(35 35 35);
+
+
+    padding: 50px fluid(50px, 100px);
+    border: 1px solid $panel-border;
+    box-shadow: $shadow-soft;
+    overflow: hidden;
+    position: relative;
+    z-index: -1;
+
+  }
+
+  &__text {
+    display: grid;
+    gap: 15px;
+    max-width: 1120px;
+    font-weight: 600;
+    p {
+      font-size: 16px;
+      color: #ffffff;
+    }
+  }
+  &__brand {
+    display: grid;
+    justify-items: center;
+    gap: 18px;
+    height: fit-content;
+    &-mark {
+      width: 143px;
+    }
+    &-word {
+      width: 189px;
+    }
+  }
+  .tab__item--active {
+    --cap-bg: rgb(35 35 35);
+    --cap-border-color: #{$panel-border};
+    background: rgb(35 35 35);
+    border-top: 1px solid $panel-border;
+    border-left: 1px solid $panel-border;
+    border-right: 1px solid $panel-border;
+
+    .about__tab {
       background: linear-gradient(103.43deg, #006BD6 0.11%, #FFFFFF 208.33%);
       border: none;
       @include hover {
@@ -568,103 +697,70 @@ textarea:focus-visible{
       }
     }
   }
-  &__card {
-    border-radius: $radius-card;
-    background: rgb(35 35 35);
-    border: 1px solid $panel-border;
-    box-shadow: $shadow-soft;
-    padding: 50px;
-    display: grid;
-    gap: 40px;
-    grid-template-columns: 1fr auto;
-    overflow: hidden;
-    position: relative;
-    z-index: 1;
-  }
-  &__card--hidden {
-    display: none;
-  }
-  &__text {
-    display: grid;
-    gap: 20px;
-    max-width: 1120px;
-    font-weight: 500;
-    p {
-      font-size: fluid(16px, 20px);
-      color: #ffffff;
-    }
-  }
-  &__brand {
-    display: grid;
-    justify-items: center;
-    gap: 20px;
-    height: fit-content;
-    &-mark {
-      width: 188px;
-    }
-    &-word {
-      width: 246px;
-    }
-  }
+
+
   &__cap {
+    --cap-mask-size: 28px;
+    --cap-bg: transparent;
+    --cap-border-color: transparent;
     position: relative;
     top: 1px;
-    width: 242px;
+    width: 219px;
     height: 75px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 34px 34px 24px 24px;
-    z-index: 2;
+    border-radius: 34px 34px 0 0px;
     border-top: 1px solid transparent;
+
     border-left: 1px solid transparent;
-    border-right: 1px solid transparent;
     background: transparent;
-    @include tr2(background, border);
-    &:has(.about__tab--active) {
-      background: rgb(35 35 35);
-      border-top: 1px solid $panel-border;
-      border-left: 1px solid $panel-border;
-      border-right: 1px solid $panel-border;
-      &:before {
-        box-shadow: 10px 14px 0 10px rgb(35 35 35);
-        border-right: 1px solid $panel-border;
-      }
-      &:after {
-        box-shadow: -10px 14px 0 10px  rgb(35 35 35);
-        border-left: 1px solid $panel-border;
-      }
-    }
     &::before,
     &::after {
       content: "";
       position: absolute;
       bottom: 0;
-      width: 20px;
-      height: 20px;
-      border-bottom: 1px solid transparent;
-      background: transparent;
-      transition:
-              background .38s ease-in-out,
-              border .38s ease-in-out,
-              box-shadow .3s linear;
+      width: var(--cap-mask-size);
+      height: var(--cap-mask-size);
+      background: var(--cap-bg);
+
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+      -webkit-mask-size: 100% 100%;
+      mask-size: 100% 100%;
 
     }
 
     /* левое вогнутое скругление */
     &::before {
-      left: calc(20px * -1);
-      border-bottom-right-radius: 42px;
-      //box-shadow: 14px 14px 0 14px transparent;
-      border-right: 1px solid transparent;
+      left: calc((var(--cap-mask-size) * -1) + 0px);
+      background-image:
+              radial-gradient(
+                              circle at 0 0,
+                              transparent calc(var(--cap-mask-size) - 1px),
+                              var(--cap-border-color) calc(var(--cap-mask-size) - 1px),
+                              var(--cap-border-color) var(--cap-mask-size),
+                              transparent var(--cap-mask-size)
+              ),
+              linear-gradient(var(--cap-bg), var(--cap-bg));
+      -webkit-mask-image: radial-gradient(circle at 0 0, transparent calc(var(--cap-mask-size) - 0.5px), #000 calc(var(--cap-mask-size) - 0.5px));
+      mask-image: radial-gradient(circle at 0 0, transparent calc(var(--cap-mask-size) - 0.5px), #000 calc(var(--cap-mask-size) - 0.5px));
     }
 
     /* правое вогнутое скругление */
     &::after {
-      right: calc(20px * -1);
-      border-bottom-left-radius: 42px;
-      //box-shadow: -14px 14px 0 14px  transparent;
-      border-left: 1px solid transparent;
+      right: calc((var(--cap-mask-size) * -1) + 0px);
+      background-image:
+              radial-gradient(
+                              circle at 100% 0,
+                              transparent calc(var(--cap-mask-size) - 1px),
+                              var(--cap-border-color) calc(var(--cap-mask-size) - 1px),
+                              var(--cap-border-color) var(--cap-mask-size),
+                              transparent var(--cap-mask-size)
+              ),
+              linear-gradient(var(--cap-bg), var(--cap-bg));
+      -webkit-mask-image: radial-gradient(circle at 100% 0, transparent calc(var(--cap-mask-size) - 0.5px), #000 calc(var(--cap-mask-size) - 0.5px));
+      mask-image: radial-gradient(circle at 100% 0, transparent calc(var(--cap-mask-size) - 0.5px), #000 calc(var(--cap-mask-size) - 0.5px));
     }
   }
   &__icon {
@@ -675,13 +771,13 @@ textarea:focus-visible{
     color: rgba(255, 255, 255, 0.08);
 
     &--left {
-      top: 0;
+      top: -30px;
       left: -100%;
       @include tr(left);
     }
     &--right {
       right: -100%;
-      bottom: 0;
+      bottom: 30px;
       @include tr(right);
     }
   }
@@ -736,33 +832,60 @@ textarea:focus-visible{
   }
 }
 
+.tab {
+  &__content {
+    display: none;
+    opacity: 0;
+    @include tr(opacity);
+
+    &--active {
+      display: grid;
+    }
+
+    &--opacity {
+      opacity: 1;
+    }
+  }
+
+}
+
 .products {
   padding-left: 50px;
   padding-right: 50px;
   position: relative;
   z-index: 1;
   &__card {
-    margin-top: fluid(25px, 45px);
+    margin-top: fluid(20px, 40px);
     border-radius: $radius-card;
     background: $panel-bg;
     border: 1px solid $panel-border;
     box-shadow: $shadow-soft;
     padding: 40px;
-    padding-top: 35px;
   }
   &__tabs {
     display: flex;
     flex-wrap: wrap;
     gap: 14px;
   }
+  .tab__item--active {
+
+      background: linear-gradient(103.43deg, #006BD6 0.11%, #FFFFFF 208.33%);
+      border: none;
+      @include hover {
+        background: linear-gradient(103.43deg, #006BD6 0.11%, #FFFFFF 208.33%);
+      }
+
+
+  }
   &__tab {
-    min-height: 42px;
-    padding: 10px 22px;
+    padding: 10px 32px;
     border-radius: 9999px;
     border: 1.5px solid rgba(255, 255, 255, 1);
     background: transparent;
     color: #ffffff;
-    font-size: 16px;
+    font-size: 12px;
+    font-family: $font-alt;
+
     font-weight: 600;
     line-height: 1;
     cursor: pointer;
@@ -771,43 +894,34 @@ textarea:focus-visible{
       background: #FFFFFF26;
     }
 
-    &--active {
-      background: linear-gradient(103.43deg, #006BD6 0.11%, #FFFFFF 208.33%);
-      border: none;
-      @include hover {
-        background: linear-gradient(103.43deg, #006BD6 0.11%, #FFFFFF 208.33%);
-      }
-    }
+
   }
   &__layout {
     margin-top: 40px;
-    display: grid;
     grid-template-columns: 1.05fr 1fr;
     gap: 30px;
-    &--hidden {
-      display: none;
-    }
   }
   &__name {
-    font-size: fluid(28px,35px);
+    font-size: 28px;
+    font-family: $font-alt;
+
     line-height: 1.24;
     font-weight: 700;
   }
   &__subtitle {
     margin-top: 8px;
-    font-family: $font-main;
-    font-size: fluid(24px, 30px);
-    line-height: 1.56;
+    font-family: $font-alt;
+    font-size: 23px;
+    line-height: 1;
     font-weight: 300;
     text-transform: uppercase;
     color: #B8B8B8;
 
   }
   &__code {
-    margin-top: 16px;
-    font-size: fluid(20px, 25px);
+    margin-top: 30px;
+    font-size: 23px;
     color: $color-white;
-    font-family: $font-alt;
     font-weight: 800;
     line-height: 1.26;
   }
@@ -815,14 +929,15 @@ textarea:focus-visible{
     margin-top: 30px;
     display: grid;
     gap: 16px;
+    margin-bottom: 20px;
     li {
       position: relative;
-      font-family: $font-alt;
-      font-size: fluid(16px, 20px);
-      font-weight: 800;
+      font-size: 16px;
+      font-weight: 700;
       line-height: 1;
       color: $color-white;
       display: flex;
+      text-transform: uppercase;
       align-items: center;
       &::before {
         content: "";
@@ -834,11 +949,15 @@ textarea:focus-visible{
       }
     }
   }
-  &__info .button {
-    margin-top: 63px;
+  &__info  {
+    display: flex;
+    flex-direction: column;
+    .button {
+      margin-top: auto;
+    }
   }
   &__visual {
-    height: 652px;
+    height: 493px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -862,19 +981,21 @@ textarea:focus-visible{
     border-radius: $radius-card;
     background: rgba(255, 255, 255, 0.09);
     border: 1px solid $panel-border;
-    padding: fluid(25px, 50px);
+    padding: fluid(25px, 50px) 20px;
     display: grid;
     gap: 30px;
     align-content: space-between;
     &-title {
-      font-size: fluid(25px, 30px);
+      font-size: 23px;
       line-height: 1.24;
       font-weight: 700;
+      font-family: $font-alt;
+
     }
     &-text {
       margin-top: 30px;
       color: $color-white;
-      font-size: fluid(16px, 20px);
+      font-size: 16px;
       font-weight: 700;
     }
     .button--small {
@@ -888,7 +1009,7 @@ textarea:focus-visible{
     border-radius: $radius-card;
     overflow: hidden;
     border: 1px solid $panel-border;
-    min-height: fluid(360px, 487px);
+    min-height: 360px;
     img {
       width: 100%;
       height: 100%;
@@ -900,7 +1021,7 @@ textarea:focus-visible{
 .production {
   &__layout {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1.3fr;
     gap: 30px;
     align-items: stretch;
   }
@@ -908,7 +1029,7 @@ textarea:focus-visible{
     border-radius: $radius-card;
     overflow: hidden;
     border: 1px solid $panel-border;
-    min-height: fluid(540px,783px);
+    min-height: 550px;
     position: relative;
     img {
       width: 100%;
@@ -924,15 +1045,17 @@ textarea:focus-visible{
     border-radius: $radius-card;
     background: rgba(204, 204, 204, 0.05);
     border: 1px solid $panel-border;
-    padding: fluid(15px,48px) fluid(22px,71px);
+    padding: fluid(15px,35px) fluid(22px,43px);
     h3 {
-      font-size: 20px;
+      font-family: $font-alt;
+      font-size: 16px;
       font-weight: 700;
       line-height: 1.24;
     }
     p {
       margin-top: 15px;
-      font-size: fluid(15px, 20px);
+      font-weight: 600;
+      font-size: 16px;
       color: $color-white;
     }
   }
@@ -941,7 +1064,7 @@ textarea:focus-visible{
 .dealers {
   &__layout {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1.4fr;
     gap: 80px;
     align-items: center;
   }
@@ -949,20 +1072,24 @@ textarea:focus-visible{
     .button--primary {
       min-width: 394px;
       margin-top: 62px;
+      font-size: 23px;
     }
   }
 
   &__title {
     max-width: 712px;
+    font-family: $font-alt;
+
   }
   &__text {
     color: $color-white;
     margin-top: 30px;
-    font-weight: 400;
+    font-size: 16px;
+    font-weight: 600;
   }
   &__map {
     overflow: hidden;
-    min-height: fluid(230px,480px);
+    min-height: fluid(230px,420px);
     img {
       width: 100%;
       height: 100%;
@@ -978,13 +1105,14 @@ textarea:focus-visible{
   &__subtitle {
     margin-top: 20px;
     font-weight: 500;
+    font-size: 16px;
     width: min(1070px, 100%);
     color: $color-white;
   }
   &__layout {
-    margin-top: fluid(25px,66px);
+    margin-top: fluid(20px,40px);
     display: grid;
-    grid-template-columns: fluid(630px, 983px) fluid(255px, 300px);
+    grid-template-columns: fluid(630px, 814px) fluid(255px, 278px);
     gap: fluid(20px,44px);
     align-items: start;
   }
@@ -992,10 +1120,11 @@ textarea:focus-visible{
     border-radius: 30px;
     background: rgba(217, 217, 217, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: fluid(24px,54px) fluid(24px, 58px) 44px;
+    padding: fluid(20px,42px) fluid(20px, 50px);
     h3 {
-      font-size: 25px;
-      font-weight: 500;
+      font-family: $font-alt;
+      font-size: 23px;
+      font-weight: 700;
       line-height: 1.24;
     }
     .form {
@@ -1013,14 +1142,16 @@ textarea:focus-visible{
     gap: 20px;
     align-content: start;
     h3 {
-      font-size: 20px;
+      font-size: 16px;
       font-weight: 500;
+      font-family: $font-alt;
       line-height: 1.24;
     }
     a {
       margin-top: -10px;
       display: block;
-      font-size: 14px;
+      font-weight: 400;
+      font-size: 12px;
       color: $color-white;
       line-height: 1.24;
     }
@@ -1045,13 +1176,9 @@ textarea:focus-visible{
   }
 }
 .fancybox__content>.f-button.is-close-btn {
-  top: 25px;
-  right: 20px;
+  display: none;
 }
-.is-compact .fancybox__content>.f-button.is-close-btn {
-  top: 20px;
-  right: 20px;
-}
+
 .modal {
   display: none;
   padding: 0;
@@ -1059,19 +1186,56 @@ textarea:focus-visible{
   border-radius: 50px;
   border: 3px solid #6969699C;
   &__container {
-    padding: fluid(30px,107px) fluid(30px,118px);
+    padding: fluid(30px,60px) fluid(30px,114px);
   }
   &__title {
-    font-size: fluid(20px,30px);
-    font-weight: 500;
+    font-family: $font-alt;
+    font-size: fluid(20px,28px);
+    font-weight: 700;
     margin-bottom: fluid(20px,25px);
     color: $color-white;
   }
   &__text {
-    margin-bottom: fluid(25px,54px);
+    margin-bottom: fluid(25px,50px);
     font-weight: 500;
-    font-size: fluid(16px,20px);
+    font-size: 16px;
     color: $color-white;
+  }
+  &__subtitle {
+    font-family: $font-alt;
+    font-size: fluid(18px,23px);
+    font-weight: 700;
+    margin-bottom: fluid(20px,40px);
+    color: $color-white;
+  }
+}
+
+.cookie {
+  width: 385px;
+  background-color: #2B2B2B;
+  border-radius: 16px;
+  padding: 30px;
+  position: fixed;
+  right: 20px;
+  bottom: 25px;
+  z-index: 1;
+  &--none {
+    display: none;
+  }
+  &__text {
+    font-weight: 400;
+    font-size: 14px;
+    margin-bottom: 25px;
+    a {
+      text-decoration: underline;
+    }
+  }
+  &__button {
+    width: 100%;
+    font-size: 14px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+
   }
 }
 
@@ -1082,12 +1246,16 @@ textarea:focus-visible{
   border-radius: 30px;
   background: rgba(255, 255, 255, 0.1);
   color: #ffffff;
+  font-family: $font-main;
   padding: 13px 20px;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 12px;
+  font-weight: 600;
   line-height: 1.24;
   &:focus-visible{
     background: #FFFFFF38;
+  }
+  &::placeholder {
+    color: #FFFFFF1A;
   }
 }
 
@@ -1122,51 +1290,68 @@ textarea:focus-visible{
 }
 
 .form__footer {
-  @include fluidNegative(margin-top, -35px, -60px);
+  margin-top: -40px;
   display: block;
 }
 
-.form__footer a {
-  margin-top: 10px;
-  max-width: 714px;
-  font-size: 12px;
-  color: #a9a9a9;
-  text-decoration: underline;
-  line-height: 1;
-  display: block;
+.form {
+  &__checkbox {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    margin-left: 37px;
+  }
+  &__footer  {
+    a {
+      margin-top: 10px;
+      max-width: 714px;
+      font-size: 12px;
+      color: #a9a9a9;
+      text-decoration: underline;
+      line-height: 1;
+    }
+    span {
+      color: #a9a9a9;
+      font-size: 12px;
+
+    }
+  }
 }
 
 .form__submit {
   display: block;
   margin-left: auto;
+  padding: 12px 35px;
 }
 
 .site-footer {
-  margin-top: fluid(50px, 150px);
+  margin-top: fluid(50px, 120px);
   border-top: 1px solid rgba(255, 255, 255, 0.14);
   background: #2b2b2b;
   position: relative;
   z-index: 1;
   &__container {
-    width: min(100% - 198px, 1722px);
+    width: min(100% - 198px, 1320px);
     margin: 0 auto;
-    padding: 31px 0 3px;
+    padding: 22px 0;
   }
   &__top {
-    width: 1650px;
     display: grid;
-    grid-template-columns: 173px 240px 824px 98px 315px;
     gap: 0;
   }
   &__contacts {
     grid-column: 1;
     &-title {
+      font-family: $font-alt;
+
       font-size: 16px;
       font-weight: 500;
       line-height: 1.31;
       color: #cacaca;
     }
     a {
+      font-family: $font-alt;
+      font-weight: 400;
       margin-top: 5px;
       display: inline-flex;
       align-items: center;
@@ -1187,8 +1372,9 @@ textarea:focus-visible{
     gap: 25px fluid(25px, 45px);
     align-self: center;
     &-link {
-      font-size: 20px;
+      font-size: 16px;
       font-weight: 500;
+      font-family: $font-alt;
       color: #cacaca;
       line-height: 1.4;
       @include tr(color);
@@ -1924,11 +2110,7 @@ textarea:focus-visible{
   .hero__shell {
     width: min(100% - 40px, 1833px);
   }
-  .hero__content {
-    left: 50px;
-    width: 560px;
-    gap: 50px;
-  }
+
   .hero__title {
     font-size: 34px;
   }
@@ -1980,9 +2162,12 @@ textarea:focus-visible{
     &__tabs {
       gap: 0;
     }
+    &__container {
+      padding: 30px;
+
+    }
     &__card {
       gap: 10px;
-      padding: 30px;
     }
     &__cap {
       width: 220px;
@@ -1995,11 +2180,7 @@ textarea:focus-visible{
     }
   }
   .hero {
-    &__content {
-      top: 75px;
-      width: 520px;
-      gap: 24px;
-    }
+
     &__glass {
       font-size: 30px;
     }
@@ -2028,14 +2209,21 @@ textarea:focus-visible{
   .dealer-benefits__item {
     padding: 30px;
   }
-  .dealers__layout,
-  .products__layout{
+  .dealers__layout{
     display: flex;
     flex-direction: column-reverse;
   }
 
-  .products__layout--hidden {
-    display: none;
+  .products {
+    &__layout {
+      grid-template-columns: 1fr;
+    }
+    &__visual {
+      order: -1;
+    }
+    &__info .button {
+      margin-top: 25px;
+    }
   }
 
   .dealers {
@@ -2274,17 +2462,27 @@ textarea:focus-visible{
     padding-right: 0;
     &__title {
       font-size: 18px;
-      position: absolute;
-      width: 68%;
-      top: 25%;
-      left: 22px;
+    }
+    &__shell {
+      height: 100%;
+      flex-direction: column;
+      align-items: center;
+  }
+    &__btn {
+      display: flex;
     }
     &__content {
-      position: static;
-      width: 100%;
-      gap: 24px;
-      display: flex;
-      justify-content: center;
+      position: absolute;
+      top: 48px;
+      left: 22px;
+      width: 300px;
+      height: 100%;
+      padding-top: 0;
+      padding-left: 0;
+      padding-bottom: 0;
+      .button {
+        display: none;
+      }
     }
     &__glass, .clip-defs {
       display: none;
@@ -2298,15 +2496,16 @@ textarea:focus-visible{
   }
   .hero__media {
     border-radius: 0;
-    img {
-      aspect-ratio: 1833 / 628;
-    }
+    position: static;
   }
   .section__title {
-    font-size: 30px;
+    font-size: 20px;
   }
   .section__title--center {
-    font-size: 36px;
+    font-size: 20px;
+  }
+  .cookie {
+    width: 335px;
   }
   .about.section {
     margin-top: 30px;
@@ -2333,16 +2532,9 @@ textarea:focus-visible{
     }
     &__cap {
       width: 130px;
-      border-radius: 15px 15px 12px 12px;
+      border-radius: 20px 20px 0 0;
       height: 60px;
-      &:has(.about__tab--active) {
-        &:before {
-          box-shadow: 10px 14px 0 7px rgb(35, 35, 35);
-        }
-        &:after {
-          box-shadow: -10px 14px 0 7px rgb(35, 35, 35);
-        }
-      }
+      --cap-mask-size: 20px;
     }
     &__brand {
       order: -1;
@@ -2357,6 +2549,8 @@ textarea:focus-visible{
       grid-template-columns: 1fr;
       align-items: center;
       gap: 30px;
+    }
+    &__container {
       padding: 20px;
     }
   }
@@ -2503,8 +2697,9 @@ textarea:focus-visible{
       aspect-ratio: 1833 / 910;
     }
     &__title {
-      width: 80%;
+      width: 100%;
       top: 20%;
+      font-size: 12px;
     }
   }
 
@@ -2534,16 +2729,9 @@ textarea:focus-visible{
     &__cap {
       width: 100px;
       height: 58px;
-      &:has(.about__tab--active) {
-        &:before {
-          box-shadow: 6px 11px 0 4px rgb(35, 35, 35);
-        }
-        &:after {
-          box-shadow: -6px 11px 0 4px rgb(35, 35, 35);
-        }
-      }
+      --cap-mask-size: 14px;
     }
-    &__card {
+    &__container {
       border-radius: 15px;
     }
   }
@@ -2587,7 +2775,9 @@ textarea:focus-visible{
     padding: 8px 12px;
   }
 
-
+  .form__checkbox {
+    margin-left: 0;
+  }
 
   .product-hero__content h1 {
     font-size: 30px;
