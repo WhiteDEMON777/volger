@@ -316,7 +316,7 @@ textarea:focus-visible{
     }
   }
   &__inner {
-    width: min(100% - 270px, 1650px);
+    width: 100%;
     margin: 0 auto;
     height: 100%;
     position: relative;
@@ -460,7 +460,19 @@ textarea:focus-visible{
   }
 }
 
-
+.page--requisites {
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("../img/picture/background.png") no-repeat;
+    background-size: contain;
+    pointer-events: none;
+  }
+}
 .page--home {
   &:after {
     content: "";
@@ -485,13 +497,14 @@ textarea:focus-visible{
     z-index: 1;
     pointer-events: none;
   }
-  .site-header {
-    &__inner {
-      width: 100%;
-    }
-    &__menu {
-      left: 102px;
-    }
+
+}
+.site-header {
+  &__inner {
+    width: 100%;
+  }
+  &__menu {
+    left: 102px;
   }
 }
 .sliderNavigateBtn {
@@ -1431,26 +1444,10 @@ textarea:focus-visible{
   margin-top: 89px;
 }
 
-.page--home,
-.page--product {
-  .site-footer__contacts {
-    width: 173px;
-  }
-}
 
-.page--dealers,
-.page--requisites {
-  .site-footer {
-    &__top {
-      grid-template-columns: 180px 237px 825px 150px 328px;
-    }
-    &__contacts {
-      width: 180px;
-    }
-    &__nav {
-      width: 825px;
-    }
-  }
+
+.site-footer__contacts {
+  width: 173px;
 }
 
 .product-hero {
@@ -1803,19 +1800,12 @@ textarea:focus-visible{
 }
 
 .dealer-hero {
-  .section__title {
-    font-size: 35px;
-    font-weight: 500;
-    line-height: 1.24;
-    max-width: 976px;
-    margin: 0 auto;
-    text-align: center;
-  }
+
   &.section {
     margin-top: 78px;
   }
   &__layout {
-    margin-top: 50px;
+    margin-top: 73px;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 28px;
@@ -1846,41 +1836,13 @@ textarea:focus-visible{
     border: 1px solid $panel-border;
     min-height: 146px;
     overflow: hidden;
-    summary {
-      min-height: 146px;
-      padding: 35px 34px 35px 260px;
-      display: flex;
-      align-items: flex-start;
-      cursor: pointer;
-      list-style: none;
-      &::-webkit-details-marker {
-        display: none;
-      }
-    }
     h3 {
       font-size: 30px;
       line-height: 1.24;
       font-weight: 500;
       max-width: 551px;
     }
-    &[open] {
-      border-color: rgba(130, 195, 255, 0.6);
-      background: linear-gradient(180deg, rgba(0, 107, 214, 0.16), rgba(255, 255, 255, 0.04));
-      p {
-        display: block;
-      }
-      .dealer-benefits__arrow {
-        top: auto;
-        bottom: 29px;
-        left: 29px;
-        &::before {
-          transform: rotate(-35deg);
-        }
-        &::after {
-          transform: rotate(35deg);
-        }
-      }
-    }
+
     p {
       display: none;
       margin: 0;
@@ -1891,29 +1853,7 @@ textarea:focus-visible{
     }
   }
   &__arrow {
-    position: absolute;
-    left: 53px;
-    top: 120px;
-    width: 24px;
-    height: 24px;
-    &::before,
-    &::after {
-      content: "";
-      position: absolute;
-      top: 10px;
-      width: 11px;
-      height: 2px;
-      border-radius: 2px;
-      background: $color-white;
-    }
-    &::before {
-      left: 2px;
-      transform: rotate(40deg);
-    }
-    &::after {
-      right: 2px;
-      transform: rotate(-40deg);
-    }
+
   }
   &__visual {
     min-height: 689px;
@@ -1947,20 +1887,20 @@ textarea:focus-visible{
   border-radius: 30px;
   background: rgba(217, 217, 217, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 28px 31px 24px;
-  min-height: 320px;
+  padding: 25px 60px ;
   display: grid;
-  grid-template-columns: 437px 301px;
-  column-gap: 28px;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 43px;
   align-content: start;
   h2 {
-    font-size: 25px;
+    font-family: $font-alt;
+    font-size: 23px;
     font-weight: 600;
     line-height: 1.24;
   }
   &__brand {
-    width: 437px;
-    height: 219px;
+    width: 270px;
+    height: 145px;
     border-radius: 20px;
     overflow: hidden;
     img {
@@ -1971,29 +1911,35 @@ textarea:focus-visible{
     }
   }
   &__info {
-    margin-top: 30px;
+    display: grid;
+    gap: 4px;
     p {
-      margin-top: 13px;
-      font-size: 15px;
+      font-size: 16px;
       line-height: 23.1088px;
-      color: #d7d7d7;
+      font-weight: 700;
+      span {
+        font-size: 13px;
+        margin-right: 9px;
+      }
+      .icon-mail {
+        font-size: 10px;
+      }
     }
   }
   &__label {
-    margin-top: 19px;
-    font-size: 15px;
-    line-height: 23.1088px;
+    margin-top: 10px;
     font-weight: 700;
-    color: #d7d7d7;
   }
   &__cities {
-    margin-top: 30px;
-    margin-left: 143px;
-    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    grid-column: 1 / -1;
+
+    margin-top: 25px;
+    font-size: 16px;
     line-height: 1.24;
     color: #ffffff;
-    font-weight: 500;
-    grid-column: 1 / -1;
+    font-weight: 700;
   }
   &--placeholder {
     opacity: 0.82;
@@ -2006,7 +1952,7 @@ textarea:focus-visible{
   }
   &__layout {
     display: grid;
-    grid-template-columns: 1260px 356px;
+    grid-template-columns: fluid(578px, 1018px) 278px;
     gap: 34px;
     align-items: start;
   }
@@ -2014,36 +1960,38 @@ textarea:focus-visible{
     border-radius: 30px;
     background: rgba(217, 217, 217, 0.06);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 41px 73px 64px;
+    padding: fluid(25px, 50px);
     display: grid;
     gap: 40px;
   }
   &__block {
+    display: grid;
+    gap: fluid(40px, 72px);
     h2 {
       font-size: 20px;
       font-weight: 500;
       line-height: 1.24;
     }
     dl {
-      margin-top: 20px;
       display: grid;
       gap: 10px;
+      &:first-child {
+        margin-bottom: 73px;
+      }
       div {
         display: grid;
-        grid-template-columns: 356px minmax(0, 1fr);
+        grid-template-columns: 1fr 2fr;
         gap: 72px;
       }
     }
     dt {
-      font-family: $font-alt;
-      font-size: 17px;
+      font-size: 16px;
       font-weight: 700;
       line-height: 1.24;
       color: #d7d7d7;
     }
     dd {
-      font-family: $font-alt;
-      font-size: 17px;
+      font-size: 16px;
       font-weight: 400;
       line-height: 1.24;
     }
@@ -2051,6 +1999,7 @@ textarea:focus-visible{
   .section__title {
     font-size: 20px;
     font-weight: 500;
+    margin-bottom: 37px;
     line-height: 1.24;
   }
   &__contacts {
@@ -2147,7 +2096,7 @@ textarea:focus-visible{
   }
   .site-header {
     &__menu {
-      left: 0;
+      left: 28px;
     }
     &__list {
       padding: 25px;
@@ -2155,9 +2104,7 @@ textarea:focus-visible{
       gap: 15px;
     }
   }
-  .page--home .site-header__menu {
-    left: 28px;
-  }
+
   .about {
     &__tabs {
       gap: 0;
@@ -2437,7 +2384,6 @@ textarea:focus-visible{
   }
   .site-header__menu {
     top: 13px;
-    left: 0;
     width: 24px;
     height: 15px;
   }
@@ -2690,7 +2636,13 @@ textarea:focus-visible{
   }
 }
 @media (max-width: $breakpoint-sm) {
-
+  .requisites__block dl {
+    gap: 15px;
+    div {
+      grid-template-columns: 100%;
+      gap: 10px;
+    }
+  }
 
   .hero {
     &__media img {

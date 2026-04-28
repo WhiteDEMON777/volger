@@ -43,15 +43,18 @@ document.addEventListener('click', (e) => {
 const logoHeader = document.querySelector('.site-header__logo');
 const logo = document.querySelector('.hero__glass');
 const hero = document.querySelector('.hero');
-window.addEventListener('scroll', () => {
-  if (window.scrollY > (hero.scrollHeight-50)) {
-    logo.classList.add('hero__glass--active');
-    logoHeader.classList.add('site-header__logo--active');
-  } else {
-    logo.classList.remove('hero__glass--active');
-    logoHeader.classList.remove('site-header__logo--active');
-  }
-});
+if(hero) {
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > (hero.scrollHeight-50)) {
+      logo.classList.add('hero__glass--active');
+      logoHeader.classList.add('site-header__logo--active');
+    } else {
+      logo.classList.remove('hero__glass--active');
+      logoHeader.classList.remove('site-header__logo--active');
+    }
+  });
+}
 
 
 
@@ -157,7 +160,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
   const cookie = document.querySelector('.cookie');
   const cookieBtn = document.querySelector('.cookie__button');
-  cookieBtn.addEventListener('click', (e) => {
-    cookie.classList.add('cookie--none');
-  })
+  if(cookieBtn) {
+    cookieBtn.addEventListener('click', (e) => {
+      cookie.classList.add('cookie--none');
+    })
+  }
 });

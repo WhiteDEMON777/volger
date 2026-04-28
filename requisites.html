@@ -4,18 +4,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VOLGER | Реквизиты и контакты</title>
+  <link rel="stylesheet" href="./fonts/icomoon/style.css">
+  <link rel="stylesheet" href="/plugins/fancybox/fancybox.css" />
+  <link rel="stylesheet" href="./plugins/swiper/swiper-bundle.min.css">
   <link rel="stylesheet" href="scss/style.css">
 </head>
 <body class="page page--requisites">
 <header class="site-header">
   <div class="site-header__inner">
-    <button class="site-header__menu" type="button">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-    <a class="site-header__logo" href="index.html">
-      <img src="img/figma/assets/hero-word.svg" alt="VOLGER">
+    <div class="site-header__menu">
+      <div class="site-header__burger" >
+        <div class="site-header__burger-line"></div>
+      </div>
+      <ul class="site-header__list">
+        <li><a href="#about" class="site-header__link">О бренде</a></li>
+        <li><a href="#products" class="site-header__link">Продукция</a></li>
+        <li><a href="#" class="site-header__link">Где купить?</a></li>
+        <li><a href="#" class="site-header__link">Реквизиты и контакты</a></li>
+      </ul>
+    </div>
+    <a class="site-header__logo site-header__logo--active icon-volger" href="index.html">
     </a>
   </div>
 </header>
@@ -26,68 +34,75 @@
       <div class="requisites__layout">
         <article class="requisites__card">
           <section class="requisites__block">
-            <h1 class="section__title">Реквизиты</h1>
-            <h2>Банковские реквизиты:</h2>
-            <dl>
-              <div>
-                <dt>Наименование предприятия:</dt>
-                <dd>Общество с Ограниченной Ответственностью "ВОЛГЕР"</dd>
-              </div>
-              <div>
-                <dt>Юр. адрес/факт. адрес:</dt>
-                <dd>410015, Саратовская область г. Саратов, ул. Пензенская д. 2, помещ. 1</dd>
-              </div>
-              <div>
-                <dt>Телефон:</dt>
-                <dd>8 927 051-04-99</dd>
-              </div>
-              <div>
-                <dt>ИНН/КПП:</dt>
-                <dd>6451028120/645101001</dd>
-              </div>
-              <div>
-                <dt>ОГРН:</dt>
-                <dd>1256400007995</dd>
-              </div>
-              <div>
-                <dt>Р/с:</dt>
-                <dd>40702810256710001041 в ПОВОЛЖСКИЙ БАНК ПАО СБЕРБАНК</dd>
-              </div>
-              <div>
-                <dt>К/с:</dt>
-                <dd>30101810200000000607</dd>
-              </div>
-              <div>
-                <dt>БИК:</dt>
-                <dd>043601607</dd>
-              </div>
-              <div>
-                <dt>Налогообложение:</dt>
-                <dd>Организация является плательщиком НДС</dd>
-              </div>
-              <div>
-                <dt>Код по ОКВЭД:</dt>
-                <dd>46.74.3</dd>
-              </div>
-              <div>
-                <dt>Адрес склада:</dt>
-                <dd>410015, Саратовская область г. Саратов, ул. Пензенская д. 2</dd>
-              </div>
-              <div>
-                <dt>E-mail:</dt>
-                <dd>info@volger.ru</dd>
-              </div>
-              <div>
-                <dt>Генеральный директор</dt>
-                <dd>Поморов Дмитрий Вячеславович</dd>
-              </div>
-            </dl>
+            <div>
+              <h1 class="section__title">Реквизиты</h1>
+              <dl>
+                <div>
+                  <dt>Наименование предприятия:</dt>
+                  <dd>Общество с Ограниченной Ответственностью "ВОЛГЕР"</dd>
+                </div>
+                <div>
+                  <dt>Юр. адрес/факт. адрес:</dt>
+                  <dd>410015, Саратовская область г. Саратов, ул. Пензенская д. 2, помещ. 1</dd>
+                </div>
+                <div>
+                  <dt>Телефон:</dt>
+                  <dd>8 927 051-04-99</dd>
+                </div>
+                <div>
+                  <dt>ИНН/КПП:</dt>
+                  <dd>6451028120/645101001</dd>
+                </div>
+                <div>
+                  <dt>ОГРН:</dt>
+                  <dd>1256400007995</dd>
+                </div>
+              </dl>
+            </div>
+            <div>
+              <h2 class="section__title">Банковские реквизиты:</h2>
+              <dl>
+                <div>
+                  <dt>Р/с:</dt>
+                  <dd>40702810256710001041 в ПОВОЛЖСКИЙ БАНК ПАО СБЕРБАНК</dd>
+                </div>
+                <div>
+                  <dt>К/с:</dt>
+                  <dd>30101810200000000607</dd>
+                </div>
+                <div>
+                  <dt>БИК:</dt>
+                  <dd>043601607</dd>
+                </div>
+                <div>
+                  <dt>Налогообложение:</dt>
+                  <dd>Организация является плательщиком НДС</dd>
+                </div>
+                <div>
+                  <dt>Код по ОКВЭД:</dt>
+                  <dd>46.74.3</dd>
+                </div>
+                <div>
+                  <dt>Адрес склада:</dt>
+                  <dd>410015, Саратовская область г. Саратов, ул. Пензенская д. 2</dd>
+                </div>
+                <div>
+                  <dt>E-mail:</dt>
+                  <dd>info@volger.ru</dd>
+                </div>
+                <div>
+                  <dt>Генеральный директор</dt>
+                  <dd>Поморов Дмитрий Вячеславович</dd>
+                </div>
+              </dl>
+
+            </div>
           </section>
         </article>
-        <aside class="requisites__contacts">
-          <h2>Телефон</h2>
+        <aside class="contact-block__aside">
+          <h3>Телефон</h3>
           <a href="tel:+7XXXXXXXXXX">+7 (XXX) XXX-XX-XX</a>
-          <h2>Email</h2>
+          <h3>Email</h3>
           <a href="mailto:info@volger.ru">info@volger.ru</a>
         </aside>
       </div>
@@ -110,21 +125,27 @@
         </a>
       </section>
       <nav class="site-footer__nav">
-        <a class="site-footer__nav-link" href="index.html">О бренде</a>
+        <a class="site-footer__nav-link" href="index.html" aria-current="page">О бренде</a>
         <a class="site-footer__nav-link" href="product.html">Продукция</a>
         <a class="site-footer__nav-link" href="dealers.html">Где купить?</a>
-        <a class="site-footer__nav-link site-footer__nav-link--active" href="requisites.html" aria-current="page">Реквизиты и контакты</a>
+        <a class="site-footer__nav-link" href="requisites.html">Реквизиты и контакты</a>
       </nav>
       <div class="site-footer__brand">
-        <img class="site-footer__brand-main" src="img/figma/assets/brand-mark.svg" alt="VOLGER">
-        <img class="site-footer__brand-system" src="img/icon/system.svg" alt="SYSTEM">
+        <a href="#" class="site-footer__brand-main icon-volger"></a>
+        <img src="./img/icon/by.svg" alt="" class="site-footer__brand-by">
+        <a href="#" class="site-footer__brand-system icon-system"></a>
       </div>
     </div>
     <div class="site-footer__bottom">
-      <p>© 2026 ООО "Волгер" Вы принимаете условия пользовательского соглашения каждый раз, когда посещаете наш сайт и оставляете свои данные в любой форме на сайте. Если вы не хотите, чтобы ваши данные обрабатывались, покиньте сайт.</p>
+      <p>© 2026 ООО "Волгер"</p>
+      <p>Вы принимаете условия пользовательского соглашения каждый раз, когда посещаете наш сайт и оставляете свои данные в любой форме на сайте. Если вы не хотите, чтобы ваши данные обрабатывались, покиньте сайт.</p>
       <a href="#">Пользовательское соглашение</a>
     </div>
   </div>
 </footer>
+<script src="./plugins/swiper/swiper-bundle.min.js" defer></script>
+<script src="/plugins/imask/imask.js" defer ></script>
+<script src="/plugins/fancybox/fancybox.umd.js" defer></script>
+<script type="module" src="./script.js?v=0.20302321" defer></script>
 </body>
 </html>

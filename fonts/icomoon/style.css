@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?b20wli');
-  src:  url('fonts/icomoon.eot?b20wli#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?b20wli') format('truetype'),
-    url('fonts/icomoon.woff?b20wli') format('woff'),
-    url('fonts/icomoon.svg?b20wli#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?q951wo');
+  src:  url('fonts/icomoon.eot?q951wo#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?q951wo') format('truetype'),
+    url('fonts/icomoon.woff?q951wo') format('woff'),
+    url('fonts/icomoon.svg?q951wo#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -34,18 +34,24 @@
 .icon-arrow-left:before {
   content: "\e902";
 }
-.icon-download:before {
+.icon-by:before {
   content: "\e903";
 }
-.icon-mail:before {
+.icon-download:before {
   content: "\e904";
 }
-.icon-phone:before {
+.icon-mail:before {
   content: "\e905";
 }
-.icon-system:before {
+.icon-phone:before {
   content: "\e906";
 }
-.icon-volger:before {
+.icon-site:before {
   content: "\e907";
+}
+.icon-system:before {
+  content: "\e908";
+}
+.icon-volger:before {
+  content: "\e909";
 }
