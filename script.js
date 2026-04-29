@@ -73,6 +73,30 @@ window.addEventListener('DOMContentLoaded', () => {
     },
   });
 
+  new Swiper('.product-related__grid', {
+    slidesPerView: 4.8,
+    spaceBetween: 35,
+    navigation: {
+      nextEl: '.product-related__next',
+      prevEl: '.product-related__prev',
+    },
+  });
+
+  new Swiper('.product-hero__media', {
+    slidesPerView: 1,
+    spaceBetween: 10,
+    loop: true,
+
+    navigation: {
+      nextEl: '.product-hero__next',
+      prevEl: '.product-hero__prev',
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      type: 'bullets',
+    },
+  });
+
   Fancybox.bind('[data-fancybox]', {
     animated: true,
     dragToClose: false,
@@ -132,15 +156,17 @@ window.addEventListener('DOMContentLoaded', () => {
       const index = event.currentTarget.getAttribute('data-tab');
       const arrowAnimate = document.querySelector('.about__mission-quote');
 
-
-      if (index !== '2') {
-        arrowAnimate.classList.remove('about__mission-quote--open');
-      }
-        if(index === '2') {
-          setTimeout(() => {
-              arrowAnimate.classList.add('about__mission-quote--open');
-          }, 380)
+      if(arrowAnimate) {
+        if (index !== '2') {
+          arrowAnimate.classList.remove('about__mission-quote--open');
         }
+          if(index === '2') {
+            setTimeout(() => {
+                arrowAnimate.classList.add('about__mission-quote--open');
+            }, 380)
+          }
+
+      }
       const selectedTrigger = tabList.querySelector(`[data-tab="${index}"]`);
       selectedTrigger?.classList.add('tab__item--active');
 

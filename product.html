@@ -4,18 +4,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VOLGER | Карточка товара</title>
+  <link rel="stylesheet" href="./fonts/icomoon/style.css">
+  <link rel="stylesheet" href="/plugins/fancybox/fancybox.css" />
+  <link rel="stylesheet" href="./plugins/swiper/swiper-bundle.min.css">
   <link rel="stylesheet" href="scss/style.css">
 </head>
 <body class="page page--product">
 <header class="site-header">
   <div class="site-header__inner">
-    <button class="site-header__menu" type="button">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-    <a class="site-header__logo" href="index.html">
-      <img src="img/figma/assets/hero-word.svg" alt="VOLGER">
+    <div class="site-header__menu">
+      <div class="site-header__burger" >
+        <div class="site-header__burger-line"></div>
+      </div>
+      <ul class="site-header__list">
+        <li><a href="#about" class="site-header__link">О бренде</a></li>
+        <li><a href="#products" class="site-header__link">Продукция</a></li>
+        <li><a href="#" class="site-header__link">Где купить?</a></li>
+        <li><a href="#" class="site-header__link">Реквизиты и контакты</a></li>
+      </ul>
+    </div>
+    <a class="site-header__logo site-header__logo--active icon-volger" href="index.html">
     </a>
   </div>
 </header>
@@ -24,19 +32,33 @@
   <section class="product-hero section">
     <div class="container">
       <article class="product-hero__card">
-        <figure class="product-hero__media">
-          <img src="img/figma/assets/product-hero-can.png" alt="Очиститель тормозов и деталей сцепления VOLGER">
-        </figure>
+        <div class="product-hero__media swiper">
+          <div class="swiper-wrapper">
+            <img class="swiper-slide" src="img/figma/assets/product-hero-can.png" alt="Очиститель тормозов и деталей сцепления VOLGER" />
+            <img class="swiper-slide" src="img/figma/assets/product-hero-can.png" alt="Очиститель тормозов и деталей сцепления VOLGER" />
+            <img class="swiper-slide" src="img/figma/assets/product-hero-can.png" alt="Очиститель тормозов и деталей сцепления VOLGER" />
+            <img class="swiper-slide" src="img/figma/assets/product-hero-can.png" alt="Очиститель тормозов и деталей сцепления VOLGER" />
+          </div>
+          <div class="product-hero__nav">
+            <div class="product-hero__prev sliderNavigateBtn sliderNavigateBtn--left">
+              <div class="arrowBtn arrowBtn--left icon-arrow"></div>
+            </div>
+            <div class="product-hero__next sliderNavigateBtn sliderNavigateBtn--right">
+              <div class="arrowBtn arrowBtn--right icon-arrow"></div>
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
         <div class="product-hero__content">
           <h1>ОЧИСТИТЕЛЬ ТОРМОЗОВ И&nbsp;ДЕТАЛЕЙ СЦЕПЛЕНИЯ</h1>
           <p class="product-hero__subtitle">Brake &amp; Clutch Cleaner</p>
           <p class="product-hero__code">VL5810</p>
-          <ul class="product-hero__list">
-            <li>Очистка и обезжиривание металлических поверхностей</li>
-            <li>Удаляет масло, смазки, технические и жировые загрязнения</li>
-            <li>Обеспечивает чистоту контактных поверхностей перед монтажом</li>
-            <li>Очистка тормозных дисков, барабанов, суппортов и колодок</li>
-          </ul>
+          <div class="product-hero__list">
+            <div class="product-hero__text"><span class="icon-arrow-down"></span><p>Очистка и обезжиривание металлических поверхностей</p></div>
+            <div class="product-hero__text"><span class="icon-arrow-down"></span><p>Удаляет масло, смазки, технические и жировые загрязнения</p></div>
+            <div class="product-hero__text"><span class="icon-arrow-down"></span><p>Обеспечивает чистоту контактных поверхностей перед монтажом</p></div>
+            <div class="product-hero__text"><span class="icon-arrow-down"></span><p>Очистка тормозных дисков, барабанов, суппортов и колодок</p></div>
+          </div>
           <p class="product-hero__code product-hero__code--volume">800 мл</p>
           <a class="button button--primary" href="#">Купить онлайн</a>
         </div>
@@ -44,65 +66,112 @@
     </div>
   </section>
 
-  <section class="product-docs section">
+  <section class="product-docs">
     <div class="container">
       <article class="product-docs__card">
-        <h2 class="form__visually-hidden">Технические характеристики</h2>
         <p class="product-docs__lead">Очиститель тормозов и деталей сцепления мгновенно растворяет тормозную пыль, масла, смазки и технические жидкости. Быстро испаряется, не оставляя следов и налёта. Обеспечивает чистоту рабочих поверхностей и стабильную работу тормозной системы.</p>
-        <div class="product-docs__tabs">
-          <button class="product-docs__tab product-docs__tab--active" type="button">Технические характеристики</button>
-          <button class="product-docs__tab" type="button">Способ применения</button>
-          <button class="product-docs__tab" type="button">Безопасность</button>
-          <button class="product-docs__tab" type="button">Документация</button>
+        <div class="about tab" data-open="1">
+          <div class="about__tabs tab__list" >
+            <div class="about__cap tab__item">
+              <button class="about__tab" type="button" >Технические характеристики</button>
+            </div>
+            <div class="about__cap tab__item">
+              <button class="about__tab" type="button" >Способ применения</button>
+            </div>
+            <div class="about__cap tab__item">
+              <button class="about__tab" type="button" >Безопасность</button>
+            </div>
+            <div class="about__cap tab__item">
+              <button class="about__tab" type="button" >Документация</button>
+            </div>
+          </div>
+          <div class="about__container tab__container">
+            <dl class="product-docs__table tab__content">
+              <div>
+                <dt>Объем</dt>
+                <span></span>
+                <dd>800 мл</dd>
+              </div>
+              <div>
+                <dt>Вид</dt>
+                <span></span>
+                <dd>аэрозоль</dd>
+              </div>
+              <div>
+                <dt>Скорость испарения</dt>
+                <span></span>
+                <dd>очень высокая</dd>
+              </div>
+              <div>
+                <dt>Совместимость с резиновыми уплотнителями</dt>
+                <span></span>
+                <dd>безопасен для большинства типов (необходимо тестирование)</dd>
+              </div>
+              <div>
+                <dt>Не оставляет остаточной пленки</dt>
+                <span></span>
+                <dd>да</dd>
+              </div>
+              <div>
+                <dt>Состав</dt>
+                <span></span>
+
+                <dd>алифатические углеводороды &gt;30%; нафтеновые углеводороды &gt;30%; углекислый газ &lt;5%; ароматические углеводороды &lt;5%</dd>
+              </div>
+            </dl>
+            <div class="product-docs__content tab__content">
+              <div class="about__text">
+                <p>Для достижения наилучших результатов рекомендуется применять средство при температуре баллона и окружающей среды не ниже + 10°С. </p>
+                <ol>
+                  <li>Перед использованием хорошо встряхнуть баллон. </li>
+                  <li>Распылить средство на элементы, нуждающиеся в очистке. </li>
+                </ol>
+                <p>Перед применением рекомендуется проверить стойкость резиновых, пластмассовых и лакированных деталей, нанеся средство на малозаметный участок. Если произошли изменения, следует воздержаться от использования. При необходимости повторить обработку.</p>
+                <p>Внимание! При распылении не переворачивать головкой вниз!</p>
+              </div>
+            </div>
+            <div class="product-docs__content tab__content">
+              <div class="about__text">
+                <p>МЕРЫ ПРЕДОСТОРОЖНОСТИ. Чрезвычайно легковоспламеняющийся аэрозоль! Баллон под давлением! При нагревании возможен взрыв! Предохранять от воздействия прямых солнечных лучей и нагревания выше 50 °С. Беречь от источников тепла, искр, открытого огня и других источников воспламенения. Не курить! Не распылять вблизи источников открытого огня и других источников воспламенения. Не давать детям! Не вдыхать пары! Избегать попадания внутрь, на открытую кожу и в глаза.
+                  Использовать в хорошо проветриваемом помещении. Применять средства защиты кожи, глаз и органов дыхания. При проглатывании: прополоскать ротовую полость большим количеством воды.
+                  Не вызывать рвоту. При попадании на кожу: немедленно промыть большим количеством воды с мылом.
+                  При попадании в глаза: немедленно промыть большим количеством воды. Снять контактные линзы, если Вы ими пользуетесь и, если это легко сделать. Продолжить промывание глаз. При вдыхании: свежий воздух, покой. При плохом самочувствии обратиться за медицинской помощью.
+                  РЕКОМЕНДАЦИИ ПО УТИЛИЗАЦИИ: Не нарушать целостность упаковки и не сжигать, даже после использования! Использованный баллон утилизировать как бытовой отход.</p>
+              </div>
+            </div>
+            <div class="product-docs__doc tab__content">
+                <a href="#" class="product-docs__item">
+                  <span class="icon-download"></span>
+                  <p>Сертификат качества</p>
+                </a>
+                <a href="#" class="product-docs__item">
+                  <span class="icon-download"></span>
+                  <p>Технические документы</p>
+                </a>
+            </div>
+          </div>
         </div>
-        <dl class="product-docs__table">
-          <div>
-            <dt>Объем</dt>
-            <dd>800 мл</dd>
-          </div>
-          <div>
-            <dt>Вид</dt>
-            <dd>аэрозоль</dd>
-          </div>
-          <div>
-            <dt>Скорость испарения</dt>
-            <dd>очень высокая</dd>
-          </div>
-          <div>
-            <dt>Совместимость с резиновыми уплотнителями</dt>
-            <dd>безопасен для большинства типов (необходимо тестирование)</dd>
-          </div>
-          <div>
-            <dt>Не оставляет остаточной пленки</dt>
-            <dd>да</dd>
-          </div>
-          <div>
-            <dt>Состав</dt>
-            <dd>алифатические углеводороды &gt;30%; нафтеновые углеводороды &gt;30%; углекислый газ &lt;5%; ароматические углеводороды &lt;5%</dd>
-          </div>
-        </dl>
+
       </article>
     </div>
   </section>
 
   <section class="product-app section">
     <div class="container">
-      <article class="product-app__card">
-        <h2 class="section__title">Области применения</h2>
-        <ul class="product-app__list">
-          <li>Сервисное обслуживание автомобильной, мотоциклетной и промышленной техники</li>
-          <li>Ремонт тормозных и сцепных узлов</li>
-          <li>Обезжиривание деталей</li>
-          <li>в производственных и ремонтных участках для очистки узлов станков, инструмента и промышленного оборудования</li>
-        </ul>
-      </article>
+      <h2 class="section__title">Области применения</h2>
+      <div class="product-app__list">
+        <div class="product-app__text"><span class="icon-arrow-down"></span><p>Сервисное обслуживание автомобильной, мотоциклетной и промышленной техники</p></div>
+        <div class="product-app__text"><span class="icon-arrow-down"></span><p>Ремонт тормозных и сцепных узлов</p></div>
+        <div class="product-app__text"><span class="icon-arrow-down"></span><p>Обезжиривание деталей</p></div>
+        <div class="product-app__text"><span class="icon-arrow-down"></span><p>в производственных и ремонтных участках для очистки узлов станков, инструмента и промышленного оборудования</p></div>
+      </div>
     </div>
   </section>
 
   <section class="product-coop section">
     <div class="container">
       <article class="product-coop__card">
-        <h2>Интересует оптовое сотрудничество?</h2>
+        <h2 class="section__title section__title--center">Интересует оптовое сотрудничество?</h2>
         <a class="button button--primary" href="#">Получить условия</a>
       </article>
     </div>
@@ -111,49 +180,131 @@
   <section class="product-related section">
     <div class="container">
       <h2 class="section__title">Другие товары бренда</h2>
-      <div class="product-related__grid">
-        <article class="product-related__item product-related__item--industrial">
-          <figure class="product-related__thumb" aria-hidden="true">
-            <img src="img/figma/assets/related-industrial.png" alt="">
-          </figure>
-          <h3 class="product-related__name">ОЧИСТИТЕЛЬ ИНДУСТРИАЛЬНЫЙ ЦИТРУСОВЫЙ</h3>
-          <p class="product-related__latin">INDUSTRIAL CITRUS CLEANER</p>
-          <p class="product-related__volume">650 мл</p>
-          <p class="product-related__code">VL5611</p>
-          <a class="button button--small" href="#">Подробнее</a>
-        </article>
-        <article class="product-related__item product-related__item--throttle">
-          <figure class="product-related__thumb" aria-hidden="true">
-            <img src="img/figma/assets/related-throttle.png" alt="">
-          </figure>
-          <h3 class="product-related__name">ОЧИСТИТЕЛЬ ДРОССЕЛЬНОЙ ЗАСЛОНКИ</h3>
-          <p class="product-related__latin">CHOKE AND CARB CLEANER</p>
-          <p class="product-related__volume">650 мл</p>
-          <p class="product-related__code">VL5613</p>
-          <a class="button button--small" href="#">Подробнее</a>
-        </article>
-        <article class="product-related__item product-related__item--copper">
-          <figure class="product-related__thumb" aria-hidden="true">
-            <img src="img/figma/assets/related-copper.png" alt="">
-          </figure>
-          <h3 class="product-related__name">МЕДНАЯ СМАЗКА ВЫСОКОТЕМПЕРАТУРНАЯ</h3>
-          <p class="product-related__latin">HIGH-TEMP COPPER SPRAY</p>
-          <p class="product-related__volume">800 мл</p>
-          <p class="product-related__code">VL5621</p>
-          <a class="button button--small" href="#">Подробнее</a>
-        </article>
-        <article class="product-related__item product-related__item--peek product-related__item--brake">
-          <figure class="product-related__thumb" aria-hidden="true">
-            <img src="img/figma/assets/related-brake.png" alt="">
-          </figure>
-          <h3 class="product-related__name">ОЧИСТИТЕЛЬ ТОРМОЗОВ И ДЕТАЛЕЙ СЦЕПЛЕНИЯ</h3>
-          <p class="product-related__latin">Brake &amp; Clutch Cleaner</p>
-          <p class="product-related__volume">800 мл</p>
-          <p class="product-related__code">VL5810</p>
-          <a class="button button--small" href="#">Подробнее</a>
-        </article>
-      </div>
     </div>
+      <div class="product-related__grid swiper">
+        <div class="swiper-wrapper">
+          <article class="swiper-slide product-related__item">
+            <figure class="product-related__thumb" aria-hidden="true">
+              <img src="img/figma/assets/related-industrial.png" alt="">
+            </figure>
+            <div class="product-related__content">
+              <h3 class="product-related__name">ОЧИСТИТЕЛЬ ИНДУСТРИАЛЬНЫЙ ЦИТРУСОВЫЙ</h3>
+              <p class="product-related__latin">INDUSTRIAL CITRUS CLEANER</p>
+              <p class="product-related__volume">650 мл</p>
+              <div class="product-related__bottom">
+                <p class="product-related__code">VL5611</p>
+                <a class="button button--small" href="#">Подробнее</a>
+              </div>
+            </div>
+          </article>
+          <article class="swiper-slide product-related__item">
+            <figure class="product-related__thumb" aria-hidden="true">
+              <img src="img/figma/assets/related-industrial.png" alt="">
+            </figure>
+            <div class="product-related__content">
+              <h3 class="product-related__name">ОЧИСТИТЕЛЬ ИНДУСТРИАЛЬНЫЙ ЦИТРУСОВЫЙ</h3>
+              <p class="product-related__latin">INDUSTRIAL CITRUS CLEANER</p>
+              <p class="product-related__volume">650 мл</p>
+              <div class="product-related__bottom">
+                <p class="product-related__code">VL5611</p>
+                <a class="button button--small" href="#">Подробнее</a>
+              </div>
+            </div>
+          </article>
+          <article class="swiper-slide product-related__item">
+            <figure class="product-related__thumb" aria-hidden="true">
+              <img src="img/figma/assets/related-industrial.png" alt="">
+            </figure>
+            <div class="product-related__content">
+              <h3 class="product-related__name">ОЧИСТИТЕЛЬ ИНДУСТРИАЛЬНЫЙ ЦИТРУСОВЫЙ</h3>
+              <p class="product-related__latin">INDUSTRIAL CITRUS CLEANER</p>
+              <p class="product-related__volume">650 мл</p>
+              <div class="product-related__bottom">
+                <p class="product-related__code">VL5611</p>
+                <a class="button button--small" href="#">Подробнее</a>
+              </div>
+            </div>
+          </article>
+          <article class="swiper-slide product-related__item">
+            <figure class="product-related__thumb" aria-hidden="true">
+              <img src="img/figma/assets/related-industrial.png" alt="">
+            </figure>
+            <div class="product-related__content">
+              <h3 class="product-related__name">ОЧИСТИТЕЛЬ ИНДУСТРИАЛЬНЫЙ ЦИТРУСОВЫЙ</h3>
+              <p class="product-related__latin">INDUSTRIAL CITRUS CLEANER</p>
+              <p class="product-related__volume">650 мл</p>
+              <div class="product-related__bottom">
+                <p class="product-related__code">VL5611</p>
+                <a class="button button--small" href="#">Подробнее</a>
+              </div>
+            </div>
+          </article>
+          <article class="swiper-slide product-related__item">
+            <figure class="product-related__thumb" aria-hidden="true">
+              <img src="img/figma/assets/related-industrial.png" alt="">
+            </figure>
+            <div class="product-related__content">
+              <h3 class="product-related__name">ОЧИСТИТЕЛЬ ИНДУСТРИАЛЬНЫЙ ЦИТРУСОВЫЙ</h3>
+              <p class="product-related__latin">INDUSTRIAL CITRUS CLEANER</p>
+              <p class="product-related__volume">650 мл</p>
+              <div class="product-related__bottom">
+                <p class="product-related__code">VL5611</p>
+                <a class="button button--small" href="#">Подробнее</a>
+              </div>
+            </div>
+          </article>
+          <article class="swiper-slide product-related__item">
+            <figure class="product-related__thumb" aria-hidden="true">
+              <img src="img/figma/assets/related-industrial.png" alt="">
+            </figure>
+            <div class="product-related__content">
+              <h3 class="product-related__name">ОЧИСТИТЕЛЬ ИНДУСТРИАЛЬНЫЙ ЦИТРУСОВЫЙ</h3>
+              <p class="product-related__latin">INDUSTRIAL CITRUS CLEANER</p>
+              <p class="product-related__volume">650 мл</p>
+              <div class="product-related__bottom">
+                <p class="product-related__code">VL5611</p>
+                <a class="button button--small" href="#">Подробнее</a>
+              </div>
+            </div>
+          </article>
+          <article class="swiper-slide product-related__item">
+            <figure class="product-related__thumb" aria-hidden="true">
+              <img src="img/figma/assets/related-industrial.png" alt="">
+            </figure>
+            <div class="product-related__content">
+              <h3 class="product-related__name">ОЧИСТИТЕЛЬ ИНДУСТРИАЛЬНЫЙ ЦИТРУСОВЫЙ</h3>
+              <p class="product-related__latin">INDUSTRIAL CITRUS CLEANER</p>
+              <p class="product-related__volume">650 мл</p>
+              <div class="product-related__bottom">
+                <p class="product-related__code">VL5611</p>
+                <a class="button button--small" href="#">Подробнее</a>
+              </div>
+            </div>
+          </article>
+          <article class="swiper-slide product-related__item">
+            <figure class="product-related__thumb" aria-hidden="true">
+              <img src="img/figma/assets/related-industrial.png" alt="">
+            </figure>
+            <div class="product-related__content">
+              <h3 class="product-related__name">ОЧИСТИТЕЛЬ ИНДУСТРИАЛЬНЫЙ ЦИТРУСОВЫЙ</h3>
+              <p class="product-related__latin">INDUSTRIAL CITRUS CLEANER</p>
+              <p class="product-related__volume">650 мл</p>
+              <div class="product-related__bottom">
+                <p class="product-related__code">VL5611</p>
+                <a class="button button--small" href="#">Подробнее</a>
+              </div>
+            </div>
+          </article>
+        </div>
+        <div class="product-related__nav">
+          <div class="product-related__prev sliderNavigateBtn sliderNavigateBtn--left">
+            <div class="arrowBtn arrowBtn--left icon-arrow"></div>
+          </div>
+          <div class="product-related__next sliderNavigateBtn sliderNavigateBtn--right">
+            <div class="arrowBtn arrowBtn--right icon-arrow"></div>
+          </div>
+        </div>
+      </div>
   </section>
 </main>
 
@@ -172,21 +323,27 @@
         </a>
       </section>
       <nav class="site-footer__nav">
-        <a class="site-footer__nav-link" href="index.html">О бренде</a>
-        <a class="site-footer__nav-link site-footer__nav-link--active" href="product.html" aria-current="page">Продукция</a>
+        <a class="site-footer__nav-link" href="index.html" aria-current="page">О бренде</a>
+        <a class="site-footer__nav-link" href="product.html">Продукция</a>
         <a class="site-footer__nav-link" href="dealers.html">Где купить?</a>
         <a class="site-footer__nav-link" href="requisites.html">Реквизиты и контакты</a>
       </nav>
       <div class="site-footer__brand">
-        <img class="site-footer__brand-main" src="img/figma/assets/brand-mark.svg" alt="VOLGER">
-        <img class="site-footer__brand-system" src="img/icon/system.svg" alt="SYSTEM">
+        <a href="#" class="site-footer__brand-main icon-volger"></a>
+        <img src="./img/icon/by.svg" alt="" class="site-footer__brand-by">
+        <a href="#" class="site-footer__brand-system icon-system"></a>
       </div>
     </div>
     <div class="site-footer__bottom">
-      <p>© 2026 ООО "Волгер" Вы принимаете условия пользовательского соглашения каждый раз, когда посещаете наш сайт и оставляете свои данные в любой форме на сайте. Если вы не хотите, чтобы ваши данные обрабатывались, покиньте сайт.</p>
+      <p>© 2026 ООО "Волгер"</p>
+      <p>Вы принимаете условия пользовательского соглашения каждый раз, когда посещаете наш сайт и оставляете свои данные в любой форме на сайте. Если вы не хотите, чтобы ваши данные обрабатывались, покиньте сайт.</p>
       <a href="#">Пользовательское соглашение</a>
     </div>
   </div>
 </footer>
+<script src="./plugins/swiper/swiper-bundle.min.js" defer></script>
+<script src="/plugins/imask/imask.js" defer ></script>
+<script src="/plugins/fancybox/fancybox.umd.js" defer></script>
+<script type="module" src="./script.js?v=0.20302321" defer></script>
 </body>
 </html>
