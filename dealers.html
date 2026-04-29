@@ -67,34 +67,50 @@
     <div class="container">
       <h2 class="section__title">Преимущества для дилера:</h2>
       <div class="dealer-benefits__layout">
-        <div class="dealer-benefits__items">
-          <div class="dealer-benefits__item">
-            <div>
+        <div class="dealer-benefits__items accordion">
+          <div class="dealer-benefits__item ac">
+            <div class="dealer-benefits__btn ac-header">
               <h3>Поддержка продаж</h3>
-              <span class="dealer-benefits__arrow" aria-hidden="true"></span>
+              <div class="dealer-benefits__arrow  ac-trigger">
+                <span class="icon-arrow-left"></span>
+              </div>
             </div>
-            <p>Предоставляем маркетинговые материалы, рекомендации по продажам и помощь в продвижении продукции</p>
+            <div class="dealer-benefits__content ac-panel">
+              <p>Предоставляем маркетинговые материалы, рекомендации по продажам и помощь в продвижении продукции</p>
+            </div>
           </div>
-          <div class="dealer-benefits__item">
-            <div>
+          <div class="dealer-benefits__item ac">
+            <div class="dealer-benefits__btn ac-header">
               <h3>Востребованный продукт</h3>
-              <span class="dealer-benefits__arrow" aria-hidden="true"></span>
+              <div class="dealer-benefits__arrow ac-trigger">
+                <span class="icon-arrow-left"></span>
+              </div>
             </div>
-            <p>Продукция закрывает реальные задачи: очистка, защита, восстановление — то, что нужно ежедневно.</p>
+            <div class="dealer-benefits__content ac-panel">
+              <p>Продукция закрывает реальные задачи: очистка, защита, восстановление — то, что нужно ежедневно.</p>
+            </div>
           </div>
-          <div class="dealer-benefits__item">
-            <div>
+          <div class="dealer-benefits__item ac">
+            <div class="dealer-benefits__btn ac-header">
               <h3>Потенциал роста вместе с брендом</h3>
-              <span class="dealer-benefits__arrow" aria-hidden="true"></span>
+              <div class="dealer-benefits__arrow ac-trigger">
+                <span class="icon-arrow-left"></span>
+              </div>
             </div>
-            <p>Вы становитесь партнёром бренда на этапе роста и можете занять сильную позицию в своём регионе</p>
+            <div class="dealer-benefits__content ac-panel">
+              <p>Вы становитесь партнёром бренда на этапе роста и можете занять сильную позицию в своём регионе</p>
+            </div>
           </div>
-          <div class="dealer-benefits__item">
-            <div>
+          <div class="dealer-benefits__item ac">
+            <div class="dealer-benefits__btn ac-header">
               <h3>Прозрачная ценовая политика</h3>
-              <span class="dealer-benefits__arrow" aria-hidden="true"></span>
+              <div class="dealer-benefits__arrow  ac-trigger">
+                <span class="icon-arrow-left"></span>
+              </div>
             </div>
-            <p>Единая ценовая стратегия позволяет избежать демпинга и защищает вашу прибыль.</p>
+            <div class="dealer-benefits__content ac-panel">
+              <p>Единая ценовая стратегия позволяет избежать демпинга и защищает вашу прибыль.</p>
+            </div>
           </div>
         </div>
         <aside class="dealer-benefits__visual" aria-hidden="true">
@@ -195,6 +211,7 @@
 <script src="./plugins/swiper/swiper-bundle.min.js" defer></script>
 <script src="/plugins/imask/imask.js" defer ></script>
 <script src="/plugins/fancybox/fancybox.umd.js" defer></script>
+<script src="/plugins/accordion/accordion.min.js" defer></script>
 <script type="module" src="./script.js?v=0.20302321" defer></script>
 </body>
 </html>

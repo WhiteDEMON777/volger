@@ -192,6 +192,8 @@ a {
   font-weight: 700;
   line-height: 1.24;
   font-family: $font-alt;
+  position: relative;
+  z-index: 1;
 }
 
 .section__title--center {
@@ -494,6 +496,34 @@ textarea:focus-visible{
     height: stretch;
     background: url("../img/picture/Ellipse2.png") no-repeat;
     background-size: contain;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+}
+
+.page--dealers {
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("../img/picture/Ellipse5.png") no-repeat;
+    background-size: contain;
+    pointer-events: none;
+  }
+  &:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: stretch;
+    background: url("../img/picture/Ellipse6.png") no-repeat;
+    background-size: contain;
+    background-position: bottom;
     z-index: 1;
     pointer-events: none;
   }
@@ -1812,12 +1842,22 @@ textarea:focus-visible{
   }
 }
 
+.ac.js-enabled .ac-panel {
+  visibility: hidden;
+}
+
+.ac.is-active .ac-panel {
+  visibility: visible;
+}
+
+.ac .ac-panel {
+  overflow: hidden;
+  transition-property: height, visibility;
+  transition-timing-function: ease;
+}
+
 .dealer-benefits {
-  .section__title {
-    font-size: 35px;
-    font-weight: 500;
-    line-height: 1.24;
-  }
+
   &__layout {
     margin-top: 62px;
     display: grid;
@@ -1834,49 +1874,71 @@ textarea:focus-visible{
     border-radius: $radius-card;
     background: $panel-bg;
     border: 1px solid $panel-border;
-    min-height: 146px;
     overflow: hidden;
+    padding: 30px;
     h3 {
-      font-size: 30px;
+      font-family: $font-alt;
+      font-size: 23px;
       line-height: 1.24;
       font-weight: 500;
-      max-width: 551px;
+      text-align: right;
     }
 
     p {
-      display: none;
-      margin: 0;
-      padding: 8px 34px 40px 40px;
       color: $color-muted;
-      max-width: 763px;
-      font-size: 20px;
+      font-size: 16px;
+      text-align: right;
     }
   }
+  &__item.is-active {
+    .icon-arrow-left {
+      transform: rotate(180deg);
+    }
+  }
+  &__content {
+    width: 90%;
+    margin-left: auto;
+  }
+  &__btn {
+    margin-bottom: 30px;
+  }
   &__arrow {
-
+    opacity: .35;
+    font-size: 15px;
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    width: 100%;
+    cursor: pointer;
+    height: 100%;
+    display: flex;
+    align-items: end;
+    @include tr(opacity);
+    @include hover {
+      opacity: 1;
+    }
   }
   &__visual {
-    min-height: 689px;
     border-radius: $radius-card;
     border: 1px solid $panel-border;
     background: $panel-bg;
     position: relative;
     overflow: hidden;
+    padding-left: 30px;
+    padding-right: 30px;
+    height: 100%;
+    display: flex;
+    align-items: center;
     &-inner {
-      width: 710px;
       height: 407px;
       border-radius: $radius-card;
       background: transparent;
       border: 0;
-      position: absolute;
-      left: 61px;
-      top: 108px;
-      overflow: hidden;
       img {
         width: 100%;
         height: 100%;
         display: block;
-        object-fit: cover;
+        object-fit: contain;
       }
     }
   }
@@ -1887,9 +1949,9 @@ textarea:focus-visible{
   border-radius: 30px;
   background: rgba(217, 217, 217, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 25px 60px ;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  padding: 25px fluid(25px, 60px) ;
+  display: flex;
+  flex-wrap: wrap;
   column-gap: 43px;
   align-content: start;
   h2 {
@@ -1933,8 +1995,7 @@ textarea:focus-visible{
   &__cities {
     display: flex;
     justify-content: center;
-    grid-column: 1 / -1;
-
+    width: 100%;
     margin-top: 25px;
     font-size: 16px;
     line-height: 1.24;
@@ -2085,6 +2146,9 @@ textarea:focus-visible{
   .site-footer__bottom {
     width: auto;
   }
+  .dealer-card__brand {
+    margin-bottom: 20px;
+  }
 }
 @media (max-width: $breakpoint-xl) {
   .container,
@@ -2144,22 +2208,7 @@ textarea:focus-visible{
       order: -1;
     }
   }
-  .products__card,
-  .quality__card,
-  .production__card,
-  .dealers__layout,
-  .contact-block__form-card,
-  .requisites__card,
-  .product-app__card,
-  .product-coop__card,
-  .dealer-card,
-  .dealer-benefits__item {
-    padding: 30px;
-  }
-  .dealers__layout{
-    display: flex;
-    flex-direction: column-reverse;
-  }
+
 
   .products {
     &__layout {
@@ -2333,32 +2382,16 @@ textarea:focus-visible{
   .dealer-benefits__items {
     gap: 16px;
   }
-  .dealer-benefits__item {
-    min-height: 130px;
-  }
-  .dealer-benefits__item summary {
-    min-height: 130px;
-    padding: 30px 30px 30px 96px;
-  }
-  .dealer-benefits__item p {
-    padding: 0 30px 30px;
-  }
-  .dealer-benefits__arrow {
-    left: 30px;
-    top: 98px;
-  }
-  .dealer-benefits__item h3 {
-    font-size: 30px;
-  }
+
+
+
+
   .dealer-benefits__visual {
     min-height: 420px;
+    justify-content: center;
+    order: -1;
   }
-  .dealer-benefits__visual-inner {
-    width: calc(100% - 64px);
-    height: calc(100% - 216px);
-    left: 32px;
-    top: 108px;
-  }
+
   .site-footer__nav-link {
     font-size: 18px;
   }
@@ -2614,28 +2647,21 @@ textarea:focus-visible{
      &__contacts {
      }
    }
-  .dealer-benefits__item {
-    min-height: 110px;
-  }
-  .dealer-benefits__item summary {
-    min-height: 110px;
-    padding: 24px 24px 24px 84px;
-  }
-  .dealer-benefits__item p {
-    padding: 0 24px 24px;
-    margin-top: 18px;
-    font-size: 18px;
-  }
-  .dealer-benefits__arrow {
-    left: 24px;
-    top: 80px;
-  }
+
 
   .site-footer__brand {
     grid-column: auto;
   }
 }
 @media (max-width: $breakpoint-sm) {
+  .dealer-benefits {
+    &__visual {
+      min-height: 250px;
+      &-inner {
+        height: 250px;
+      }
+    }
+  }
   .requisites__block dl {
     gap: 15px;
     div {
@@ -2740,16 +2766,7 @@ textarea:focus-visible{
   .product-related__grid {
     grid-template-columns: 1fr;
   }
-  .dealer-benefits__item summary {
-    padding: 20px 20px 20px 76px;
-  }
-  .dealer-benefits__item p {
-    padding: 0 20px 20px;
-  }
-  .dealer-benefits__arrow {
-    left: 20px;
-    top: 70px;
-  }
+
   .product-coop__card h2 {
     font-size: 30px;
   }

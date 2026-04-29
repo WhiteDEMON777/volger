@@ -165,4 +165,9 @@ window.addEventListener('DOMContentLoaded', () => {
       cookie.classList.add('cookie--none');
     })
   }
+
+  const accordion = document.querySelector('.accordion');
+  if (accordion) {
+    new Accordion('.accordion');
+  }
 });
