@@ -74,11 +74,31 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 
   new Swiper('.product-related__grid', {
-    slidesPerView: 4.8,
-    spaceBetween: 35,
     navigation: {
       nextEl: '.product-related__next',
       prevEl: '.product-related__prev',
+    },
+    breakpoints: {
+      375: {
+        slidesPerView: 1.1,
+        spaceBetween: 15,
+      },
+      768: {
+        slidesPerView: 1.8,
+        spaceBetween: 25,
+      },
+      1024: {
+        slidesPerView: 2.8,
+        spaceBetween: 25,
+      },
+      1350: {
+        slidesPerView: 3.8,
+        spaceBetween: 25,
+      },
+      1800: {
+        slidesPerView: 4.8,
+        spaceBetween: 35,
+      },
     },
   });
 
@@ -187,8 +207,13 @@ window.addEventListener('DOMContentLoaded', () => {
   const cookie = document.querySelector('.cookie');
   const cookieBtn = document.querySelector('.cookie__button');
   if(cookieBtn) {
+   const cookieLocal = localStorage.getItem('cookie');
+   if (cookieLocal !== '1') {
+     cookie.classList.remove('cookie--none');
+   }
     cookieBtn.addEventListener('click', (e) => {
       cookie.classList.add('cookie--none');
+      localStorage.setItem('cookie', '1');
     })
   }
 
