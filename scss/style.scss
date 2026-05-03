@@ -959,7 +959,7 @@ textarea:focus-visible{
 
   }
   &__tab {
-    padding: 10px 30px;
+    padding: 10px 25px;
     border-radius: 9999px;
     border: 1.5px solid rgba(255, 255, 255, 1);
     background: transparent;
@@ -970,6 +970,7 @@ textarea:focus-visible{
     font-weight: 600;
     line-height: 1;
     cursor: pointer;
+    flex: 1 1 auto;
     @include tr(background);
     @include hover {
       background: #FFFFFF26;

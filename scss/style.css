@@ -848,7 +848,7 @@ textarea:focus-visible {
   }
 }
 .products__tab {
-  padding: 10px 30px;
+  padding: 10px 25px;
   border-radius: 9999px;
   border: 1.5px solid rgb(255, 255, 255);
   background: transparent;
@@ -858,6 +858,7 @@ textarea:focus-visible {
   font-weight: 600;
   line-height: 1;
   cursor: pointer;
+  flex: 1 1 auto;
   transition: background 0.38s ease-in-out;
 }
 @media (hover: hover) {
